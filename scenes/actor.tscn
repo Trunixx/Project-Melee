@@ -1,0 +1,335 @@
+[gd_scene format=3 uid="uid://daarr5p275ous"]
+
+[ext_resource type="Script" uid="uid://cn3dgi11ujeyu" path="res://scripts/actor.gd" id="1_0qi0m"]
+[ext_resource type="Script" uid="uid://c356epj66ocs6" path="res://scripts/view.gd" id="2_2gv2x"]
+[ext_resource type="Resource" uid="uid://ch1iaukestj1r" path="res://resources/actor_stats.tres" id="2_6iqic"]
+[ext_resource type="Texture2D" uid="uid://ck67svdt1728j" path="res://assets/player/placeholder_textures.png" id="2_7i7yh"]
+[ext_resource type="Script" uid="uid://8pm5chborq6i" path="res://scripts/states/state_machine.gd" id="3_w6j74"]
+[ext_resource type="Script" uid="uid://b2y5knongy00n" path="res://scripts/states/jumping.gd" id="4_0jvkp"]
+[ext_resource type="Script" uid="uid://3ikkn5h1iwxi" path="res://scripts/states/idle.gd" id="4_7i7yh"]
+[ext_resource type="Script" uid="uid://dc1s04i67xfhl" path="res://scripts/states/walking.gd" id="5_7i7yh"]
+[ext_resource type="Script" uid="uid://cd4udnwwu7t1i" path="res://scripts/states/falling.gd" id="7_yvg0l"]
+[ext_resource type="Script" uid="uid://btf3k54sv64by" path="res://scripts/states/prejump.gd" id="8_2pflr"]
+[ext_resource type="Script" uid="uid://ddqmxcqswum4o" path="res://scripts/states/running.gd" id="8_lu3a0"]
+[ext_resource type="Script" uid="uid://b6vu4nyy7mc7b" path="res://scripts/states/sprinting.gd" id="10_wptxq"]
+[ext_resource type="Script" uid="uid://d13o6vql7uixl" path="res://scripts/states/jumpfalling.gd" id="12_r46fi"]
+[ext_resource type="Script" uid="uid://bgxqrdb8prj08" path="res://scripts/states/longprejump.gd" id="13_ml442"]
+[ext_resource type="Script" uid="uid://vmparhqp68k" path="res://scripts/states/longjumping.gd" id="14_slxpf"]
+[ext_resource type="Script" uid="uid://coiagfixswq74" path="res://scripts/states/longjumpfalling.gd" id="15_admo0"]
+
+[sub_resource type="Animation" id="Animation_yvg0l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("View/Sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(7, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_6iqic"]
+resource_name = "fall"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(7, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_2gv2x"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.8, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_asua5"]
+resource_name = "jumpfalling"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(7, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_7i7yh"]
+resource_name = "jump"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999964, 0.19999999, 0.3, 0.39999998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [80, 81, 82, 83, 84]
+}
+
+[sub_resource type="Animation" id="Animation_r46fi"]
+resource_name = "longfalling"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(8, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_slxpf"]
+resource_name = "longjumping"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3, 0.39999998, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 8), Vector2i(4, 8), Vector2i(5, 8), Vector2i(6, 8), Vector2i(7, 8), Vector2i(8, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_admo0"]
+resource_name = "longprejump"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 8), Vector2i(1, 8), Vector2i(2, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_lu3a0"]
+resource_name = "prejump"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [77, 78, 79]
+}
+
+[sub_resource type="Animation" id="Animation_wptxq"]
+resource_name = "running"
+length = 1.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4), Vector2i(6, 4), Vector2i(7, 4), Vector2i(8, 4), Vector2i(9, 4), Vector2i(10, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_ml442"]
+resource_name = "sprinting"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(6, 5), Vector2i(7, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_2pflr"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [33, 34, 35, 36, 37, 38, 39, 40]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6iqic"]
+_data = {
+&"RESET": SubResource("Animation_yvg0l"),
+&"falling": SubResource("Animation_6iqic"),
+&"idle": SubResource("Animation_2gv2x"),
+&"jumpfalling": SubResource("Animation_asua5"),
+&"jumping": SubResource("Animation_7i7yh"),
+&"longjumpfalling": SubResource("Animation_r46fi"),
+&"longjumping": SubResource("Animation_slxpf"),
+&"longprejump": SubResource("Animation_admo0"),
+&"prejump": SubResource("Animation_lu3a0"),
+&"running": SubResource("Animation_wptxq"),
+&"sprinting": SubResource("Animation_ml442"),
+&"walking": SubResource("Animation_2pflr")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jvkp"]
+size = Vector2(14, 46)
+
+[node name="Actor" type="CharacterBody2D" unique_id=1201751571]
+collision_layer = 2
+script = ExtResource("1_0qi0m")
+stats = ExtResource("2_6iqic")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=2134078577]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
+[node name="View" type="Node2D" parent="." unique_id=537658040]
+script = ExtResource("2_2gv2x")
+
+[node name="Sprite" type="Sprite2D" parent="View" unique_id=1661259608]
+scale = Vector2(1, 1.008)
+texture = ExtResource("2_7i7yh")
+offset = Vector2(3.051758e-08, -31.999998)
+hframes = 11
+vframes = 11
+frame = 84
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="View" unique_id=416671500]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_6iqic")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=259651619]
+position = Vector2(0, -23)
+shape = SubResource("RectangleShape2D_0jvkp")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1320593602 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_w6j74")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://8pm5chborq6i"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=637671450]
+script = ExtResource("4_7i7yh")
+metadata/_custom_type_script = "uid://3ikkn5h1iwxi"
+
+[node name="Walking" type="Node" parent="StateMachine" unique_id=751262880]
+script = ExtResource("5_7i7yh")
+metadata/_custom_type_script = "uid://dc1s04i67xfhl"
+
+[node name="Running" type="Node" parent="StateMachine" unique_id=591678483]
+script = ExtResource("8_lu3a0")
+metadata/_custom_type_script = "uid://ddqmxcqswum4o"
+
+[node name="Sprinting" type="Node" parent="StateMachine" unique_id=1813077463]
+script = ExtResource("10_wptxq")
+metadata/_custom_type_script = "uid://b6vu4nyy7mc7b"
+
+[node name="Prejump" type="Node" parent="StateMachine" unique_id=670413584]
+script = ExtResource("8_2pflr")
+metadata/_custom_type_script = "uid://btf3k54sv64by"
+
+[node name="Jumping" type="Node" parent="StateMachine" unique_id=1308426620]
+script = ExtResource("4_0jvkp")
+metadata/_custom_type_script = "uid://b2y5knongy00n"
+
+[node name="Jumpfalling" type="Node" parent="StateMachine" unique_id=65230541]
+script = ExtResource("12_r46fi")
+metadata/_custom_type_script = "uid://d13o6vql7uixl"
+
+[node name="Longprejump" type="Node" parent="StateMachine" unique_id=1456729406]
+script = ExtResource("13_ml442")
+metadata/_custom_type_script = "uid://bgxqrdb8prj08"
+
+[node name="Longjumping" type="Node" parent="StateMachine" unique_id=598786524]
+script = ExtResource("14_slxpf")
+metadata/_custom_type_script = "uid://vmparhqp68k"
+
+[node name="Longjumpfalling" type="Node" parent="StateMachine" unique_id=1921316448]
+script = ExtResource("15_admo0")
+metadata/_custom_type_script = "uid://coiagfixswq74"
+
+[node name="Falling" type="Node" parent="StateMachine" unique_id=1774970719]
+script = ExtResource("7_yvg0l")
+metadata/_custom_type_script = "uid://cd4udnwwu7t1i"
