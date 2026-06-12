@@ -2,6 +2,7 @@ class_name ActorStats extends Resource
 
 @export var move_force : float = 120.0
 
+#TODO: Tune the gravity values
 @export var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var jump_gravity : float = max(ProjectSettings.get_setting("physics/2d/default_gravity") - 300, 680)
 

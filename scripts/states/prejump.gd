@@ -13,8 +13,9 @@ func update(_delta: float) -> void:
 	pass
 	
 func physics_update(delta: float) -> void:
-	actor.do_move_by_mode("prejump", delta, 0.0, actor.stats.prejump_speed_multiplier)
-	
+	actor.apply_stop_move(delta)
+	actor.do_move(delta, actor.stats.gravity)
+		
 	if not actor.is_on_floor():
 		finished.emit(FALLING)
 	elif not actor.animation_player.is_playing():

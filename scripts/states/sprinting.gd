@@ -13,8 +13,9 @@ func update(_delta: float) -> void:
 	pass
 	
 func physics_update(delta: float) -> void:
-	actor.do_move_by_mode("ground", delta, 0.0, actor.stats.sprinting_multiplier)
-
+	actor.apply_ground_move(delta, actor.stats.sprinting_multiplier)
+	actor.do_move(delta, actor.stats.gravity)
+	
 	if not actor.is_on_floor():
 		finished.emit(FALLING)
 	elif Input.is_action_just_released("sprinting"):

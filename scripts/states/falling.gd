@@ -13,7 +13,8 @@ func update(_delta: float) -> void:
 	pass
 	
 func physics_update(delta: float) -> void:
-	actor.do_move_by_mode("air", delta)
+	actor.apply_air_move(delta)
+	actor.do_move(delta, actor.stats.gravity)
 
 	if actor.is_on_floor():
 		if is_equal_approx(actor.get_input_x(), 0.0):
