@@ -13,6 +13,7 @@ const LONGJUMPING = "Longjumping"
 const FALLING = "Falling"
 const LONGJUMPFALLING = "Longjumpfalling"
 const JUMPFALLING = "Jumpfalling"
+const FALLSTUN = "Fallstun"
 
 var actor : Actor
 

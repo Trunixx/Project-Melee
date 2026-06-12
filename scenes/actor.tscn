@@ -13,10 +13,8 @@
 [ext_resource type="Script" uid="uid://ddqmxcqswum4o" path="res://scripts/states/running.gd" id="8_lu3a0"]
 [ext_resource type="Script" uid="uid://bexg5by40y4un" path="res://scripts/states/turnskid.gd" id="10_asua5"]
 [ext_resource type="Script" uid="uid://b6vu4nyy7mc7b" path="res://scripts/states/sprinting.gd" id="10_wptxq"]
-[ext_resource type="Script" uid="uid://d13o6vql7uixl" path="res://scripts/states/jumpfalling.gd" id="12_r46fi"]
 [ext_resource type="Script" uid="uid://bgxqrdb8prj08" path="res://scripts/states/longprejump.gd" id="13_ml442"]
 [ext_resource type="Script" uid="uid://vmparhqp68k" path="res://scripts/states/longjumping.gd" id="14_slxpf"]
-[ext_resource type="Script" uid="uid://coiagfixswq74" path="res://scripts/states/longjumpfalling.gd" id="15_admo0"]
 
 [sub_resource type="Animation" id="Animation_yvg0l"]
 length = 0.001
@@ -288,6 +286,7 @@ one_shot = true
 
 [node name="Camera" type="Camera2D" parent="." unique_id=2134078577]
 zoom = Vector2(3, 3)
+process_callback = 0
 position_smoothing_enabled = true
 
 [node name="View" type="Node2D" parent="." unique_id=537658040]
@@ -346,10 +345,6 @@ metadata/_custom_type_script = "uid://btf3k54sv64by"
 script = ExtResource("4_0jvkp")
 metadata/_custom_type_script = "uid://b2y5knongy00n"
 
-[node name="Jumpfalling" type="Node" parent="StateMachine" unique_id=65230541]
-script = ExtResource("12_r46fi")
-metadata/_custom_type_script = "uid://d13o6vql7uixl"
-
 [node name="Longprejump" type="Node" parent="StateMachine" unique_id=1456729406]
 script = ExtResource("13_ml442")
 metadata/_custom_type_script = "uid://bgxqrdb8prj08"
@@ -357,10 +352,6 @@ metadata/_custom_type_script = "uid://bgxqrdb8prj08"
 [node name="Longjumping" type="Node" parent="StateMachine" unique_id=598786524]
 script = ExtResource("14_slxpf")
 metadata/_custom_type_script = "uid://vmparhqp68k"
-
-[node name="Longjumpfalling" type="Node" parent="StateMachine" unique_id=1921316448]
-script = ExtResource("15_admo0")
-metadata/_custom_type_script = "uid://coiagfixswq74"
 
 [node name="Falling" type="Node" parent="StateMachine" unique_id=1774970719]
 script = ExtResource("7_yvg0l")

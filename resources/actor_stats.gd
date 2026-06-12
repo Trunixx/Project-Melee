@@ -3,7 +3,6 @@ class_name ActorStats extends Resource
 # TODO: Tune the gravity values
 # Used when calculating gravity
 @export var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
-@export var jump_gravity : float = gravity
 
 # Used as a move impulse
 @export var move_force : float = 120.0
@@ -29,7 +28,7 @@ class_name ActorStats extends Resource
 
 # Used when starting to move
 @export var ground_acceleration : float = 600.0
-@export var air_acceleration : float = 180.0
+@export var air_acceleration : float = 100.0
 
 # Used when reversing the direction of the movement
 @export var ground_deceleration : float = 1200.0

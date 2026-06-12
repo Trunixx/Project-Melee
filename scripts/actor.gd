@@ -21,6 +21,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer.start()
 		
+# TODO: Check if these methods can be put in the actor_state class for the SRP 
 func get_input_x() -> float:
 	if direction_queue.is_empty():
 		return 0.0
