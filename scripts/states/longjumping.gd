@@ -14,7 +14,7 @@ func update(_delta: float) -> void:
 	pass
 	
 func physics_update(delta: float) -> void:
-	actor.apply_jump_move(delta, actor.stats.longjump_speed_bonus, actor.stats.longjumping_speed_multiplier)
+	actor.apply_jump_move(delta, actor.stats.previous_speed, actor.stats.longjumping_speed_multiplier)
 	actor.do_move(delta, actor.stats.gravity)
 	
 	if actor.velocity.y >= 0:

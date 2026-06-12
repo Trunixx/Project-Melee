@@ -4,7 +4,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
 		
 func exit() -> void:
-	pass
+	actor.stats.previous_speed = actor.velocity.x * actor.get_input_x()
 	
 func handle_input(event: InputEvent) -> void:
 	pass
@@ -20,7 +20,7 @@ func physics_update(delta: float) -> void:
 		finished.emit(FALLING)
 	elif Input.is_action_just_released("walking"):
 		finished.emit(RUNNING)
-	elif Input.is_action_just_pressed("jump"):
+	elif Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped():
 		finished.emit(PREJUMP)
 	elif is_equal_approx(actor.get_input_x(), 0.0):
 		finished.emit(IDLE)

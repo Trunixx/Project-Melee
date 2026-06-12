@@ -5,6 +5,10 @@ class_name Actor extends CharacterBody2D
 @onready var view: Node2D = $View
 @onready var animation_player: AnimationPlayer = $View/AnimationPlayer
 
+# Stuff related to jumping QoL
+@onready var edge_detector: RayCast2D = $View/EdgeDetector
+@onready var jump_buffer_timer: Timer = $JumpBufferTimer
+
 var direction_queue = []
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -14,7 +18,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 			direction_queue.push_back(input)
 		if Input.is_action_just_released(input):
 			direction_queue.erase(input)
-
+	if Input.is_action_just_pressed("jump"):
+		jump_buffer_timer.start()
+		
 func get_input_x() -> float:
 	if direction_queue.is_empty():
 		return 0.0
@@ -30,15 +36,23 @@ func apply_gravity(gravity : float, delta : float):
 func apply_default_move(delta : float, speed_mult : float = 1.0):
 	var input_x = get_input_x()
 	velocity.x = move_toward(velocity.x, input_x * stats.move_force * speed_mult, stats.ground_acceleration * delta)
+
+func apply_skid_move(delta : float):
+	var input_x = get_input_x()
+	velocity.x = move_toward(velocity.x, input_x * stats.move_force, stats.ground_deceleration * delta)
 	
 func apply_stop_move(delta : float):
 	velocity.x = move_toward(velocity.x, 0, stats.ground_friction * delta)
-	
+		
 func apply_ground_move(delta : float, speed_mult : float = 1.0):
-	apply_default_move(delta,speed_mult)
-	
-func apply_air_move(delta : float, speed_mult : float = 1.0):
-	apply_default_move(delta,speed_mult)
+	if sign(velocity.x) != sign(get_input_x()) and velocity.x != 0:
+		apply_skid_move(delta)
+	else:
+		apply_default_move(delta,speed_mult)
+
+func apply_air_move(delta : float):
+	var input_x = get_input_x()
+	velocity.x = move_toward(velocity.x, input_x * max(stats.previous_speed,stats.move_force), stats.air_acceleration * delta)
 	
 func apply_jump_move(delta : float, speed_bonus : float, speed_mult : float = 1.0):
 	var input_x = get_input_x()

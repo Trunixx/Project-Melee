@@ -1,27 +1,45 @@
 class_name ActorStats extends Resource
 
+#TODO: Tune the gravity values
+# Used when calculating gravity
+@export var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export var jump_gravity : float = gravity
+
+# Used as a move impulse
 @export var move_force : float = 120.0
 
-#TODO: Tune the gravity values
-@export var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
-@export var jump_gravity : float = max(ProjectSettings.get_setting("physics/2d/default_gravity") - 300, 680)
-
+# Used as a jump impulse
 @export var jump_force : float = 250.0
-@export var long_jump_force : float = 200.0
+@export var long_jump_force : float = 225.0
 
-@export var jump_speed_bonus : float = 200
-@export var longjump_speed_bonus : float = 300
-
+# Used to slow down character before jumping
 @export var prejump_speed_multiplier : float = 2.5
 @export var longprejump_speed_multiplier : float = 2.0
 
+# Used to make character go faster when jumping
 @export var jumping_speed_multiplier : float = 1.5
 @export var longjumping_speed_multiplier : float = 2.5
 
+# Used as the jump buffer timer
+@export var jump_buffer_time : float = 0.25
+
+# Used to boost speed
 @export var running_multiplier : float = 1.5
 @export var sprinting_multiplier : float = 2.0
 
+# Used when starting to move
 @export var ground_acceleration : float = 600.0
 @export var air_acceleration : float = 180.0
 
-@export var ground_friction : float = 1000.0
+# Used when reversing the direction of the movement
+@export var ground_deceleration : float = 1200.0
+
+# Used when stopping
+@export var ground_friction : float = 800.0
+
+
+# The following variables are calculated and edited when the game is running
+
+# Used when keeping fall momentum
+# Assigned when leaving a "movement" state
+@export var previous_speed : float

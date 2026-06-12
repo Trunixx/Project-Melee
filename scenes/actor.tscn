@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cd4udnwwu7t1i" path="res://scripts/states/falling.gd" id="7_yvg0l"]
 [ext_resource type="Script" uid="uid://btf3k54sv64by" path="res://scripts/states/prejump.gd" id="8_2pflr"]
 [ext_resource type="Script" uid="uid://ddqmxcqswum4o" path="res://scripts/states/running.gd" id="8_lu3a0"]
+[ext_resource type="Script" uid="uid://bexg5by40y4un" path="res://scripts/states/turnskid.gd" id="10_asua5"]
 [ext_resource type="Script" uid="uid://b6vu4nyy7mc7b" path="res://scripts/states/sprinting.gd" id="10_wptxq"]
 [ext_resource type="Script" uid="uid://d13o6vql7uixl" path="res://scripts/states/jumpfalling.gd" id="12_r46fi"]
 [ext_resource type="Script" uid="uid://bgxqrdb8prj08" path="res://scripts/states/longprejump.gd" id="13_ml442"]
@@ -152,7 +153,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_admo0"]
 resource_name = "longprejump"
-length = 0.3
+length = 0.2
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -169,7 +170,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_lu3a0"]
 resource_name = "prejump"
-length = 0.3
+length = 0.2
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -220,6 +221,24 @@ tracks/0/keys = {
 "values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(6, 5), Vector2i(7, 5)]
 }
 
+[sub_resource type="Animation" id="Animation_okck6"]
+resource_name = "turnskid"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 7)]
+}
+
 [sub_resource type="Animation" id="Animation_2pflr"]
 resource_name = "walk"
 length = 0.8
@@ -251,6 +270,7 @@ _data = {
 &"prejump": SubResource("Animation_lu3a0"),
 &"running": SubResource("Animation_wptxq"),
 &"sprinting": SubResource("Animation_ml442"),
+&"turnskid": SubResource("Animation_okck6"),
 &"walking": SubResource("Animation_2pflr")
 }
 
@@ -261,6 +281,10 @@ size = Vector2(14, 46)
 collision_layer = 2
 script = ExtResource("1_0qi0m")
 stats = ExtResource("2_6iqic")
+
+[node name="JumpBufferTimer" type="Timer" parent="." unique_id=651272927]
+wait_time = 0.3
+one_shot = true
 
 [node name="Camera" type="Camera2D" parent="." unique_id=2134078577]
 zoom = Vector2(3, 3)
@@ -280,6 +304,10 @@ frame = 84
 [node name="AnimationPlayer" type="AnimationPlayer" parent="View" unique_id=416671500]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_6iqic")
+
+[node name="EdgeDetector" type="RayCast2D" parent="View" unique_id=1082679158]
+position = Vector2(8, -3)
+target_position = Vector2(0, 5)
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=259651619]
 position = Vector2(0, -23)
@@ -305,6 +333,10 @@ metadata/_custom_type_script = "uid://ddqmxcqswum4o"
 [node name="Sprinting" type="Node" parent="StateMachine" unique_id=1813077463]
 script = ExtResource("10_wptxq")
 metadata/_custom_type_script = "uid://b6vu4nyy7mc7b"
+
+[node name="Turnskid" type="Node" parent="StateMachine" unique_id=723188297]
+script = ExtResource("10_asua5")
+metadata/_custom_type_script = "uid://bexg5by40y4un"
 
 [node name="Prejump" type="Node" parent="StateMachine" unique_id=670413584]
 script = ExtResource("8_2pflr")
