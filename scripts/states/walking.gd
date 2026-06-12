@@ -13,7 +13,8 @@ func update(_delta: float) -> void:
 	pass
 	
 func physics_update(delta: float) -> void:
-	actor.do_move_by_mode("ground", delta)
+	actor.apply_ground_move(delta)
+	actor.do_move(delta, actor.stats.gravity)
 
 	if not actor.is_on_floor():
 		finished.emit(FALLING)
