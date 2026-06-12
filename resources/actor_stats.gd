@@ -1,6 +1,6 @@
 class_name ActorStats extends Resource
 
-#TODO: Tune the gravity values
+# TODO: Tune the gravity values
 # Used when calculating gravity
 @export var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var jump_gravity : float = gravity
@@ -38,7 +38,7 @@ class_name ActorStats extends Resource
 @export var ground_friction : float = 800.0
 
 
-# The following variables are calculated and edited when the game is running
+# The following variables are calculated and edited during the game execution
 
 # Used when keeping fall momentum
 # Assigned when leaving a "movement" state

@@ -4,7 +4,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
 	
 func exit() -> void:
-	actor.stats.previous_speed = actor.velocity.x * actor.get_input_x()
+	actor.stats.previous_speed = actor.velocity.x
 	
 func handle_input(event: InputEvent) -> void:
 	pass

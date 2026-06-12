@@ -20,11 +20,11 @@ func physics_update(delta: float) -> void:
 	if not actor.is_on_floor():
 		finished.emit(FALLING)
 	elif not sign(actor.get_input_x()) != sign(actor.velocity.x):
-		if Input.is_action_pressed("walking"):
-			finished.emit(WALKING)
-		elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
+		if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 			finished.emit(RUNNING)
-		elif Input.is_action_pressed("sprinting"):
+		elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") and Input.is_action_pressed("walking"):
+			finished.emit(WALKING)
+		elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") and Input.is_action_pressed("sprinting"):
 			finished.emit(SPRINTING)
 		elif Input.is_action_just_pressed("jump"):
 			finished.emit(PREJUMP)
