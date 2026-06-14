@@ -171,7 +171,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_uh28t"]
 resource_name = "postsliding"
-length = 0.2
+length = 0.26666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -327,8 +327,9 @@ _data = {
 &"walking": SubResource("Animation_2pflr")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jvkp"]
-size = Vector2(14, 46)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okck6"]
+radius = 6.0
+height = 46.0
 
 [node name="Actor" type="CharacterBody2D" unique_id=1201751571]
 collision_layer = 2
@@ -369,7 +370,7 @@ target_position = Vector2(0, 5)
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=259651619]
 position = Vector2(0, -23)
-shape = SubResource("RectangleShape2D_0jvkp")
+shape = SubResource("CapsuleShape2D_okck6")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1320593602 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_w6j74")

@@ -34,8 +34,8 @@ position = Vector2(384, 783)
 shape = SubResource("WorldBoundaryShape2D_0wfyh")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D" unique_id=1303653184]
-position = Vector2(-74, 131)
-scale = Vector2(7.7734375, 265.00006)
+position = Vector2(-199.5, 131)
+scale = Vector2(27.433594, 265.00006)
 texture = SubResource("GradientTexture1D_0wfyh")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1649349016]

@@ -21,5 +21,9 @@ func physics_update(delta: float) -> void:
 		finished.emit(FALLING)
 	elif Input.is_action_just_released("sliding"):
 		finished.emit(POSTSLIDING)
+	elif Input.is_action_just_pressed("jump") and Input.is_action_pressed("sprinting") or not actor.jump_buffer_timer.is_stopped():
+		finished.emit(LONGPREJUMP)
+	elif Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped():
+		finished.emit(PREJUMP)
 	elif not actor.animation_player.is_playing():
 		finished.emit(SLIDING)

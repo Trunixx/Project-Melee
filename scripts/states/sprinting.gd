@@ -22,7 +22,7 @@ func physics_update(delta: float) -> void:
 		finished.emit(TURNSKID)
 	elif Input.is_action_just_released("sprinting"):
 		finished.emit(RUNNING)
-	elif Input.is_action_just_pressed("sliding"):
+	elif Input.is_action_just_pressed("sliding") or not actor.sliding_buffer_timer.is_stopped():
 		finished.emit(PRESLIDING)
 	elif Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped():
 		finished.emit(LONGPREJUMP)

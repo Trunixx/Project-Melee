@@ -1,6 +1,5 @@
 class_name ActorStats extends Resource
 
-# TODO: Tune the gravity values
 # Used when calculating gravity
 @export var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -21,7 +20,7 @@ class_name ActorStats extends Resource
 
 # Used as the buffer timers wait time
 @export var jump_buffer_time : float = 0.25
-@export var sliding_buffer_time : float = 0.25
+@export var sliding_buffer_time : float = 0.3
 
 # Used to boost speed
 @export var running_multiplier : float = 1.5

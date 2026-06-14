@@ -63,7 +63,6 @@ func apply_jump_move(delta : float, speed_mult : float = 1.0):
 	velocity.x = move_toward(velocity.x, input_x * stats.move_force * speed_mult, stats.air_acceleration * delta)
 	
 func apply_sliding_move(delta : float):
-	var input_x = get_input_x()
 	velocity.x = move_toward(velocity.x, 0, stats.sliding_friction * delta)
 	
 func do_move(delta : float, gravity : float = stats.gravity):

@@ -19,6 +19,5 @@ func physics_update(delta: float) -> void:
 	
 	if not actor.is_on_floor():
 		finished.emit(FALLING)
-	# TODO: Fix that
-	elif Input.is_action_just_released("sliding") or abs(actor.velocity.x) < 10:
+	elif Input.is_action_just_pressed("jump") or Input.is_action_just_released("sliding") or abs(actor.velocity.x) < 40:
 		finished.emit(POSTSLIDING)
