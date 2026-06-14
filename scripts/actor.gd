@@ -8,6 +8,7 @@ class_name Actor extends CharacterBody2D
 # Stuff related to jumping QoL
 @onready var edge_detector: RayCast2D = $View/EdgeDetector
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
+@onready var sliding_buffer_timer: Timer = $SlidingBufferTimer
 
 var direction_queue = []
 
@@ -20,6 +21,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 			direction_queue.erase(input)
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer.start()
+	if Input.is_action_just_pressed("sliding"):
+		sliding_buffer_timer.start()
 		
 # TODO: Check if these methods can be put in the actor_state class for the SRP 
 func get_input_x() -> float:
@@ -58,6 +61,10 @@ func apply_air_move(delta : float):
 func apply_jump_move(delta : float, speed_mult : float = 1.0):
 	var input_x = get_input_x()
 	velocity.x = move_toward(velocity.x, input_x * stats.move_force * speed_mult, stats.air_acceleration * delta)
+	
+func apply_sliding_move(delta : float):
+	var input_x = get_input_x()
+	velocity.x = move_toward(velocity.x, 0, stats.sliding_friction * delta)
 	
 func do_move(delta : float, gravity : float = stats.gravity):
 	apply_gravity(gravity, delta)

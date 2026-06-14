@@ -24,6 +24,8 @@ func physics_update(delta: float) -> void:
 		finished.emit(WALKING)
 	elif Input.is_action_pressed("sprinting"):
 		finished.emit(SPRINTING)
+	elif Input.is_action_just_pressed("sliding") or not actor.sliding_buffer_timer.is_stopped():
+		finished.emit(PRESLIDING)
 	elif Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped():
 		finished.emit(PREJUMP)
 	elif is_equal_approx(actor.get_input_x(), 0.0):

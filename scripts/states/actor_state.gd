@@ -5,15 +5,20 @@ const WALKING = "Walking"
 const RUNNING = "Running"
 const SPRINTING = "Sprinting"
 const TURNSKID = "Turnskid"
+
+const PRESLIDING = "Presliding"
 const SLIDING = "Sliding"
+const POSTSLIDING = "Postsliding"
+
 const PREJUMP = "Prejump"
 const JUMPING = "Jumping"
+
 const LONGPREJUMP = "Longprejump"
 const LONGJUMPING = "Longjumping"
+
 const FALLING = "Falling"
-const LONGJUMPFALLING = "Longjumpfalling"
-const JUMPFALLING = "Jumpfalling"
-const FALLSTUN = "Fallstun"
+
+#const FALLSTUN = "Fallstun"
 
 var actor : Actor
 
@@ -25,6 +30,7 @@ func _ready() -> void:
 	actor = owner as Actor
 	assert(actor != null, "The ActorState state type must be used only in the Actor scene. It needs the owner to be an Actor node.")
 	actor.jump_buffer_timer.wait_time = actor.stats.jump_buffer_time
+	actor.sliding_buffer_timer.wait_time = actor.stats.sliding_buffer_time
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -19,8 +19,9 @@ class_name ActorStats extends Resource
 @export var jumping_speed_multiplier : float = 1.5
 @export var longjumping_speed_multiplier : float = 2.5
 
-# Used as the jump buffer timer
+# Used as the buffer timers wait time
 @export var jump_buffer_time : float = 0.25
+@export var sliding_buffer_time : float = 0.25
 
 # Used to boost speed
 @export var running_multiplier : float = 1.5
@@ -36,6 +37,9 @@ class_name ActorStats extends Resource
 # Used when stopping
 @export var ground_friction : float = 800.0
 
+# Used when sliding
+@export var sliding_friction : float = 100.0
+@export var sliding_speed_bonus : float = 100.0
 
 # The following variables are calculated and edited during the game execution
 
