@@ -22,5 +22,7 @@ func physics_update(delta: float) -> void:
 		finished.emit(LONGPREJUMP)
 	elif Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped() and actor.animation_player.current_animation_position > 0.1:
 		finished.emit(PREJUMP)
-	elif not actor.animation_player.is_playing() and Input.is_action_pressed("sprinting"):
+	elif not actor.animation_player.is_playing() and not Input.is_action_pressed("sprinting"):
 		finished.emit(RUNNING)
+	elif not actor.animation_player.is_playing() and Input.is_action_pressed("sprinting"):
+		finished.emit(SPRINTING)
