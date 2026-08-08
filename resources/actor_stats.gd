@@ -28,7 +28,7 @@ class_name ActorStats extends Resource
 
 # Used when starting to move
 @export var ground_acceleration : float = 600.0
-@export var air_acceleration : float = 100.0
+@export var air_acceleration : float = 200.0
 
 # Used when reversing the direction of the movement
 @export var ground_deceleration : float = 1200.0
@@ -39,6 +39,10 @@ class_name ActorStats extends Resource
 # Used when sliding
 @export var sliding_friction : float = 100.0
 @export var sliding_speed_bonus : float = 100.0
+
+# Used when in combat
+@export var combat_acceleration : float = 1200.0
+@export var combat_multiplier : float = 0.8
 
 # The following variables are calculated and edited during the game execution
 

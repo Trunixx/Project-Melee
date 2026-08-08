@@ -12,6 +12,8 @@ class_name Actor extends CharacterBody2D
 
 var direction_queue = []
 
+# The code in this function makes it so that you can override your current direction
+# even if you keep holding the key
 func _unhandled_input(_event: InputEvent) -> void:
 	for input in ["move_left","move_right"]:
 		if Input.is_action_just_pressed(input):
@@ -33,7 +35,9 @@ func get_input_x() -> float:
 		"move_left": return -1.0
 		"move_right": return 1.0
 		_: return 0.0
-	
+
+# These below are the functions called in the appropriate states
+# TODO: Change all speed_mult to hardcoded references, or remove the hardcoded reference and use one function only. Pick a side dude
 func apply_gravity(gravity : float, delta : float):
 	velocity.y += gravity * delta
 	
@@ -41,6 +45,10 @@ func apply_default_move(delta : float, speed_mult : float = 1.0):
 	var input_x = get_input_x()
 	velocity.x = move_toward(velocity.x, input_x * stats.move_force * speed_mult, stats.ground_acceleration * delta)
 
+func apply_combat_move(delta : float, speed_mult : float = 1.0):
+	var input_x = get_input_x()
+	velocity.x = move_toward(velocity.x, input_x * stats.move_force * speed_mult, stats.combat_acceleration * delta)
+	
 func apply_skid_move(delta : float):
 	var input_x = get_input_x()
 	velocity.x = move_toward(velocity.x, input_x * stats.move_force, stats.ground_deceleration * delta)
@@ -65,7 +73,13 @@ func apply_jump_move(delta : float, speed_mult : float = 1.0):
 func apply_sliding_move(delta : float):
 	velocity.x = move_toward(velocity.x, 0, stats.sliding_friction * delta)
 	
+# This function gets called after one of the above to apply gravity,
+# movement and face the character in the right direction
 func do_move(delta : float, gravity : float = stats.gravity):
 	apply_gravity(gravity, delta)
 	view.face_from_velocity(velocity.x)
+	move_and_slide()
+
+func do_move_no_face(delta : float, gravity : float = stats.gravity):
+	apply_gravity(gravity, delta)
 	move_and_slide()
