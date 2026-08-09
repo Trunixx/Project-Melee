@@ -12,6 +12,10 @@ class_name Actor extends CharacterBody2D
 
 var direction_queue = []
 
+func _ready() -> void:
+	jump_buffer_timer.wait_time = stats.jump_buffer_time
+	sliding_buffer_timer.wait_time = stats.sliding_buffer_time
+	
 # The code in this function makes it so that you can override your current direction
 # even if you keep holding the key
 func _unhandled_input(_event: InputEvent) -> void:
@@ -37,7 +41,7 @@ func get_input_x() -> float:
 		_: return 0.0
 
 # These below are the functions called in the appropriate states
-# TODO: Change all speed_mult to hardcoded references, or remove the hardcoded reference and use one function only. Pick a side dude
+# TODO: Can you make the functions below more DRY?
 func apply_gravity(gravity : float, delta : float):
 	velocity.y += gravity * delta
 	
@@ -80,6 +84,7 @@ func do_move(delta : float, gravity : float = stats.gravity):
 	view.face_from_velocity(velocity.x)
 	move_and_slide()
 
-func do_move_no_face(delta : float, gravity : float = stats.gravity):
+func do_move_face_from_mouse(delta : float, gravity : float = stats.gravity):
 	apply_gravity(gravity, delta)
+	view.face_from_mouse()
 	move_and_slide()

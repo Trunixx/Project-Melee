@@ -1,5 +1,7 @@
 class_name ActorState extends State
 
+# TODO: Check if these constants occupy more memory or not (they get assigned at every state) 
+
 const IDLE = "Idle"
 const WALKING = "Walking"
 const RUNNING = "Running"
@@ -31,8 +33,6 @@ func _ready() -> void:
 	await owner.ready
 	actor = owner as Actor
 	assert(actor != null, "The ActorState state type must be used only in the Actor scene. It needs the owner to be an Actor node.")
-	actor.jump_buffer_timer.wait_time = actor.stats.jump_buffer_time
-	actor.sliding_buffer_timer.wait_time = actor.stats.sliding_buffer_time
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

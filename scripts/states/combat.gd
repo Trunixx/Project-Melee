@@ -14,7 +14,7 @@ func update(_delta: float) -> void:
 	
 func physics_update(delta: float) -> void:
 	actor.apply_combat_move(delta, actor.stats.combat_multiplier)
-	actor.do_move_no_face(delta, actor.stats.gravity)
+	actor.do_move_face_from_mouse(delta, actor.stats.gravity)
 	
 	if not actor.is_on_floor():
 		finished.emit(FALLING)
