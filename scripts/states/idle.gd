@@ -14,15 +14,11 @@ func update(_delta: float) -> void:
 	
 func physics_update(delta: float) -> void:
 	actor.apply_stop_move(delta)
-	actor.do_move(delta, actor.stats.gravity)
-	
-	if not actor.is_on_floor():
-		finished.emit(FALLING)
-	elif Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped():
-		finished.emit(PREJUMP)
-	elif Input.is_action_pressed("walking") and (Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right")):
-		finished.emit(WALKING)
-	elif Input.is_action_just_pressed("move_left") or Input.is_action_just_pressed("move_right"):
-		finished.emit(RUNNING)
-	elif Input.is_action_just_pressed("combat"):
-		finished.emit(COMBAT)
+
+	if not is_equal_approx(actor.get_input_x(), 0.0):
+		if Input.is_action_pressed("sprinting"):
+			finished.emit("Grounded/Sprinting")
+		elif Input.is_action_pressed("walking"):
+			finished.emit("Grounded/Walking")
+		else:
+			finished.emit("Grounded/Running")

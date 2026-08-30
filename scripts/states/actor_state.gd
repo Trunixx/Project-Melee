@@ -26,7 +26,7 @@ const COMBAT = "Combat"
 
 var actor : Actor
 
-var state_name : String = get_script().get_global_name().to_lower()
+@onready var state_name: String = name.to_lower()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

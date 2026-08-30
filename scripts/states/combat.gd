@@ -2,9 +2,10 @@ class_name Combat extends ActorState
 
 func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
+	actor.camera_zoomer.play("zoom_in")
 	
 func exit() -> void:
-	pass
+	actor.camera_zoomer.play("zoom_out")
 	
 func handle_input(event: InputEvent) -> void:
 	pass
@@ -17,8 +18,8 @@ func physics_update(delta: float) -> void:
 	actor.do_move_face_from_mouse(delta, actor.stats.gravity)
 	
 	if not actor.is_on_floor():
-		finished.emit(FALLING)
+		finished.emit("Airborne/Falling")
 	elif Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped():
-		finished.emit(PREJUMP)
+		finished.emit("Grounded/Prejump")
 	elif Input.is_action_just_pressed("combat"):
-		finished.emit(IDLE)
+		finished.emit("Grounded/Idle")

@@ -8,17 +8,73 @@
 [ext_resource type="Script" uid="uid://b2y5knongy00n" path="res://scripts/states/jumping.gd" id="4_0jvkp"]
 [ext_resource type="Script" uid="uid://3ikkn5h1iwxi" path="res://scripts/states/idle.gd" id="4_7i7yh"]
 [ext_resource type="Script" uid="uid://dc1s04i67xfhl" path="res://scripts/states/walking.gd" id="5_7i7yh"]
+[ext_resource type="Script" uid="uid://cqo135kuaafpn" path="res://scripts/states/grounded.gd" id="6_5y4kb"]
 [ext_resource type="Script" uid="uid://cd4udnwwu7t1i" path="res://scripts/states/falling.gd" id="7_yvg0l"]
 [ext_resource type="Script" uid="uid://btf3k54sv64by" path="res://scripts/states/prejump.gd" id="8_2pflr"]
 [ext_resource type="Script" uid="uid://ddqmxcqswum4o" path="res://scripts/states/running.gd" id="8_lu3a0"]
 [ext_resource type="Script" uid="uid://bexg5by40y4un" path="res://scripts/states/turnskid.gd" id="10_asua5"]
 [ext_resource type="Script" uid="uid://b6vu4nyy7mc7b" path="res://scripts/states/sprinting.gd" id="10_wptxq"]
+[ext_resource type="Script" uid="uid://hky0vv2disys" path="res://scripts/states/airborne.gd" id="12_uh28t"]
 [ext_resource type="Script" uid="uid://bgxqrdb8prj08" path="res://scripts/states/longprejump.gd" id="13_ml442"]
 [ext_resource type="Script" uid="uid://vmparhqp68k" path="res://scripts/states/longjumping.gd" id="14_slxpf"]
 [ext_resource type="Script" uid="uid://dg6vbbh01f0fo" path="res://scripts/states/presliding.gd" id="16_r46fi"]
 [ext_resource type="Script" uid="uid://dxvh4i7qvv73f" path="res://scripts/states/sliding.gd" id="17_asua5"]
 [ext_resource type="Script" uid="uid://dlicg3j3pkp5c" path="res://scripts/states/postsliding.gd" id="18_okck6"]
 [ext_resource type="Script" uid="uid://bn1nhhpn4mxes" path="res://scripts/states/combat.gd" id="19_yrmic"]
+
+[sub_resource type="Animation" id="Animation_d8nby"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_l7wqm"]
+resource_name = "zoom_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(3.2, 3.2)]
+}
+
+[sub_resource type="Animation" id="Animation_6duwv"]
+resource_name = "zoom_out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3.2, 3.2), Vector2(3, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6duwv"]
+_data = {
+&"RESET": SubResource("Animation_d8nby"),
+&"zoom_in": SubResource("Animation_l7wqm"),
+&"zoom_out": SubResource("Animation_6duwv")
+}
 
 [sub_resource type="Animation" id="Animation_eog1v"]
 length = 0.001
@@ -353,9 +409,13 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Camera" type="Camera2D" parent="." unique_id=2134078577]
+position = Vector2(0, -24)
 zoom = Vector2(3, 3)
 process_callback = 0
 position_smoothing_enabled = true
+
+[node name="CameraZoomer" type="AnimationPlayer" parent="Camera" unique_id=1495291087]
+libraries/ = SubResource("AnimationLibrary_6duwv")
 
 [node name="View" type="Node2D" parent="." unique_id=537658040]
 script = ExtResource("2_2gv2x")
@@ -382,60 +442,68 @@ shape = SubResource("CapsuleShape2D_okck6")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1320593602 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_w6j74")
-initial_state = NodePath("Idle")
+initial_state = NodePath("Grounded/Idle")
 metadata/_custom_type_script = "uid://8pm5chborq6i"
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=637671450]
+[node name="Grounded" type="Node" parent="StateMachine" unique_id=324241848]
+script = ExtResource("6_5y4kb")
+metadata/_custom_type_script = "uid://cqo135kuaafpn"
+
+[node name="Idle" type="Node" parent="StateMachine/Grounded" unique_id=637671450]
 script = ExtResource("4_7i7yh")
 metadata/_custom_type_script = "uid://3ikkn5h1iwxi"
 
-[node name="Walking" type="Node" parent="StateMachine" unique_id=751262880]
+[node name="Walking" type="Node" parent="StateMachine/Grounded" unique_id=751262880]
 script = ExtResource("5_7i7yh")
 metadata/_custom_type_script = "uid://dc1s04i67xfhl"
 
-[node name="Running" type="Node" parent="StateMachine" unique_id=591678483]
+[node name="Running" type="Node" parent="StateMachine/Grounded" unique_id=591678483]
 script = ExtResource("8_lu3a0")
 metadata/_custom_type_script = "uid://ddqmxcqswum4o"
 
-[node name="Sprinting" type="Node" parent="StateMachine" unique_id=1813077463]
+[node name="Sprinting" type="Node" parent="StateMachine/Grounded" unique_id=1813077463]
 script = ExtResource("10_wptxq")
 metadata/_custom_type_script = "uid://b6vu4nyy7mc7b"
 
-[node name="Turnskid" type="Node" parent="StateMachine" unique_id=723188297]
+[node name="Turnskid" type="Node" parent="StateMachine/Grounded" unique_id=723188297]
 script = ExtResource("10_asua5")
 metadata/_custom_type_script = "uid://bexg5by40y4un"
 
-[node name="Prejump" type="Node" parent="StateMachine" unique_id=670413584]
+[node name="Prejump" type="Node" parent="StateMachine/Grounded" unique_id=670413584]
 script = ExtResource("8_2pflr")
 metadata/_custom_type_script = "uid://btf3k54sv64by"
 
-[node name="Jumping" type="Node" parent="StateMachine" unique_id=1308426620]
-script = ExtResource("4_0jvkp")
-metadata/_custom_type_script = "uid://b2y5knongy00n"
-
-[node name="Longprejump" type="Node" parent="StateMachine" unique_id=1456729406]
+[node name="Longprejump" type="Node" parent="StateMachine/Grounded" unique_id=1456729406]
 script = ExtResource("13_ml442")
 metadata/_custom_type_script = "uid://bgxqrdb8prj08"
 
-[node name="Longjumping" type="Node" parent="StateMachine" unique_id=598786524]
-script = ExtResource("14_slxpf")
-metadata/_custom_type_script = "uid://vmparhqp68k"
-
-[node name="Falling" type="Node" parent="StateMachine" unique_id=1774970719]
-script = ExtResource("7_yvg0l")
-metadata/_custom_type_script = "uid://cd4udnwwu7t1i"
-
-[node name="Presliding" type="Node" parent="StateMachine" unique_id=818286842]
+[node name="Presliding" type="Node" parent="StateMachine/Grounded" unique_id=818286842]
 script = ExtResource("16_r46fi")
 metadata/_custom_type_script = "uid://dg6vbbh01f0fo"
 
-[node name="Sliding" type="Node" parent="StateMachine" unique_id=826786666]
+[node name="Sliding" type="Node" parent="StateMachine/Grounded" unique_id=826786666]
 script = ExtResource("17_asua5")
 metadata/_custom_type_script = "uid://dxvh4i7qvv73f"
 
-[node name="Postsliding" type="Node" parent="StateMachine" unique_id=213747182]
+[node name="Postsliding" type="Node" parent="StateMachine/Grounded" unique_id=213747182]
 script = ExtResource("18_okck6")
 metadata/_custom_type_script = "uid://dlicg3j3pkp5c"
+
+[node name="Airborne" type="Node" parent="StateMachine" unique_id=333146544]
+script = ExtResource("12_uh28t")
+metadata/_custom_type_script = "uid://hky0vv2disys"
+
+[node name="Jumping" type="Node" parent="StateMachine/Airborne" unique_id=1308426620]
+script = ExtResource("4_0jvkp")
+metadata/_custom_type_script = "uid://b2y5knongy00n"
+
+[node name="Longjumping" type="Node" parent="StateMachine/Airborne" unique_id=598786524]
+script = ExtResource("14_slxpf")
+metadata/_custom_type_script = "uid://vmparhqp68k"
+
+[node name="Falling" type="Node" parent="StateMachine/Airborne" unique_id=1774970719]
+script = ExtResource("7_yvg0l")
+metadata/_custom_type_script = "uid://cd4udnwwu7t1i"
 
 [node name="Combat" type="Node" parent="StateMachine" unique_id=504572238]
 script = ExtResource("19_yrmic")

@@ -4,6 +4,7 @@ class_name Actor extends CharacterBody2D
 
 @onready var view: Node2D = $View
 @onready var animation_player: AnimationPlayer = $View/AnimationPlayer
+@onready var camera_zoomer: AnimationPlayer = $Camera/CameraZoomer
 
 # Stuff related to jumping QoL
 @onready var edge_detector: RayCast2D = $View/EdgeDetector

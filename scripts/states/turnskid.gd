@@ -15,18 +15,14 @@ func update(_delta: float) -> void:
 	
 func physics_update(delta: float) -> void:
 	actor.apply_skid_move(delta)
-	actor.do_move(delta, actor.stats.gravity)
-	
-	if not actor.is_on_floor():
-		finished.emit(FALLING)
-	elif not sign(actor.get_input_x()) != sign(actor.velocity.x):
-		if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
-			finished.emit(RUNNING)
-		elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") and Input.is_action_pressed("walking"):
-			finished.emit(WALKING)
-		elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") and Input.is_action_pressed("sprinting"):
-			finished.emit(SPRINTING)
-		elif Input.is_action_just_pressed("jump"):
-			finished.emit(PREJUMP)
-		elif is_equal_approx(actor.get_input_x(), 0.0):
-			finished.emit(IDLE)
+		
+	if not sign(actor.get_input_x()) != sign(actor.velocity.x):
+		if not is_equal_approx(actor.get_input_x(), 0.0):
+			if Input.is_action_pressed("sprinting"):
+				finished.emit("Grounded/Sprinting")
+			elif Input.is_action_pressed("walking"):
+				finished.emit("Grounded/Walking")
+			elif is_equal_approx(actor.get_input_x(), 0.0):
+				finished.emit("Grounded/Idle")
+			else:
+				finished.emit("Grounded/Running")
