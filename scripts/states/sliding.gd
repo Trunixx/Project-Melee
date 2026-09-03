@@ -1,5 +1,5 @@
 class_name Sliding extends ActorState
-
+#TODO: Make this a parent state, treat acceleration differenly based on slope as well, don't change the facing like the airborn state, don't trigger the turnskid
 func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
 	actor.velocity.x += actor.stats.sliding_speed_bonus * actor.get_input_x()

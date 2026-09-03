@@ -4,6 +4,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
 	actor.camera_zoomer.play("zoom_in")
 	
+	
 func exit() -> void:
 	actor.camera_zoomer.play("zoom_out")
 	
@@ -15,8 +16,9 @@ func update(_delta: float) -> void:
 	
 func physics_update(delta: float) -> void:
 	actor.apply_combat_move(delta, actor.stats.combat_multiplier)
-	actor.do_move_face_from_mouse(delta, actor.stats.gravity)
-	
+	actor.do_move(delta, actor.stats.gravity)
+	actor.view.face_from_mouse()
+
 	if not actor.is_on_floor():
 		finished.emit("Airborne/Falling")
 	elif Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped():

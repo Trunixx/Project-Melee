@@ -83,10 +83,4 @@ func apply_sliding_move(delta : float):
 # movement and face the character in the right direction
 func do_move(delta : float, gravity : float = stats.gravity):
 	apply_gravity(gravity, delta)
-	view.face_from_velocity(velocity.x)
-	move_and_slide()
-
-func do_move_face_from_mouse(delta : float, gravity : float = stats.gravity):
-	apply_gravity(gravity, delta)
-	view.face_from_mouse()
 	move_and_slide()
