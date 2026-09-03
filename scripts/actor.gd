@@ -77,7 +77,19 @@ func apply_jump_move(delta : float, speed_mult : float = 1.0):
 	velocity.x = move_toward(velocity.x, input_x * stats.move_force * speed_mult, stats.air_acceleration * delta)
 	
 func apply_sliding_move(delta : float):
-	velocity.x = move_toward(velocity.x, 0, stats.sliding_friction * delta)
+	var input_x = get_input_x()
+	var friction : float
+	
+	if input_x != 0.0 and velocity.x != 0.0 and sign(input_x) == sign(velocity.x):
+		friction = stats.sliding_friction_direction
+		
+	elif input_x == 0.0:
+		friction = stats.sliding_friction_directionless
+		
+	else:
+		friction = stats.sliding_friction_opposite
+		
+	velocity.x = move_toward(velocity.x, 0, friction * delta)
 	
 # This function gets called after one of the above to apply gravity,
 # movement and face the character in the right direction

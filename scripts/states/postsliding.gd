@@ -12,10 +12,10 @@ func handle_input(event: InputEvent) -> void:
 func update(_delta: float) -> void:
 	pass
 	
-func physics_update(delta: float) -> void:
-	actor.apply_sliding_move(delta)
-		
+func physics_update(delta: float) -> void:		
 	if not actor.animation_player.is_playing() and not Input.is_action_pressed("sprinting"):
 		finished.emit("Grounded/Running")
 	elif not actor.animation_player.is_playing() and Input.is_action_pressed("sprinting"):
 		finished.emit("Grounded/Sprinting")
+	elif not actor.animation_player.is_playing() and Input.is_action_pressed("walking"):
+		finished.emit("Grounded/Walking")

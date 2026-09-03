@@ -17,6 +17,6 @@ func physics_update(delta: float) -> void:
 	actor.apply_sliding_move(delta)
 	
 	if Input.is_action_just_released("sliding"):
-		finished.emit("Grounded/Postsliding")
+		finished.emit("Slide/Postsliding")
 	elif not actor.animation_player.is_playing():
-		finished.emit("Grounded/Sliding")
+		finished.emit("Slide/Sliding")

@@ -19,5 +19,3 @@ func physics_update(delta: float) -> void:
 		finished.emit("Grounded/Sprinting")
 	elif Input.is_action_pressed("walking"):
 		finished.emit("Grounded/Walking")
-	elif Input.is_action_just_pressed("sliding") or not actor.sliding_buffer_timer.is_stopped():
-		finished.emit("Grounded/Presliding")

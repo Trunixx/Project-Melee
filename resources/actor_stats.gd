@@ -37,8 +37,10 @@ class_name ActorStats extends Resource
 @export var ground_friction : float = 800.0
 
 # Used when sliding
-@export var sliding_friction : float = 100.0
-@export var sliding_speed_bonus : float = 100.0
+@export var sliding_friction_direction : float = 100.0
+@export var sliding_friction_directionless : float = 200.0
+@export var sliding_friction_opposite : float = 400.0
+@export var sliding_speed_bonus : float = 150.0
 
 # Used when in combat
 @export var combat_acceleration : float = 1200.0
