@@ -2,28 +2,6 @@ class_name ActorState extends State
 
 # TODO: Check if these constants occupy more memory or not (they get assigned at every state) 
 
-const IDLE = "Idle"
-const WALKING = "Walking"
-const RUNNING = "Running"
-const SPRINTING = "Sprinting"
-const TURNSKID = "Turnskid"
-
-const PRESLIDING = "Presliding"
-const SLIDING = "Sliding"
-const POSTSLIDING = "Postsliding"
-
-const PREJUMP = "Prejump"
-const JUMPING = "Jumping"
-
-const LONGPREJUMP = "Longprejump"
-const LONGJUMPING = "Longjumping"
-
-const FALLING = "Falling"
-
-const COMBAT = "Combat"
-
-#const FALLSTUN = "Fallstun"
-
 var actor : Actor
 
 @onready var state_name: String = name.to_lower()
