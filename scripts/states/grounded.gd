@@ -13,10 +13,7 @@ func physics_update(delta: float) -> void:
 		finished.emit("Grounded/Prejump")
 		return
 
-	if sign(actor.get_input_x()) != sign(actor.velocity.x) and abs(actor.velocity.x) > 150.0:
-		print(actor.get_input_x())
-		print(actor.velocity.x)
-		print()
+	if sign(actor.get_input_x()) != sign(actor.velocity.x) and abs(actor.velocity.x) > actor.stats.move_force:
 		finished.emit("Grounded/Turnskid")
 	
 	elif is_equal_approx(actor.get_input_x(), 0.0):
