@@ -15,9 +15,7 @@ func update(_delta: float) -> void:
 func physics_update(delta: float) -> void:
 	actor.apply_ground_move(delta, actor.stats.sprinting_multiplier)
 	
-	if is_equal_approx(actor.get_input_x(), 0.0):
-		finished.emit("Grounded/Idle")
-	elif not Input.is_action_pressed("sprinting"):
+	if not Input.is_action_pressed("sprinting"):
 		if Input.is_action_pressed("walking"):
 			finished.emit("Grounded/Walking")
 		else:

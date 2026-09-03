@@ -9,8 +9,10 @@ func face_from_velocity(vel_x: float) -> void:
 	scale.x = facing
 
 func face_from_mouse() -> void:
-	if get_viewport().get_mouse_position().x >= get_viewport().get_visible_rect().size.x/2:
+	if get_viewport().get_mouse_position().x >= (get_viewport().get_visible_rect().size.x/2)+30:
 		facing = 1.0
-	else:
+	elif get_viewport().get_mouse_position().x <= (get_viewport().get_visible_rect().size.x/2)-30:
 		facing = -1.0
+	else: 
+		pass
 	scale.x = facing
