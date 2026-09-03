@@ -32,6 +32,11 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	for active_state : State in active_states:
 		active_state.handle_input(event)
+	# DEBUG: print states
+	if Input.is_action_just_pressed("test_button"):
+		for active_state in active_states:
+			print(active_state)
+		print("\n")	
 
 func _transition_to_next_state(target_state_path: String, data := {}) -> void:
 	if not has_node(target_state_path):

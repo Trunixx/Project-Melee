@@ -12,7 +12,7 @@ func physics_update(delta: float) -> void:
 		finished.emit("Grounded/Prejump")
 		return
 
-	if sign(actor.get_input_x()) != sign(actor.velocity.x) and abs(actor.velocity.x) > 100:
+	if sign(actor.get_input_x()) != sign(actor.velocity.x):
 		finished.emit("Grounded/Turnskid")
 		
 	if Input.is_action_just_pressed("combat"):

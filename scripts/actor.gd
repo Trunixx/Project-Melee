@@ -30,6 +30,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 		jump_buffer_timer.start()
 	if Input.is_action_just_pressed("sliding"):
 		sliding_buffer_timer.start()
+	
 		
 # TODO: Check if these methods can be put in the actor_state class for the SRP 
 func get_input_x() -> float:
