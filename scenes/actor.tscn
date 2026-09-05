@@ -183,7 +183,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_admo0"]
 resource_name = "longprejump"
-length = 0.2
+length = 0.001
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -370,6 +370,10 @@ one_shot = true
 
 [node name="SlidingBufferTimer" type="Timer" parent="." unique_id=1799810313]
 wait_time = 0.3
+one_shot = true
+
+[node name="CoyoteBufferTimer" type="Timer" parent="." unique_id=243209822]
+wait_time = 0.15
 one_shot = true
 
 [node name="Camera" type="Camera2D" parent="." unique_id=2134078577]

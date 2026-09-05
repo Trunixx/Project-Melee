@@ -5,7 +5,7 @@ func physics_update(delta: float) -> void:
 	actor.do_move(delta, actor.stats.gravity)
 	actor.view.face_from_sign(actor.get_input_x())
 
-	if not actor.is_on_floor():
+	if not actor.is_on_floor() and actor.coyote_buffer_timer.is_stopped():
 		finished.emit("Airborne/Falling")
 		return
 

@@ -10,12 +10,14 @@ class_name Actor extends CharacterBody2D
 @onready var edge_detector: RayCast2D = $View/EdgeDetector
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var sliding_buffer_timer: Timer = $SlidingBufferTimer
+@onready var coyote_buffer_timer: Timer = $CoyoteBufferTimer
 
 var direction_queue = []
 
 func _ready() -> void:
 	jump_buffer_timer.wait_time = stats.jump_buffer_time
 	sliding_buffer_timer.wait_time = stats.sliding_buffer_time
+	coyote_buffer_timer.wait_time = stats.coyote_buffer_time
 	
 # The code in this function makes it so that you can override your current direction
 # even if you keep holding the key
