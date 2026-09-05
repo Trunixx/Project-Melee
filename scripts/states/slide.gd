@@ -1,17 +1,17 @@
 class_name Slide extends ActorState
 
+func exit() -> void:
+	actor.previous_speed = actor.velocity.x
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(delta: float) -> void:
 	actor.apply_sliding_move(delta)
 	actor.do_move(delta, actor.stats.gravity)
 
 	if not actor.is_on_floor():
-		finished.emit("Airborne/Falling")
+		finished.emit(StatePaths.AIRBORNE_FALLING)
 		return
 
 	if (Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped()):
-		finished.emit("Grounded/Prejump")
+		finished.emit(StatePaths.JUMP_PREJUMP)
 		return
-
-func exit() -> void:
-	actor.stats.previous_speed = actor.velocity.x

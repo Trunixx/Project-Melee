@@ -14,8 +14,8 @@ func update(_delta: float) -> void:
 	
 func physics_update(delta: float) -> void:		
 	if not actor.animation_player.is_playing() and not Input.is_action_pressed("sprinting"):
-		finished.emit("Grounded/Running")
+		finished.emit(StatePaths.GROUNDED_RUNNING )
 	elif not actor.animation_player.is_playing() and Input.is_action_pressed("sprinting"):
-		finished.emit("Grounded/Sprinting")
+		finished.emit(StatePaths.GROUNDED_SPRINTING)
 	elif not actor.animation_player.is_playing() and Input.is_action_pressed("walking"):
-		finished.emit("Grounded/Walking")
+		finished.emit(StatePaths.GROUNDED_WALKING)

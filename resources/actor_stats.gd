@@ -48,15 +48,3 @@ class_name ActorStats extends Resource
 # Used when in combat
 @export var combat_acceleration : float = 1200.0
 @export var combat_multiplier : float = 0.8
-
-# The following variables are calculated and edited during the game execution
-
-# Used when keeping fall momentum
-# Assigned when leaving a "movement" state
-@export var previous_speed : float
-
-# Is the player switched in the combat state?
-@export var is_on_guard : bool
-
-# Is the player engaged in combat with someone?
-@export var is_engaged : bool

@@ -1,0 +1,3 @@
+Fix not being able to jump while still
+Make the walking and sprinting toggeable or not by a setting
+Add wall sliding, wall grabbing, wall jumping

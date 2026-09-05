@@ -12,6 +12,22 @@ class_name Actor extends CharacterBody2D
 @onready var sliding_buffer_timer: Timer = $SlidingBufferTimer
 @onready var coyote_buffer_timer: Timer = $CoyoteBufferTimer
 
+# Runtime movement state
+enum MovementMode {
+	WALK,
+	RUN,
+	SPRINT
+}
+var previous_speed : float
+var movement_mode : MovementMode = MovementMode.RUN
+
+# Runtime combat state
+# TODO: Consider putting them in something more combat related and less generic
+# TODO: Consider removing this variable, you can get it from the state
+var is_in_combat : bool
+var is_threatened : bool
+
+# Input state
 var direction_queue = []
 
 func _ready() -> void:
@@ -28,6 +44,12 @@ func _unhandled_input(_event: InputEvent) -> void:
 			direction_queue.push_back(input)
 		if Input.is_action_just_released(input):
 			direction_queue.erase(input)
+	if Input.is_action_pressed("sprinting"):
+		movement_mode = MovementMode.SPRINT
+	elif Input.is_action_pressed("walking"):
+		movement_mode = MovementMode.WALK
+	else:
+		movement_mode = MovementMode.RUN
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer.start()
 	if Input.is_action_just_pressed("sliding"):
@@ -72,7 +94,7 @@ func apply_ground_move(delta : float, speed_mult : float = 1.0):
 
 func apply_air_move(delta : float):
 	var input_x = get_input_x()
-	velocity.x = move_toward(velocity.x, input_x * max(stats.previous_speed,stats.move_force), stats.air_acceleration * delta)
+	velocity.x = move_toward(velocity.x, input_x * max(previous_speed,stats.move_force), stats.air_acceleration * delta)
 	
 func apply_jump_move(delta : float, speed_mult : float = 1.0):
 	var input_x = get_input_x()

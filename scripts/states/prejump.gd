@@ -20,4 +20,4 @@ func physics_update(delta: float) -> void:
 		actor.velocity.x = 0
 	
 	if not actor.animation_player.is_playing():
-		finished.emit("Airborne/Jumping")
+		finished.emit(StatePaths.JUMP_JUMPING)

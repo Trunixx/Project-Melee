@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://ddqmxcqswum4o" path="res://scripts/states/running.gd" id="8_lu3a0"]
 [ext_resource type="Script" uid="uid://bexg5by40y4un" path="res://scripts/states/turnskid.gd" id="10_asua5"]
 [ext_resource type="Script" uid="uid://b6vu4nyy7mc7b" path="res://scripts/states/sprinting.gd" id="10_wptxq"]
+[ext_resource type="Script" uid="uid://dom30msswuh00" path="res://scripts/states/jump.gd" id="12_d8nby"]
 [ext_resource type="Script" uid="uid://hky0vv2disys" path="res://scripts/states/airborne.gd" id="12_uh28t"]
 [ext_resource type="Script" uid="uid://bgxqrdb8prj08" path="res://scripts/states/longprejump.gd" id="13_ml442"]
 [ext_resource type="Script" uid="uid://vmparhqp68k" path="res://scripts/states/longjumping.gd" id="14_slxpf"]
@@ -437,25 +438,29 @@ metadata/_custom_type_script = "uid://b6vu4nyy7mc7b"
 script = ExtResource("10_asua5")
 metadata/_custom_type_script = "uid://bexg5by40y4un"
 
-[node name="Prejump" type="Node" parent="StateMachine/Grounded" unique_id=670413584]
+[node name="Jump" type="Node" parent="StateMachine" unique_id=1757732639]
+script = ExtResource("12_d8nby")
+metadata/_custom_type_script = "uid://dom30msswuh00"
+
+[node name="Prejump" type="Node" parent="StateMachine/Jump" unique_id=670413584]
 script = ExtResource("8_2pflr")
 metadata/_custom_type_script = "uid://btf3k54sv64by"
 
-[node name="Longprejump" type="Node" parent="StateMachine/Grounded" unique_id=1456729406]
+[node name="Longprejump" type="Node" parent="StateMachine/Jump" unique_id=1456729406]
 script = ExtResource("13_ml442")
 metadata/_custom_type_script = "uid://bgxqrdb8prj08"
+
+[node name="Longjumping" type="Node" parent="StateMachine/Jump" unique_id=598786524]
+script = ExtResource("14_slxpf")
+metadata/_custom_type_script = "uid://vmparhqp68k"
+
+[node name="Jumping" type="Node" parent="StateMachine/Jump" unique_id=1308426620]
+script = ExtResource("4_0jvkp")
+metadata/_custom_type_script = "uid://b2y5knongy00n"
 
 [node name="Airborne" type="Node" parent="StateMachine" unique_id=333146544]
 script = ExtResource("12_uh28t")
 metadata/_custom_type_script = "uid://hky0vv2disys"
-
-[node name="Jumping" type="Node" parent="StateMachine/Airborne" unique_id=1308426620]
-script = ExtResource("4_0jvkp")
-metadata/_custom_type_script = "uid://b2y5knongy00n"
-
-[node name="Longjumping" type="Node" parent="StateMachine/Airborne" unique_id=598786524]
-script = ExtResource("14_slxpf")
-metadata/_custom_type_script = "uid://vmparhqp68k"
 
 [node name="Falling" type="Node" parent="StateMachine/Airborne" unique_id=1774970719]
 script = ExtResource("7_yvg0l")

@@ -18,10 +18,10 @@ func physics_update(delta: float) -> void:
 		
 	if not sign(actor.get_input_x()) != sign(actor.velocity.x):
 		if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
-			finished.emit("Grounded/Running")
+			finished.emit(StatePaths.GROUNDED_RUNNING )
 		elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") and Input.is_action_pressed("walking"):
-			finished.emit("Grounded/Walking")
+			finished.emit(StatePaths.GROUNDED_WALKING)
 		elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") and Input.is_action_pressed("sprinting"):
-			finished.emit("Grounded/Sprinting")
+			finished.emit(StatePaths.GROUNDED_SPRINTING)
 		elif is_equal_approx(actor.get_input_x(), 0.0):
-			finished.emit("Grounded/Idle")
+			finished.emit(StatePaths.GROUNDED_IDLE)
