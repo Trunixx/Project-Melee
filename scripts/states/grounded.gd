@@ -9,7 +9,7 @@ func physics_update(delta: float) -> void:
 		finished.emit("Airborne/Falling")
 		return
 
-	if (Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped() and not Input.is_action_pressed("sprinting")):
+	if (Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped()):
 		if Input.is_action_pressed("sprinting"):
 			finished.emit("Grounded/Longprejump")
 		else:
@@ -20,6 +20,10 @@ func physics_update(delta: float) -> void:
 		finished.emit("Slide/Presliding")
 		return
 		
+	if Input.is_action_just_pressed("combat"):
+		finished.emit("Combat")	
+		return
+		
 	if sign(actor.get_input_x()) != sign(actor.velocity.x) and abs(actor.velocity.x) > actor.stats.move_force:
 		finished.emit("Grounded/Turnskid")
 		return
@@ -27,6 +31,3 @@ func physics_update(delta: float) -> void:
 		finished.emit("Grounded/Idle")
 		return
 		
-	if Input.is_action_just_pressed("combat"):
-		finished.emit("Combat")	
-		return

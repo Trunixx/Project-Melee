@@ -37,20 +37,27 @@ func _transition_to_next_state(target_state_path: String, data := {}) -> void:
 	if not has_node(target_state_path):
 		printerr(owner.name + ": Trying to transition to state " + target_state_path + " but it does not exist.")
 		return
-		
+
 	var previous_state_path := state.get_path()
-	var target_state : State = get_node(target_state_path)
-	
-	var target_branch : Array[State] = _get_state_hierarchy(target_state)
-	
-	for i in range(active_states.size() - 1, -1, -1):
-		if target_branch[i] != active_states[i]:
-			active_states[i].exit()
-			active_states.pop_back()
-	
-	for i in range(active_states.size(), target_branch.size(), 1):
-			active_states.push_back(target_branch[i])
-			active_states[i].enter(previous_state_path, data)
+	var target_state: State = get_node(target_state_path)
+
+	var target_branch: Array[State] = _get_state_hierarchy(target_state)
+
+	var common_depth := 0
+	var max_common_depth : int = min(active_states.size(), target_branch.size())
+
+	while common_depth < max_common_depth:
+		if active_states[common_depth] != target_branch[common_depth]:
+			break
+		common_depth += 1
+
+	for i in range(active_states.size() - 1, common_depth - 1, -1):
+		active_states[i].exit()
+		active_states.pop_back()
+
+	for i in range(common_depth, target_branch.size()):
+		active_states.push_back(target_branch[i])
+		active_states[i].enter(previous_state_path, data)
 
 	state = target_state
 	
