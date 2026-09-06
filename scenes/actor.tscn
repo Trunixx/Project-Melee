@@ -24,6 +24,11 @@
 [ext_resource type="Script" uid="uid://b1v3wb3otdnue" path="res://scripts/states/slide.gd" id="19_eog1v"]
 [ext_resource type="Script" uid="uid://bn1nhhpn4mxes" path="res://scripts/states/combat.gd" id="19_yrmic"]
 [ext_resource type="Script" uid="uid://co7faqn5jxhtw" path="res://scripts/debug_text_container.gd" id="23_jnl7j"]
+[ext_resource type="Script" uid="uid://dns8nk01atln2" path="res://scripts/states/wall.gd" id="24_l7wqm"]
+[ext_resource type="Script" uid="uid://cxwaqtr57l5xf" path="res://scripts/states/scraping.gd" id="25_6duwv"]
+[ext_resource type="Script" uid="uid://d1b4osdjtieam" path="res://scripts/states/clinged.gd" id="26_5tkw8"]
+[ext_resource type="Script" uid="uid://br5h17b33ps" path="res://scripts/states/attached.gd" id="27_0u3pv"]
+[ext_resource type="Script" uid="uid://ooa2m0kkryjj" path="res://scripts/states/walljumping.gd" id="28_7aga8"]
 
 [sub_resource type="Animation" id="Animation_d8nby"]
 length = 0.001
@@ -91,7 +96,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(1, 1)]
+"values": [Vector2i(1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_jnl7j"]
@@ -377,6 +382,9 @@ one_shot = true
 wait_time = 0.15
 one_shot = true
 
+[node name="WallStartSlidingTimer" type="Timer" parent="." unique_id=1698955065]
+one_shot = true
+
 [node name="Camera" type="Camera2D" parent="." unique_id=2134078577]
 position = Vector2(0, -24)
 zoom = Vector2(3, 3)
@@ -395,7 +403,7 @@ texture = ExtResource("2_7i7yh")
 offset = Vector2(3.051758e-08, -31.999998)
 hframes = 11
 vframes = 11
-frame = 12
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="View" unique_id=416671500]
 root_node = NodePath("../..")
@@ -404,6 +412,18 @@ libraries/ = SubResource("AnimationLibrary_6iqic")
 [node name="EdgeDetector" type="RayCast2D" parent="View" unique_id=1082679158]
 position = Vector2(8, -3)
 target_position = Vector2(0, 5)
+
+[node name="LowWallDetector" type="RayCast2D" parent="View" unique_id=837589990]
+position = Vector2(5, -11)
+target_position = Vector2(4, 0)
+
+[node name="MidWallDetector" type="RayCast2D" parent="View" unique_id=1130623568]
+position = Vector2(5, -24)
+target_position = Vector2(4, 0)
+
+[node name="HighWallDetector" type="RayCast2D" parent="View" unique_id=2104999038]
+position = Vector2(5, -34)
+target_position = Vector2(4, 0)
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=259651619]
 position = Vector2(0, -23)
@@ -486,6 +506,26 @@ metadata/_custom_type_script = "uid://dxvh4i7qvv73f"
 script = ExtResource("18_okck6")
 metadata/_custom_type_script = "uid://dlicg3j3pkp5c"
 
+[node name="Wall" type="Node" parent="StateMachine" unique_id=1819396418]
+script = ExtResource("24_l7wqm")
+metadata/_custom_type_script = "uid://dns8nk01atln2"
+
+[node name="Scraping" type="Node" parent="StateMachine/Wall" unique_id=1401880965]
+script = ExtResource("25_6duwv")
+metadata/_custom_type_script = "uid://cxwaqtr57l5xf"
+
+[node name="Clinged" type="Node" parent="StateMachine/Wall" unique_id=1978390593]
+script = ExtResource("26_5tkw8")
+metadata/_custom_type_script = "uid://d1b4osdjtieam"
+
+[node name="Attached" type="Node" parent="StateMachine/Wall" unique_id=1894070499]
+script = ExtResource("27_0u3pv")
+metadata/_custom_type_script = "uid://br5h17b33ps"
+
+[node name="Walljumping" type="Node" parent="StateMachine/Wall" unique_id=641488279]
+script = ExtResource("28_7aga8")
+metadata/_custom_type_script = "uid://ooa2m0kkryjj"
+
 [node name="DebugTextContainer" type="GridContainer" parent="." unique_id=1186935451]
 offset_left = -40.0
 offset_top = -83.0
@@ -515,3 +555,4 @@ theme_override_font_sizes/font_size = 8
 text = "???"
 
 [connection signal="timeout" from="CoyoteBufferTimer" to="." method="_on_coyote_buffer_timer_timeout"]
+[connection signal="timeout" from="WallStartSlidingTimer" to="." method="_on_wall_start_sliding_timer_timeout"]

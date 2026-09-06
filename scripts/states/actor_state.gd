@@ -1,7 +1,5 @@
 class_name ActorState extends State
 
-# TODO: Check if these constants occupy more memory or not (they get assigned at every state) 
-
 var actor : Actor
 
 @onready var state_name: String = name.to_lower()

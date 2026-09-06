@@ -1,12 +1,12 @@
-class_name Jumping extends ActorState
+class_name Walljumping extends ActorState
+
+# TODO: Fix this mess
 
 func enter(previous_state_path: String, data := {}) -> void:
-	var input_x = actor.get_input_x()
-	# These two lines avoid giving momentum if changing direction between prejump and jump
-#	if sign(actor.previous_speed) == sign(input_x):
-#		actor.velocity.x = abs(actor.previous_speed) * input_x
+	actor.velocity.x = 0.0
+	actor.velocity.x += 200 * actor.view.scale.x * -1
 	actor.velocity.y -= actor.stats.jump_force
-	actor.animation_player.play(state_name)
+	actor.animation_player.play("jumping")
 		
 func exit() -> void:
 	pass

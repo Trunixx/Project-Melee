@@ -4,7 +4,7 @@ class_name Grounded extends ActorState
 func physics_update(delta: float) -> void:
 	actor.do_move(delta, actor.stats.gravity)
 	actor.view.face_from_sign(actor.get_input_x())
-
+	
 	# Falling and coyote is over
 	if not actor.is_on_floor() and actor.coyote_timed_out:
 		finished.emit(StatePaths.AIRBORNE_FALLING)

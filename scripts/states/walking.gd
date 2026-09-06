@@ -13,4 +13,4 @@ func update(_delta: float) -> void:
 	pass
 	
 func physics_update(delta: float) -> void:
-	actor.apply_ground_move(delta)
+	actor.apply_ground_move(delta, actor.stats.walking_multiplier)

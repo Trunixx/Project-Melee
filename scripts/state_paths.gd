@@ -1,6 +1,7 @@
 class_name StatePaths
 
 # Grounded
+const GROUNDED = "Grounded"
 const GROUNDED_IDLE := "Grounded/Idle"
 const GROUNDED_WALKING := "Grounded/Walking"
 const GROUNDED_RUNNING := "Grounded/Running"
@@ -23,3 +24,10 @@ const COMBAT := "Combat"
 const SLIDE_PRESLIDING := "Slide/Presliding"
 const SLIDE_SLIDING := "Slide/Sliding"
 const SLIDE_POSTSLIDING := "Slide/Postsliding"
+
+# Wall
+const WALL := "Wall"
+const WALL_CLINGED := "Wall/Clinged"
+const WALL_SCRAPING := "Wall/Scraping"
+const WALL_ATTACHED := "Wall/Attached" 
+const WALL_WALLJUMPING := "Wall/Walljumping" 

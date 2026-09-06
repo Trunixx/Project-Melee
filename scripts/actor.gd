@@ -6,11 +6,17 @@ class_name Actor extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $View/AnimationPlayer
 @onready var camera_zoomer: AnimationPlayer = $Camera/CameraZoomer
 
-# Stuff related to jumping QoL
+# Raycasts
 @onready var edge_detector: RayCast2D = $View/EdgeDetector
+@onready var low_wall_detector: RayCast2D = $View/LowWallDetector
+@onready var mid_wall_detector: RayCast2D = $View/MidWallDetector
+@onready var high_wall_detector: RayCast2D = $View/HighWallDetector
+
+# Timers
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var sliding_buffer_timer: Timer = $SlidingBufferTimer
 @onready var coyote_buffer_timer: Timer = $CoyoteBufferTimer
+@onready var wall_start_sliding_timer: Timer = $WallStartSlidingTimer
 
 # Runtime movement state
 enum MovementMode {
@@ -22,9 +28,10 @@ var previous_speed : float
 var movement_mode : MovementMode = MovementMode.RUN
 var coyote_timed_out : bool = false
 var was_on_floor : bool = false
+var wall_cling_timed_out : bool = false
 
 # Runtime combat state
-# TODO: Consider putting them in something more combat related and less generic
+# DESIGN: Consider putting them in something more combat related and less generic
 # TODO: Consider removing this variable, you can get it from the state
 var is_in_combat : bool
 var is_threatened : bool
@@ -36,6 +43,7 @@ func _ready() -> void:
 	jump_buffer_timer.wait_time = stats.jump_buffer_time
 	sliding_buffer_timer.wait_time = stats.sliding_buffer_time
 	coyote_buffer_timer.wait_time = stats.coyote_buffer_time
+	wall_start_sliding_timer.wait_time = stats.wall_start_buffer_timer
 	
 # The code in this function makes it so that you can override your current direction
 # even if you keep holding the key
@@ -80,8 +88,27 @@ func update_floor_state() -> void:
 	var on_floor := is_on_floor()
 	if on_floor and not was_on_floor:
 		reset_coyote_time()
+		reset_wall_cling_timer()
 	was_on_floor = on_floor
 	
+# Wall stuff
+func is_colliding_with_wall() -> bool:
+	return low_wall_detector.is_colliding() or mid_wall_detector.is_colliding() or high_wall_detector.is_colliding()
+func start_wall_cling_timer() -> void:
+	wall_cling_timed_out = false
+	if wall_start_sliding_timer.time_left > 0.0:
+		wall_start_sliding_timer.set_paused(false)
+	else:
+		wall_start_sliding_timer.start(wall_start_sliding_timer.wait_time)
+func pause_wall_cling_timer() -> void:
+	wall_start_sliding_timer.set_paused(true)
+func reset_wall_cling_timer() -> void:
+	wall_cling_timed_out = false
+	wall_start_sliding_timer.stop()
+	wall_start_sliding_timer.set_paused(false)
+func _on_wall_start_sliding_timer_timeout() -> void:
+	wall_cling_timed_out = true
+
 # These below are the functions called in the appropriate states
 # TODO: Can you make the functions below more DRY?
 func apply_gravity(gravity : float, delta : float):
@@ -130,6 +157,9 @@ func apply_sliding_move(delta : float):
 		friction = stats.sliding_friction_opposite
 		
 	velocity.x = move_toward(velocity.x, 0, friction * delta)
+
+func apply_wall_sliding_move(delta : float, speed_mult : float = 1.0):
+	velocity.y = move_toward(velocity.y, 200, stats.air_acceleration * delta)
 	
 # This function gets called after one of the above to apply gravity,
 # movement and face the character in the right direction

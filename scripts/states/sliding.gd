@@ -20,4 +20,4 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_just_released("sliding") or abs(actor.velocity.x) < 20:
 		finished.emit(StatePaths.SLIDE_POSTSLIDING)
-	#TODO: make a crouch state as a Grounded leaf
+	# TODO: make a crouch state as a Grounded leaf

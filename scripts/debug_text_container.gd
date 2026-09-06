@@ -3,7 +3,7 @@ extends GridContainer
 @onready var state_label_data: Label = $StateLabelData
 @onready var velocity_label_data: Label = $VelocityLabelData
 
-# HACK: This should be done with signals, but I needed something fast to debug
+# HACK DEBUG: This should be done with signals, but I needed something fast to debug
 @onready var state_machine: StateMachine = $"../StateMachine"
 @onready var actor: Actor = $".."
 
