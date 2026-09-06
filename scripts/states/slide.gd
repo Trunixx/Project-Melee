@@ -5,7 +5,6 @@ func exit() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(delta: float) -> void:
-	actor.apply_sliding_move(delta)
 	actor.do_move(delta, actor.stats.gravity)
 
 	if not actor.is_on_floor():
@@ -13,5 +12,8 @@ func physics_update(delta: float) -> void:
 		return
 
 	if (Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped()):
-		finished.emit(StatePaths.JUMP_PREJUMP)
-		return
+		if actor.movement_mode == actor.MovementMode.SPRINT:
+			finished.emit(StatePaths.JUMP_LONG_PREJUMP)
+		else:
+			finished.emit(StatePaths.JUMP_PREJUMP)
+			return

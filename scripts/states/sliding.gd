@@ -16,6 +16,8 @@ func update(_delta: float) -> void:
 	pass
 	
 func physics_update(delta: float) -> void:	
+	actor.apply_sliding_move(delta)
+	
 	if Input.is_action_just_released("sliding") or abs(actor.velocity.x) < 20:
 		finished.emit(StatePaths.SLIDE_POSTSLIDING)
 	#TODO: make a crouch state as a Grounded leaf

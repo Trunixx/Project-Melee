@@ -20,6 +20,8 @@ enum MovementMode {
 }
 var previous_speed : float
 var movement_mode : MovementMode = MovementMode.RUN
+var coyote_timed_out : bool = false
+var was_on_floor : bool = false
 
 # Runtime combat state
 # TODO: Consider putting them in something more combat related and less generic
@@ -44,17 +46,16 @@ func _unhandled_input(_event: InputEvent) -> void:
 			direction_queue.push_back(input)
 		if Input.is_action_just_released(input):
 			direction_queue.erase(input)
-	if Input.is_action_pressed("sprinting"):
-		movement_mode = MovementMode.SPRINT
-	elif Input.is_action_pressed("walking"):
-		movement_mode = MovementMode.WALK
-	else:
-		movement_mode = MovementMode.RUN
+			
+	if Input.is_action_just_pressed("sprinting"):
+		movement_mode = MovementMode.SPRINT if movement_mode != MovementMode.SPRINT else MovementMode.RUN
+	elif Input.is_action_just_pressed("walking"):
+		movement_mode = MovementMode.WALK if movement_mode != MovementMode.WALK else MovementMode.RUN
+		
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer.start()
 	if Input.is_action_just_pressed("sliding"):
-		sliding_buffer_timer.start()
-	
+		sliding_buffer_timer.start()	
 		
 # TODO: Check if these methods can be put in the actor_state class for the SRP 
 func get_input_x() -> float:
@@ -66,6 +67,21 @@ func get_input_x() -> float:
 		"move_right": return 1.0
 		_: return 0.0
 
+# Coyote time stuff
+func start_coyote_time() -> void:
+	coyote_timed_out = false
+	coyote_buffer_timer.start()
+func reset_coyote_time() -> void:
+	coyote_timed_out = false
+	coyote_buffer_timer.stop()
+func _on_coyote_buffer_timer_timeout() -> void:
+	coyote_timed_out = true
+func update_floor_state() -> void:
+	var on_floor := is_on_floor()
+	if on_floor and not was_on_floor:
+		reset_coyote_time()
+	was_on_floor = on_floor
+	
 # These below are the functions called in the appropriate states
 # TODO: Can you make the functions below more DRY?
 func apply_gravity(gravity : float, delta : float):
@@ -120,3 +136,4 @@ func apply_sliding_move(delta : float):
 func do_move(delta : float, gravity : float = stats.gravity):
 	apply_gravity(gravity, delta)
 	move_and_slide()
+	update_floor_state()

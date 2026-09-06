@@ -14,8 +14,10 @@ func update(_delta: float) -> void:
 	pass
 	
 func physics_update(delta: float) -> void:
+	actor.do_move(delta, actor.stats.gravity)
 	actor.apply_stop_move(delta)
-	
+	actor.velocity.y = 0.0
+		
 	if not actor.edge_detector.is_colliding():
 		actor.velocity.x = 0
 	

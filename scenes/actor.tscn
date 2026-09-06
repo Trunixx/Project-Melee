@@ -513,3 +513,5 @@ text = "Velocity:"
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "???"
+
+[connection signal="timeout" from="CoyoteBufferTimer" to="." method="_on_coyote_buffer_timer_timeout"]

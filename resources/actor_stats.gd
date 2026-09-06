@@ -4,6 +4,8 @@ class_name ActorStats extends Resource
 
 # Used when calculating gravity
 @export var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export var gravity_jump_reduction : float = 0.8
+@export var gravity_long_jump_reduction : float = 0.9
 
 # Used as a move impulse
 @export var move_force : float = 120.0
@@ -23,11 +25,11 @@ class_name ActorStats extends Resource
 # Used as the buffer timers wait time
 @export var jump_buffer_time : float = 0.25
 @export var sliding_buffer_time : float = 0.3
-@export var coyote_buffer_time : float = 0.15
+@export var coyote_buffer_time : float = 0.08
 
 # Used to boost speed
 @export var running_multiplier : float = 1.5
-@export var sprinting_multiplier : float = 2.0
+@export var sprinting_multiplier : float = 2.5
 
 # Used when starting to move
 @export var ground_acceleration : float = 600.0
