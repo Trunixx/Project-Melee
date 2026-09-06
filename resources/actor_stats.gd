@@ -39,12 +39,8 @@ class_name ActorStats extends Resource
 @export var jump_force : float = 250.0
 @export var long_jump_force : float = 225.0
 
-# Used to slow down character before jumping
-@export_subgroup("Multipliers")
-@export var prejump_speed_multiplier : float = 2.5
-@export var longprejump_speed_multiplier : float = 2.0
-
 # Used to make character go faster when jumping
+@export_subgroup("Multipliers")
 @export var jumping_speed_multiplier : float = 1.5
 @export var longjumping_speed_multiplier : float = 2.5
 
@@ -56,7 +52,7 @@ class_name ActorStats extends Resource
 @export var sliding_speed_bonus : float = 150.0
 
 # Used as the buffer timers wait time
-@export_group("Buffer timers")
+@export_group("Buffer Timers")
 @export var jump_buffer_time : float = 0.25
 @export var sliding_buffer_time : float = 0.3
 @export var coyote_buffer_time : float = 0.08
