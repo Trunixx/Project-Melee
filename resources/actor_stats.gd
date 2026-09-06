@@ -23,7 +23,7 @@ class_name ActorStats extends Resource
 
 # Used when reversing the direction of the movement
 @export_subgroup("Deceleration")
-@export var ground_deceleration : float = 1200.0
+@export var turnskid_deceleration : float = 1200.0
 
 # Used when stopping
 @export var ground_friction : float = 800.0

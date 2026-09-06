@@ -97,7 +97,7 @@ func apply_combat_move(delta : float, speed_mult : float = 1.0):
 	
 func apply_skid_move(delta : float):
 	var input_x = get_input_x()
-	velocity.x = move_toward(velocity.x, input_x * stats.move_force, stats.ground_deceleration * delta)
+	velocity.x = move_toward(velocity.x, input_x * stats.move_force, stats.turnskid_deceleration * delta)
 	
 func apply_stop_move(delta : float):
 	velocity.x = move_toward(velocity.x, 0, stats.ground_friction * delta)
