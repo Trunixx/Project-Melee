@@ -1,7 +1,5 @@
 class_name ActorStats extends Resource
 
-# TODO: add export groups
-
 # Used when calculating gravity
 @export_group("Gravity")
 @export var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
