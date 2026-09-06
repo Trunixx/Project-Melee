@@ -1,8 +1,5 @@
 class_name Slide extends ActorState
 
-func exit() -> void:
-	actor.previous_speed = actor.velocity.x
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(delta: float) -> void:
 	actor.do_move(delta, actor.stats.gravity)
