@@ -470,13 +470,13 @@ metadata/_custom_type_script = "uid://btf3k54sv64by"
 script = ExtResource("13_ml442")
 metadata/_custom_type_script = "uid://bgxqrdb8prj08"
 
-[node name="Longjumping" type="Node" parent="StateMachine/Jump" unique_id=598786524]
-script = ExtResource("14_slxpf")
-metadata/_custom_type_script = "uid://vmparhqp68k"
-
 [node name="Jumping" type="Node" parent="StateMachine/Jump" unique_id=1308426620]
 script = ExtResource("4_0jvkp")
 metadata/_custom_type_script = "uid://b2y5knongy00n"
+
+[node name="Longjumping" type="Node" parent="StateMachine/Jump" unique_id=598786524]
+script = ExtResource("14_slxpf")
+metadata/_custom_type_script = "uid://vmparhqp68k"
 
 [node name="Airborne" type="Node" parent="StateMachine" unique_id=333146544]
 script = ExtResource("12_uh28t")

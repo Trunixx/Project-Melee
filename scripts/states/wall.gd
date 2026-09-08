@@ -1,5 +1,7 @@
 class_name Wall extends ActorState
 
+# TODO: Timer when jumping off the wall
+
 func enter(_previous_state_path: String, _data := {}) -> void:
 	actor.velocity.y = 0.0
 	

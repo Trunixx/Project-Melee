@@ -137,7 +137,7 @@ func apply_ground_move(delta : float, speed_mult : float = 1.0):
 
 func apply_air_move(delta : float):
 	var input_x = get_input_x()
-	velocity.x = move_toward(velocity.x, input_x * max(previous_speed,stats.move_force), stats.air_acceleration * delta)
+	velocity.x = move_toward(velocity.x, input_x * stats.move_force, stats.air_acceleration * delta)
 	
 func apply_jump_move(delta : float, speed_mult : float = 1.0):
 	var input_x = get_input_x()
