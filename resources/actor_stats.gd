@@ -20,12 +20,18 @@ class_name ActorStats extends Resource
 # Used when starting to move
 @export_subgroup("Acceleration")
 @export var ground_acceleration : float = 600.0
-@export var air_acceleration : float = 600.0
+# DESIGN: Testing
+@export var air_acceleration : float = ground_acceleration
+
+# Used on walls
+@export_subgroup("Wall")
+@export var wall_acceleration : float = 200.0
+# DESIGN: Testing
+@export var wall_speed : float = wall_acceleration * 1
 
 # Used when reversing the direction of the movement
 @export_subgroup("Deceleration")
 @export var turnskid_deceleration : float = 1200.0
-
 # Used when stopping
 @export var ground_friction : float = 800.0
 
@@ -40,11 +46,6 @@ class_name ActorStats extends Resource
 @export var jump_force : float = 250.0
 @export var long_jump_force : float = 225.0
 
-# Used to make character go faster when jumping
-@export_subgroup("Multipliers")
-@export var jumping_speed_multiplier : float = 1.5
-@export var longjumping_speed_multiplier : float = 2.5
-
 # Used when sliding
 @export_group("Sliding")
 @export var sliding_friction_direction : float = 100.0
@@ -56,5 +57,5 @@ class_name ActorStats extends Resource
 @export_group("Buffer Timers")
 @export var jump_buffer_time : float = 0.25
 @export var sliding_buffer_time : float = 0.3
-@export var coyote_buffer_time : float = 0.08
-@export var wall_start_buffer_timer : float = 2.0
+@export var wall_buffer_time : float = 0.1
+@export var coyote_buffer_time : float = 0.1

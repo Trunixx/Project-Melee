@@ -2,7 +2,7 @@
 ## Extend this class and override its methods to implement a state.
 class_name State extends Node
 
- ## Emitted when the state finishes and wants to transition to another state.
+## Emitted when the state finishes and wants to transition to another state.
 signal finished(next_state_path: String, data: Dictionary)
 
 ## Called by the state machine upon changing the active state. The `data` parameter

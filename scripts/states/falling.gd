@@ -2,7 +2,7 @@ class_name Falling extends ActorState
 
 func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
-	
+			
 func exit() -> void:
 	pass
 	

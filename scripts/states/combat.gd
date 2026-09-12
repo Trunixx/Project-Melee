@@ -22,6 +22,6 @@ func physics_update(delta: float) -> void:
 	if not actor.is_on_floor():
 		finished.emit(StatePaths.AIRBORNE_FALLING)
 	elif Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped():
-		finished.emit(StatePaths.JUMP_PREJUMP)
+		finished.emit(StatePaths.AIRBORNE_JUMPING)
 	elif Input.is_action_just_pressed("combat"):
 		finished.emit(StatePaths.GROUNDED)

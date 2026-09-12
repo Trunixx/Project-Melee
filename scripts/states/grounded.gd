@@ -7,24 +7,21 @@ func exit() -> void:
 func physics_update(delta: float) -> void:
 	actor.do_move(delta, actor.stats.gravity)
 	actor.view.face_from_sign(actor.get_input_x())
-	
+			
 	# Falling and coyote is over
-	if not actor.is_on_floor() and actor.coyote_timed_out:
-		finished.emit(StatePaths.AIRBORNE_FALLING)
-		return
+	if not actor.is_on_floor():
+		if actor.coyote_timed_out:
+			finished.emit(StatePaths.AIRBORNE_FALLING)
+			return
+		if actor.coyote_buffer_timer.is_stopped():
+			actor.start_coyote_time()
 
 	# Jump
 	if Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped():
 		if actor.movement_mode == actor.MovementMode.SPRINT:
-			finished.emit(StatePaths.JUMP_LONG_PREJUMP)
+			finished.emit(StatePaths.AIRBORNE_LONGJUMPING)
 		else:
-			finished.emit(StatePaths.JUMP_PREJUMP)
-		return
-
-	# Start coyote time if we've just left the floor
-	if not actor.is_on_floor():
-		if actor.coyote_buffer_timer.is_stopped():
-			actor.start_coyote_time()
+			finished.emit(StatePaths.AIRBORNE_JUMPING)
 		return
 
 	# Sliding
