@@ -17,4 +17,4 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	state_label_data.text = state_machine.state.name
 	velocity_label_data.text = "x: " + var_to_str(actor.velocity.x) + " y: " + var_to_str(actor.velocity.y)
-	timer_label_data.text = var_to_str(snapped(actor.coyote_buffer_timer.wait_time - actor.coyote_buffer_timer.time_left, 0.01))
+	timer_label_data.text = var_to_str(snapped(actor.wall_turning_buffer_timer.wait_time - actor.wall_turning_buffer_timer.time_left, 0.01))

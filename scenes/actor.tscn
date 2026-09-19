@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://ddqmxcqswum4o" path="res://scripts/states/running.gd" id="8_lu3a0"]
 [ext_resource type="Script" uid="uid://bexg5by40y4un" path="res://scripts/states/turnskid.gd" id="10_asua5"]
 [ext_resource type="Script" uid="uid://b6vu4nyy7mc7b" path="res://scripts/states/sprinting.gd" id="10_wptxq"]
-[ext_resource type="Script" uid="uid://dom30msswuh00" path="res://scripts/states/jump.gd" id="12_d8nby"]
 [ext_resource type="Script" uid="uid://hky0vv2disys" path="res://scripts/states/airborne.gd" id="12_uh28t"]
 [ext_resource type="Script" uid="uid://vmparhqp68k" path="res://scripts/states/longjumping.gd" id="14_slxpf"]
 [ext_resource type="Script" uid="uid://dg6vbbh01f0fo" path="res://scripts/states/presliding.gd" id="16_r46fi"]
@@ -338,8 +337,8 @@ one_shot = true
 wait_time = 0.3
 one_shot = true
 
-[node name="WallBufferTimer" type="Timer" parent="." unique_id=223318950]
-wait_time = 0.25
+[node name="WallTurningBufferTimer" type="Timer" parent="." unique_id=1261206595]
+wait_time = 0.3
 one_shot = true
 
 [node name="CoyoteBufferTimer" type="Timer" parent="." unique_id=243209822]
@@ -426,10 +425,6 @@ metadata/_custom_type_script = "uid://b6vu4nyy7mc7b"
 [node name="Turnskid" type="Node" parent="StateMachine/Grounded" unique_id=723188297]
 script = ExtResource("10_asua5")
 metadata/_custom_type_script = "uid://bexg5by40y4un"
-
-[node name="Jump" type="Node" parent="StateMachine" unique_id=1757732639]
-script = ExtResource("12_d8nby")
-metadata/_custom_type_script = "uid://dom30msswuh00"
 
 [node name="Airborne" type="Node" parent="StateMachine" unique_id=333146544]
 script = ExtResource("12_uh28t")
@@ -519,4 +514,5 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "???"
 
+[connection signal="timeout" from="WallTurningBufferTimer" to="View" method="_on_wall_turning_buffer_timer_timeout"]
 [connection signal="timeout" from="CoyoteBufferTimer" to="." method="_on_coyote_buffer_timer_timeout"]

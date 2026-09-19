@@ -15,7 +15,7 @@ class_name Actor extends CharacterBody2D
 # Timers
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var sliding_buffer_timer: Timer = $SlidingBufferTimer
-@onready var wall_buffer_timer: Timer = $WallBufferTimer
+@onready var wall_turning_buffer_timer: Timer = $WallTurningBufferTimer
 @onready var coyote_buffer_timer: Timer = $CoyoteBufferTimer
 
 # Runtime movement state
@@ -42,7 +42,6 @@ func _ready() -> void:
 	jump_buffer_timer.wait_time = stats.jump_buffer_time
 	sliding_buffer_timer.wait_time = stats.sliding_buffer_time
 	coyote_buffer_timer.wait_time = stats.coyote_buffer_time
-	wall_buffer_timer.wait_time = stats.wall_buffer_time
 	
 # The code in this function makes it so that you can override your current direction
 # even if you keep holding the key
@@ -86,8 +85,6 @@ func _on_coyote_buffer_timer_timeout() -> void:
 	
 func is_colliding_with_wall() -> bool:
 	var is_colliding: bool = low_wall_detector.is_colliding() or mid_wall_detector.is_colliding() or high_wall_detector.is_colliding()
-	if is_colliding:
-		wall_buffer_timer.start()
 	return is_colliding
 	
 # These below are the functions called in the appropriate states
@@ -136,11 +133,20 @@ func apply_sliding_move(delta : float):
 		
 	velocity.x = move_toward(velocity.x, 0, friction * delta)
 
+# DESIGN: Consider removing magic numbers
 func apply_wall_sliding_move(delta : float):
-	velocity.y = move_toward(velocity.y, stats.wall_speed, stats.wall_acceleration * delta)
+	if Input.is_action_pressed("sliding"):
+		if velocity.y < 0:
+			velocity.y = move_toward(velocity.y, 0, stats.wall_acceleration * 3 * delta)
+		else:
+			velocity.y = move_toward(velocity.y, stats.wall_speed * 2, stats.wall_acceleration * 4 * delta)
+	else:
+		if velocity.y > 300:
+			velocity.y = move_toward(velocity.y, stats.wall_speed, stats.wall_acceleration * 3 * delta)
+		velocity.y = move_toward(velocity.y, stats.wall_speed, stats.wall_acceleration * delta)
+	velocity.x = 0
 	
-# This function gets called after one of the above to apply gravity,
-# movement and face the character in the right direction
+# This function gets called after one of the above to apply gravity and movement
 func do_move(delta : float, gravity : float = stats.gravity):
 	apply_gravity(gravity, delta)
 	move_and_slide()

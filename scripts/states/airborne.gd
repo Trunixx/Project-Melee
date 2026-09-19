@@ -11,5 +11,5 @@ func physics_update(delta: float) -> void:
 	if actor.is_on_floor():
 		finished.emit(StatePaths.GROUNDED)
 		
-	if actor.is_colliding_with_wall():
+	if actor.is_colliding_with_wall() and actor.get_input_x() != 0 and actor.get_input_x() != actor.mid_wall_detector.get_collision_normal().x:
 		finished.emit(StatePaths.WALL)
