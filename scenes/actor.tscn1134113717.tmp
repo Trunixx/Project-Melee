@@ -13,12 +13,10 @@
 [ext_resource type="Script" uid="uid://ddqmxcqswum4o" path="res://scripts/states/grounded/running.gd" id="8_lu3a0"]
 [ext_resource type="Script" uid="uid://bexg5by40y4un" path="res://scripts/states/grounded/turnskid.gd" id="10_asua5"]
 [ext_resource type="Script" uid="uid://b6vu4nyy7mc7b" path="res://scripts/states/grounded/sprinting.gd" id="10_wptxq"]
-[ext_resource type="Script" uid="uid://dx8rsr8has4y0" path="res://scripts/states/crouch/crouch.gd" id="12_0u3pv"]
+[ext_resource type="Script" uid="uid://cvlq5x7h05pvc" path="res://scripts/states/crouch/crouchidle.gd" id="12_5tkw8"]
 [ext_resource type="Script" uid="uid://hky0vv2disys" path="res://scripts/states/airborne/airborne.gd" id="12_uh28t"]
-[ext_resource type="Script" uid="uid://cvlq5x7h05pvc" path="res://scripts/states/crouch/crouchidle.gd" id="13_7aga8"]
-[ext_resource type="Script" uid="uid://fngnrrvwi5wq" path="res://scripts/states/crouch/crouchrunning.gd" id="14_07ex2"]
+[ext_resource type="Script" uid="uid://fngnrrvwi5wq" path="res://scripts/states/crouch/crouchrunning.gd" id="13_0u3pv"]
 [ext_resource type="Script" uid="uid://vmparhqp68k" path="res://scripts/states/airborne/longjumping.gd" id="14_slxpf"]
-[ext_resource type="Script" uid="uid://jym6wf600mmn" path="res://scripts/states/crouch/crouchsprinting.gd" id="15_emh4b"]
 [ext_resource type="Script" uid="uid://dg6vbbh01f0fo" path="res://scripts/states/slide/presliding.gd" id="16_r46fi"]
 [ext_resource type="Script" uid="uid://dxvh4i7qvv73f" path="res://scripts/states/slide/sliding.gd" id="17_asua5"]
 [ext_resource type="Script" uid="uid://dlicg3j3pkp5c" path="res://scripts/states/slide/postsliding.gd" id="18_okck6"]
@@ -328,6 +326,22 @@ _data = {
 radius = 6.0
 height = 46.0
 
+[sub_resource type="GDScript" id="GDScript_6duwv"]
+script/source = "class_name CrouchSprinting extends ActorState
+
+func enter(previous_state_path: String, data := {}) -> void:
+	actor.animation_player.play(state_name)
+
+func handle_input(event: InputEvent) -> void:
+	pass
+	
+func update(_delta: float) -> void:
+	pass
+	
+func physics_update(delta: float) -> void:
+	actor.apply_ground_move(delta, actor.stats.running_multiplier/2)
+"
+
 [node name="Actor" type="CharacterBody2D" unique_id=1201751571]
 collision_layer = 2
 script = ExtResource("1_0qi0m")
@@ -434,21 +448,17 @@ metadata/_custom_type_script = "uid://b6vu4nyy7mc7b"
 script = ExtResource("10_asua5")
 metadata/_custom_type_script = "uid://bexg5by40y4un"
 
-[node name="Crouch" type="Node" parent="StateMachine" unique_id=1002344832]
-script = ExtResource("12_0u3pv")
-metadata/_custom_type_script = "uid://dx8rsr8has4y0"
-
-[node name="CrouchIdle" type="Node" parent="StateMachine/Crouch" unique_id=1178929428]
-script = ExtResource("13_7aga8")
+[node name="CrouchIdle" type="Node" parent="StateMachine/Grounded" unique_id=1304002343]
+script = ExtResource("12_5tkw8")
 metadata/_custom_type_script = "uid://cvlq5x7h05pvc"
 
-[node name="CrouchRunning" type="Node" parent="StateMachine/Crouch" unique_id=658955691]
-script = ExtResource("14_07ex2")
+[node name="CrouchRunning" type="Node" parent="StateMachine/Grounded" unique_id=293261838]
+script = ExtResource("13_0u3pv")
 metadata/_custom_type_script = "uid://fngnrrvwi5wq"
 
-[node name="CrouchSprinting" type="Node" parent="StateMachine/Crouch" unique_id=873776502]
-script = ExtResource("15_emh4b")
-metadata/_custom_type_script = "uid://jym6wf600mmn"
+[node name="CrouchSprinting" type="Node" parent="StateMachine/Grounded" unique_id=2054918220]
+script = SubResource("GDScript_6duwv")
+metadata/_custom_type_script = "uid://cwsbdjah4e1vm"
 
 [node name="Airborne" type="Node" parent="StateMachine" unique_id=333146544]
 script = ExtResource("12_uh28t")

@@ -10,7 +10,7 @@ extends GridContainer
 @onready var state_machine: StateMachine = $"../StateMachine"
 @onready var actor: Actor = $".."
 
-@onready var tracked_timer : Timer = actor.get_node("SlidingBoostTimer")
+@onready var tracked_timer : Timer = actor.get_node("JumpBufferTimer")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

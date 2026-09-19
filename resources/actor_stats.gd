@@ -52,6 +52,7 @@ class_name ActorStats extends Resource
 @export var sliding_friction_directionless : float = 200.0
 @export var sliding_friction_opposite : float = 400.0
 @export var sliding_speed_bonus : float = 150.0
+@export var sliding_vs_crouching_speed : float = move_force * 1.5 - 5
 
 # Used as the buffer timers wait time
 @export_group("Buffer Timers")

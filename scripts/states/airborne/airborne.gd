@@ -13,3 +13,9 @@ func physics_update(delta: float) -> void:
 		
 	if actor.is_colliding_with_wall() and actor.get_input_x() != 0 and actor.get_input_x() != actor.mid_wall_detector.get_collision_normal().x:
 		finished.emit(StatePaths.WALL)
+	
+	if Input.is_action_just_pressed("jump"):
+		actor.jump_buffer_timer.start()
+		
+	if Input.is_action_just_pressed("sliding"):
+		actor.sliding_buffer_timer.start()

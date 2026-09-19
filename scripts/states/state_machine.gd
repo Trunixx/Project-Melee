@@ -75,8 +75,10 @@ func _get_state_hierarchy(state_node : State) -> Array[State]:
 func get_string_state_hierarchy(state_node : State) -> String:
 	var hierarchy : Array[State] = _get_state_hierarchy(state_node)
 	var return_string : String
+	
 	for i in range(0, hierarchy.size()):
 		return_string += hierarchy[i].name
 		if i != hierarchy.size() - 1:
 			return_string += "/"
+			
 	return return_string

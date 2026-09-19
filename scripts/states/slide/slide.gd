@@ -10,7 +10,7 @@ func physics_update(delta: float) -> void:
 		finished.emit(StatePaths.SLIDE_POSTSLIDING)
 		return
 
-	if (Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped()):
+	if (Input.is_action_just_pressed("jump") or actor.is_jump_buffer_on()):
 		if actor.movement_mode == actor.MovementMode.SPRINT:
 			finished.emit(StatePaths.AIRBORNE_LONGJUMPING)
 		else:

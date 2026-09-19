@@ -17,16 +17,12 @@ func physics_update(delta: float) -> void:
 			actor.start_coyote_time()
 
 	# Jump
-	if Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped():
-		if actor.movement_mode == actor.MovementMode.SPRINT:
-			finished.emit(StatePaths.AIRBORNE_LONGJUMPING)
-		else:
-			finished.emit(StatePaths.AIRBORNE_JUMPING)
-		return
+	if Input.is_action_just_pressed("jump") or actor.is_jump_buffer_on():
+		finished.emit(StatePaths.AIRBORNE_JUMPING)
 
 	# Sliding
-	if Input.is_action_just_pressed("sliding") or not actor.sliding_buffer_timer.is_stopped():
-		finished.emit(StatePaths.SLIDE_PRESLIDING)
+	if Input.is_action_just_pressed("sliding"):
+		finished.emit(StatePaths.GROUNDED_IDLE)
 		return
 
 	# Combat
@@ -34,24 +30,13 @@ func physics_update(delta: float) -> void:
 		finished.emit(StatePaths.COMBAT)
 		return
 
-	# Turnskid
-	if sign(actor.get_input_x()) != sign(actor.velocity.x) \
-			and abs(actor.velocity.x) > actor.stats.move_force:
-		finished.emit(StatePaths.GROUNDED_TURNSKID)
-		return
-
-	# Idle
-	if is_equal_approx(actor.get_input_x(), 0.0):
-		finished.emit(StatePaths.GROUNDED_IDLE)
-		return
-
 	# Movement
 	match actor.movement_mode:
 		actor.MovementMode.WALK:
-			finished.emit(StatePaths.GROUNDED_WALKING)
-
+			finished.emit(StatePaths.CROUCH_RUNNING)
+			
 		actor.MovementMode.RUN:
-			finished.emit(StatePaths.GROUNDED_RUNNING)
+			finished.emit(StatePaths.CROUCH_RUNNING)
 
 		actor.MovementMode.SPRINT:
-			finished.emit(StatePaths.GROUNDED_SPRINTING)
+			finished.emit(StatePaths.CROUCH_SPRINTING)

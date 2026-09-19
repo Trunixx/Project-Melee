@@ -24,12 +24,12 @@ class_name Actor extends CharacterBody2D
 enum MovementMode {
 	WALK,
 	RUN,
-	SPRINT
+	SPRINT,
+	DOWN
 }
 var previous_speed : float
 var movement_mode : MovementMode = MovementMode.RUN
 var coyote_timed_out : bool = false
-var wall_cling_timed_out : bool = false
 
 # Runtime combat state
 # DESIGN: Consider putting them in something more combat related and less generic
@@ -62,11 +62,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 	elif Input.is_action_just_pressed("walking"):
 		movement_mode = MovementMode.WALK if movement_mode != MovementMode.WALK else MovementMode.RUN
 		
-	if Input.is_action_just_pressed("jump"):
-		jump_buffer_timer.start()
-	if Input.is_action_just_pressed("sliding"):
-		sliding_buffer_timer.start()	
-		
 # TODO: Check if these methods can be put in the actor_state class for the SRP 
 func get_input_x() -> float:
 	if direction_queue.is_empty():
@@ -76,7 +71,11 @@ func get_input_x() -> float:
 		"move_left": return -1.0
 		"move_right": return 1.0
 		_: return 0.0
-
+func is_jump_buffer_on() -> bool:
+	if jump_buffer_timer.is_stopped() or jump_buffer_timer.time_left > jump_buffer_timer.wait_time/10:
+		return false
+	return true
+	
 # Coyote time stuff
 func start_coyote_time() -> void:
 	coyote_timed_out = false

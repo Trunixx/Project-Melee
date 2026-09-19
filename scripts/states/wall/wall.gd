@@ -1,6 +1,7 @@
 class_name Wall extends ActorState
 
-# TODO: Timer when jumping off the wall
+# FIXME: Sometimes it enters this state without going into a child
+
 func enter(_previous_state_path: String, _data := {}) -> void:
 	# HACK: So if you're not running you don't walljump with a weird speed
 	# DESIGN: Consider changing how the air movement works
@@ -12,7 +13,7 @@ func physics_update(delta: float) -> void:
 		finished.emit(StatePaths.GROUNDED)
 		return
 	
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") or actor.is_jump_buffer_on():
 		finished.emit(StatePaths.WALL_WALLJUMPING)
 		return
 	

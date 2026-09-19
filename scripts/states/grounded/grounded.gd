@@ -1,5 +1,10 @@
 class_name Grounded extends ActorState
 
+func enter(_previous_state_path: String, _data := {}) -> void:
+	#actor.jump_buffer_timer.stop()
+	#actor.sliding_buffer_timer.stop()
+	pass
+	
 func exit() -> void:
 	actor.previous_speed = actor.velocity.x 
 	
@@ -17,7 +22,7 @@ func physics_update(delta: float) -> void:
 			actor.start_coyote_time()
 
 	# Jump
-	if Input.is_action_just_pressed("jump") or not actor.jump_buffer_timer.is_stopped():
+	if Input.is_action_just_pressed("jump") or actor.is_jump_buffer_on():
 		if actor.movement_mode == actor.MovementMode.SPRINT:
 			finished.emit(StatePaths.AIRBORNE_LONGJUMPING)
 		else:
@@ -25,8 +30,13 @@ func physics_update(delta: float) -> void:
 		return
 
 	# Sliding
-	if Input.is_action_just_pressed("sliding") or not actor.sliding_buffer_timer.is_stopped():
-		finished.emit(StatePaths.SLIDE_PRESLIDING)
+	if Input.is_action_just_pressed("sliding") or not actor.sliding_buffer_timer.is_stopped(): # TODO: Implement the timer again
+		# DESIGN: Consider which one of these conditions feels the most natural
+		#if abs(actor.velocity.x) < actor.stats.sliding_vs_crouching_speed and actor.movement_mode != actor.MovementMode.SPRINT:
+		if is_equal_approx(actor.velocity.x, 0.0):
+			finished.emit(StatePaths.CROUCH)
+		else:
+			finished.emit(StatePaths.SLIDE_PRESLIDING)
 		return
 
 	# Combat
