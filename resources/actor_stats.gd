@@ -58,3 +58,6 @@ class_name ActorStats extends Resource
 @export var jump_buffer_time : float = 0.25
 @export var sliding_buffer_time : float = 0.3
 @export var coyote_buffer_time : float = 0.1
+@export var wall_turning_buffer_time : float = 0.3
+
+@export var sliding_boost_time : float = 1.5

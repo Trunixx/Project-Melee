@@ -18,6 +18,8 @@ class_name Actor extends CharacterBody2D
 @onready var wall_turning_buffer_timer: Timer = $WallTurningBufferTimer
 @onready var coyote_buffer_timer: Timer = $CoyoteBufferTimer
 
+@onready var sliding_boost_timer: Timer = $SlidingBoostTimer
+
 # Runtime movement state
 enum MovementMode {
 	WALK,
@@ -42,6 +44,8 @@ func _ready() -> void:
 	jump_buffer_timer.wait_time = stats.jump_buffer_time
 	sliding_buffer_timer.wait_time = stats.sliding_buffer_time
 	coyote_buffer_timer.wait_time = stats.coyote_buffer_time
+	wall_turning_buffer_timer.wait_time = stats.wall_turning_buffer_time
+	sliding_boost_timer.wait_time = stats.sliding_boost_time
 	
 # The code in this function makes it so that you can override your current direction
 # even if you keep holding the key

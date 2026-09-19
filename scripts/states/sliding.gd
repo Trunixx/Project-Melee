@@ -2,10 +2,10 @@ class_name Sliding extends ActorState
 
 func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
-	# HACK: make this more dynamic maybe with a curve and a timer to avoid slide spam ?
-	if abs(actor.velocity.x) < 400:
+	if actor.sliding_boost_timer.is_stopped():
 		actor.velocity.x += actor.stats.sliding_speed_bonus * actor.get_input_x()
-	
+		actor.sliding_boost_timer.start()
+		
 func exit() -> void:
 	pass
 	

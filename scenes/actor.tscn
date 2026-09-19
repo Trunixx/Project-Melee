@@ -345,6 +345,10 @@ one_shot = true
 wait_time = 0.08
 one_shot = true
 
+[node name="SlidingBoostTimer" type="Timer" parent="." unique_id=1506838482]
+wait_time = 2.0
+one_shot = true
+
 [node name="Camera" type="Camera2D" parent="." unique_id=2134078577]
 position = Vector2(0, -24)
 zoom = Vector2(3, 3)
