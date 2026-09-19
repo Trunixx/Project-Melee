@@ -5,25 +5,25 @@
 [ext_resource type="Resource" uid="uid://ch1iaukestj1r" path="res://resources/actor_stats.tres" id="2_6iqic"]
 [ext_resource type="Texture2D" uid="uid://ck67svdt1728j" path="res://assets/player/placeholder_textures.png" id="2_7i7yh"]
 [ext_resource type="Script" uid="uid://8pm5chborq6i" path="res://scripts/states/state_machine.gd" id="3_w6j74"]
-[ext_resource type="Script" uid="uid://b2y5knongy00n" path="res://scripts/states/jumping.gd" id="4_0jvkp"]
-[ext_resource type="Script" uid="uid://3ikkn5h1iwxi" path="res://scripts/states/idle.gd" id="4_7i7yh"]
-[ext_resource type="Script" uid="uid://dc1s04i67xfhl" path="res://scripts/states/walking.gd" id="5_7i7yh"]
-[ext_resource type="Script" uid="uid://cqo135kuaafpn" path="res://scripts/states/grounded.gd" id="6_5y4kb"]
-[ext_resource type="Script" uid="uid://cd4udnwwu7t1i" path="res://scripts/states/falling.gd" id="7_yvg0l"]
-[ext_resource type="Script" uid="uid://ddqmxcqswum4o" path="res://scripts/states/running.gd" id="8_lu3a0"]
-[ext_resource type="Script" uid="uid://bexg5by40y4un" path="res://scripts/states/turnskid.gd" id="10_asua5"]
-[ext_resource type="Script" uid="uid://b6vu4nyy7mc7b" path="res://scripts/states/sprinting.gd" id="10_wptxq"]
-[ext_resource type="Script" uid="uid://hky0vv2disys" path="res://scripts/states/airborne.gd" id="12_uh28t"]
-[ext_resource type="Script" uid="uid://vmparhqp68k" path="res://scripts/states/longjumping.gd" id="14_slxpf"]
-[ext_resource type="Script" uid="uid://dg6vbbh01f0fo" path="res://scripts/states/presliding.gd" id="16_r46fi"]
-[ext_resource type="Script" uid="uid://dxvh4i7qvv73f" path="res://scripts/states/sliding.gd" id="17_asua5"]
-[ext_resource type="Script" uid="uid://dlicg3j3pkp5c" path="res://scripts/states/postsliding.gd" id="18_okck6"]
-[ext_resource type="Script" uid="uid://b1v3wb3otdnue" path="res://scripts/states/slide.gd" id="19_eog1v"]
-[ext_resource type="Script" uid="uid://bn1nhhpn4mxes" path="res://scripts/states/combat.gd" id="19_yrmic"]
+[ext_resource type="Script" uid="uid://b2y5knongy00n" path="res://scripts/states/airborne/jumping.gd" id="4_0jvkp"]
+[ext_resource type="Script" uid="uid://3ikkn5h1iwxi" path="res://scripts/states/grounded/idle.gd" id="4_7i7yh"]
+[ext_resource type="Script" uid="uid://dc1s04i67xfhl" path="res://scripts/states/grounded/walking.gd" id="5_7i7yh"]
+[ext_resource type="Script" uid="uid://cqo135kuaafpn" path="res://scripts/states/grounded/grounded.gd" id="6_5y4kb"]
+[ext_resource type="Script" uid="uid://cd4udnwwu7t1i" path="res://scripts/states/airborne/falling.gd" id="7_yvg0l"]
+[ext_resource type="Script" uid="uid://ddqmxcqswum4o" path="res://scripts/states/grounded/running.gd" id="8_lu3a0"]
+[ext_resource type="Script" uid="uid://bexg5by40y4un" path="res://scripts/states/grounded/turnskid.gd" id="10_asua5"]
+[ext_resource type="Script" uid="uid://b6vu4nyy7mc7b" path="res://scripts/states/grounded/sprinting.gd" id="10_wptxq"]
+[ext_resource type="Script" uid="uid://hky0vv2disys" path="res://scripts/states/airborne/airborne.gd" id="12_uh28t"]
+[ext_resource type="Script" uid="uid://vmparhqp68k" path="res://scripts/states/airborne/longjumping.gd" id="14_slxpf"]
+[ext_resource type="Script" uid="uid://dg6vbbh01f0fo" path="res://scripts/states/slide/presliding.gd" id="16_r46fi"]
+[ext_resource type="Script" uid="uid://dxvh4i7qvv73f" path="res://scripts/states/slide/sliding.gd" id="17_asua5"]
+[ext_resource type="Script" uid="uid://dlicg3j3pkp5c" path="res://scripts/states/slide/postsliding.gd" id="18_okck6"]
+[ext_resource type="Script" uid="uid://b1v3wb3otdnue" path="res://scripts/states/slide/slide.gd" id="19_eog1v"]
+[ext_resource type="Script" uid="uid://bn1nhhpn4mxes" path="res://scripts/states/combat/combat.gd" id="19_yrmic"]
 [ext_resource type="Script" uid="uid://co7faqn5jxhtw" path="res://scripts/debug_text_container.gd" id="23_jnl7j"]
-[ext_resource type="Script" uid="uid://dns8nk01atln2" path="res://scripts/states/wall.gd" id="24_l7wqm"]
-[ext_resource type="Script" uid="uid://cxwaqtr57l5xf" path="res://scripts/states/scraping.gd" id="25_6duwv"]
-[ext_resource type="Script" uid="uid://ooa2m0kkryjj" path="res://scripts/states/walljumping.gd" id="28_7aga8"]
+[ext_resource type="Script" uid="uid://dns8nk01atln2" path="res://scripts/states/wall/wall.gd" id="24_l7wqm"]
+[ext_resource type="Script" uid="uid://cxwaqtr57l5xf" path="res://scripts/states/wall/scraping.gd" id="25_6duwv"]
+[ext_resource type="Script" uid="uid://ooa2m0kkryjj" path="res://scripts/states/wall/walljumping.gd" id="28_7aga8"]
 
 [sub_resource type="Animation" id="Animation_d8nby"]
 length = 0.001
@@ -427,6 +427,30 @@ script = ExtResource("10_wptxq")
 metadata/_custom_type_script = "uid://b6vu4nyy7mc7b"
 
 [node name="Turnskid" type="Node" parent="StateMachine/Grounded" unique_id=723188297]
+script = ExtResource("10_asua5")
+metadata/_custom_type_script = "uid://bexg5by40y4un"
+
+[node name="Crouch" type="Node" parent="StateMachine" unique_id=961256745]
+script = ExtResource("6_5y4kb")
+metadata/_custom_type_script = "uid://cqo135kuaafpn"
+
+[node name="Idle" type="Node" parent="StateMachine/Crouch" unique_id=842997630]
+script = ExtResource("4_7i7yh")
+metadata/_custom_type_script = "uid://3ikkn5h1iwxi"
+
+[node name="Walking" type="Node" parent="StateMachine/Crouch" unique_id=1239107367]
+script = ExtResource("5_7i7yh")
+metadata/_custom_type_script = "uid://dc1s04i67xfhl"
+
+[node name="Running" type="Node" parent="StateMachine/Crouch" unique_id=404312076]
+script = ExtResource("8_lu3a0")
+metadata/_custom_type_script = "uid://ddqmxcqswum4o"
+
+[node name="Sprinting" type="Node" parent="StateMachine/Crouch" unique_id=1335345429]
+script = ExtResource("10_wptxq")
+metadata/_custom_type_script = "uid://b6vu4nyy7mc7b"
+
+[node name="Turnskid" type="Node" parent="StateMachine/Crouch" unique_id=1595041571]
 script = ExtResource("10_asua5")
 metadata/_custom_type_script = "uid://bexg5by40y4un"
 

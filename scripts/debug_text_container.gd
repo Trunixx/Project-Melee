@@ -16,9 +16,8 @@ extends GridContainer
 func _ready() -> void:
 	timer_label_prefix.text = tracked_timer.name
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	state_label_data.text = state_machine.state.name
+	state_label_data.text = state_machine.get_string_state_hierarchy(state_machine.state)
 	velocity_label_data.text = "x: " + var_to_str(actor.velocity.x) + " y: " + var_to_str(actor.velocity.y)
 	timer_label_data.text = var_to_str(snapped(tracked_timer.wait_time - tracked_timer.time_left, 0.01))
