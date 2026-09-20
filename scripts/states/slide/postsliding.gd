@@ -14,5 +14,6 @@ func update(_delta: float) -> void:
 	
 func physics_update(delta: float) -> void:
 	actor.apply_sliding_move(delta)
+	
 	if not actor.animation_player.is_playing():
 		finished.emit(StatePaths.GROUNDED)

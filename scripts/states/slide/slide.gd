@@ -4,9 +4,8 @@ class_name Slide extends ActorState
 func physics_update(delta: float) -> void:
 	actor.do_move(delta, actor.stats.gravity)
 
-	# DESIGN: add a maximum speed that makes you ignore this condition
-	if not actor.is_on_floor():
-		# TODO: Transition state to animate the fall, or consider leaving it like this
+	if not actor.is_on_floor() and abs(actor.velocity.x) < actor.stats.sliding_falling_speed_threshold:
+		# DESIGN: Transition state to animate the fall, or consider leaving it like this
 		finished.emit(StatePaths.SLIDE_POSTSLIDING)
 		return
 

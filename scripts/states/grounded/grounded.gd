@@ -1,8 +1,7 @@
 class_name Grounded extends ActorState
 
 func enter(_previous_state_path: String, _data := {}) -> void:
-	#actor.jump_buffer_timer.stop()
-	#actor.sliding_buffer_timer.stop()
+	actor.current_wall_stamina = actor.stats.wall_stamina
 	pass
 	
 func exit() -> void:
@@ -12,7 +11,7 @@ func exit() -> void:
 func physics_update(delta: float) -> void:
 	actor.do_move(delta, actor.stats.gravity)
 	actor.view.face_from_sign(actor.get_input_x())
-			
+	
 	# Falling and coyote is over
 	if not actor.is_on_floor():
 		if actor.coyote_timed_out:
@@ -30,10 +29,8 @@ func physics_update(delta: float) -> void:
 		return
 
 	# Sliding
-	if Input.is_action_just_pressed("sliding") or not actor.sliding_buffer_timer.is_stopped(): # TODO: Implement the timer again
-		# DESIGN: Consider which one of these conditions feels the most natural
-		#if abs(actor.velocity.x) < actor.stats.sliding_vs_crouching_speed and actor.movement_mode != actor.MovementMode.SPRINT:
-		if is_equal_approx(actor.velocity.x, 0.0):
+	if Input.is_action_just_pressed("sliding") or not actor.sliding_buffer_timer.is_stopped():
+		if is_equal_approx(actor.get_input_x(), 0.0):
 			finished.emit(StatePaths.CROUCH)
 		else:
 			finished.emit(StatePaths.SLIDE_PRESLIDING)

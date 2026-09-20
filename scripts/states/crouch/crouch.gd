@@ -15,7 +15,7 @@ func physics_update(delta: float) -> void:
 			return
 		if actor.coyote_buffer_timer.is_stopped():
 			actor.start_coyote_time()
-
+		
 	# Jump
 	if Input.is_action_just_pressed("jump") or actor.is_jump_buffer_on():
 		finished.emit(StatePaths.AIRBORNE_JUMPING)
@@ -24,7 +24,12 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("sliding"):
 		finished.emit(StatePaths.GROUNDED_IDLE)
 		return
-
+		
+	# Idle
+	if is_equal_approx(actor.get_input_x(), 0.0):
+		finished.emit(StatePaths.CROUCH_IDLE)
+		return
+		
 	# Combat
 	if Input.is_action_just_pressed("combat"):
 		finished.emit(StatePaths.COMBAT)

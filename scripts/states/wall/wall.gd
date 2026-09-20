@@ -5,7 +5,7 @@ class_name Wall extends ActorState
 func enter(_previous_state_path: String, _data := {}) -> void:
 	# HACK: So if you're not running you don't walljump with a weird speed
 	# DESIGN: Consider changing how the air movement works
-	actor.previous_speed = actor.stats.move_force *  1.5 
+	actor.previous_speed = actor.stats.maximum_air_speed
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(delta: float) -> void:
@@ -17,5 +17,12 @@ func physics_update(delta: float) -> void:
 		finished.emit(StatePaths.WALL_WALLJUMPING)
 		return
 	
-	if actor.is_colliding_with_wall():
-		finished.emit(StatePaths.WALL_SCRAPING)
+	if actor.is_ledge_detected() and not Input.is_action_pressed("sliding"):
+		finished.emit(StatePaths.WALL_LEDGEGRAB)
+		return
+	
+	if actor.is_colliding_with_wall() and not actor.is_ledge_grabbing:
+		if Input.is_action_pressed("up") and actor.current_wall_stamina > 0.0:
+			finished.emit(StatePaths.WALL_CLIMBING)
+		else:
+			finished.emit(StatePaths.WALL_SCRAPING)

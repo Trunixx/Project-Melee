@@ -20,5 +20,5 @@ func update(_delta: float) -> void:
 func physics_update(delta: float) -> void:
 	actor.apply_air_move(delta)
 	
-	if actor.velocity.y > 0:
+	if actor.velocity.y > actor.stats.jumping_speed_threshold:
 		finished.emit(StatePaths.AIRBORNE_FALLING)

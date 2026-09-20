@@ -1,7 +1,5 @@
 class_name Walljumping extends ActorState
 
-# TODO: Fix this mess
-
 func enter(previous_state_path: String, data := {}) -> void:
 	actor.velocity.x += actor.stats.jump_force * actor.view.scale.x * -1
 	actor.velocity.y = -actor.stats.jump_force
