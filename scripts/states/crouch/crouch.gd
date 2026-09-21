@@ -18,7 +18,8 @@ func physics_update(delta: float) -> void:
 	# Jump
 	if Input.is_action_just_pressed("jump") or actor.is_jump_buffer_on():
 		finished.emit(StatePaths.AIRBORNE_JUMPING)
-
+		return
+		
 	# Sliding
 	if Input.is_action_just_pressed("sliding"):
 		finished.emit(StatePaths.GROUNDED_IDLE)
