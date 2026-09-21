@@ -4,19 +4,14 @@ func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
 	actor.camera_zoomer.play("zoom_in")
 	
-	
 func exit() -> void:
 	actor.camera_zoomer.play("zoom_out")
 	
-func handle_input(event: InputEvent) -> void:
-	pass
-	
-func update(_delta: float) -> void:
-	pass
-	
 func physics_update(delta: float) -> void:
-	actor.apply_combat_move(delta, actor.stats.combat_multiplier)
+	actor.apply_combat_move(delta/2, actor.stats.combat_multiplier)
 	actor.do_move(delta, actor.stats.gravity)
+	actor.apply_combat_move(delta/2, actor.stats.combat_multiplier)
+
 	actor.view.face_from_mouse()
 
 	if not actor.is_on_floor():

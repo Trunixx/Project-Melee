@@ -5,7 +5,6 @@ func exit() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(delta: float) -> void:
-	actor.do_move(delta, actor.stats.gravity)
 	actor.view.face_from_sign(actor.get_input_x())
 			
 	# Falling and coyote is over

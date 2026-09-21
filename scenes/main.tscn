@@ -20,6 +20,9 @@ gradient = SubResource("Gradient_0wfyh")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
 size = Vector2(48, 19.206173)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_choun"]
+size = Vector2(48, 19.206173)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(48, 48.15085)
 
@@ -76,6 +79,87 @@ shape = SubResource("RectangleShape2D_sugp2")
 position = Vector2(0.008300126, 0.109285355)
 scale = Vector2(0.74992085, 0.2943336)
 texture = SubResource("GradientTexture2D_i2y37")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="StaticBody2D" unique_id=1556389130]
+position = Vector2(-980.64996, -684.15497)
+shape = SubResource("RectangleShape2D_choun")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D15" unique_id=1665572892]
+position = Vector2(0.008300126, 0.109285355)
+scale = Vector2(0.74992085, 0.2943336)
+texture = SubResource("GradientTexture2D_i2y37")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="StaticBody2D" unique_id=909901520]
+position = Vector2(-868.64996, -684.15497)
+shape = SubResource("RectangleShape2D_choun")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D16" unique_id=1253757968]
+position = Vector2(0.008300126, 0.109285355)
+scale = Vector2(0.74992085, 0.2943336)
+texture = SubResource("GradientTexture2D_i2y37")
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="StaticBody2D" unique_id=1138119093]
+position = Vector2(-724.64996, -684.15497)
+shape = SubResource("RectangleShape2D_choun")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D17" unique_id=242099667]
+position = Vector2(0.008300126, 0.109285355)
+scale = Vector2(0.74992085, 0.2943336)
+texture = SubResource("GradientTexture2D_i2y37")
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="StaticBody2D" unique_id=954433691]
+position = Vector2(-556.64996, -684.15497)
+shape = SubResource("RectangleShape2D_choun")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D18" unique_id=643845282]
+position = Vector2(0.008300126, 0.109285355)
+scale = Vector2(0.74992085, 0.2943336)
+texture = SubResource("GradientTexture2D_i2y37")
+
+[node name="Label" type="Label" parent="StaticBody2D/CollisionShape2D18" unique_id=1264899842]
+offset_left = -38.89672
+offset_top = -86.5895
+offset_right = 44.10328
+offset_bottom = -38.5895
+theme_override_font_sizes/font_size = 10
+text = "try holding space"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="StaticBody2D" unique_id=1347629174]
+position = Vector2(-356.64996, -684.15497)
+shape = SubResource("RectangleShape2D_choun")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D19" unique_id=1638705391]
+position = Vector2(0.008300126, 0.109285355)
+scale = Vector2(0.74992085, 0.2943336)
+texture = SubResource("GradientTexture2D_i2y37")
+
+[node name="Label" type="Label" parent="StaticBody2D/CollisionShape2D19" unique_id=386006501]
+offset_left = -31.445671
+offset_top = -86.5895
+offset_right = 40.55433
+offset_bottom = -38.5895
+theme_override_font_sizes/font_size = 10
+text = "try sprinting"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="StaticBody2D" unique_id=1768291192]
+position = Vector2(-116.64996, -684.15497)
+shape = SubResource("RectangleShape2D_choun")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D20" unique_id=1797276819]
+position = Vector2(0.008300126, 0.109285355)
+scale = Vector2(0.74992085, 0.2943336)
+texture = SubResource("GradientTexture2D_i2y37")
+
+[node name="Label" type="Label" parent="StaticBody2D/CollisionShape2D20" unique_id=227537197]
+offset_left = -34.414337
+offset_top = -63.688232
+offset_right = 37.585663
+offset_bottom = -40.688232
+theme_override_font_sizes/font_size = 10
+text = "good job!"
+horizontal_alignment = 1
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D" unique_id=1727061371]
 position = Vector2(-892.64996, -450.62732)
@@ -185,18 +269,20 @@ texture = SubResource("GradientTexture2D_fmr5o")
 position = Vector2(-406.86023, 352.59204)
 
 [node name="InputMapLabel" type="RichTextLabel" parent="." unique_id=1516723042]
-offset_left = -308.36884
-offset_top = 138.74072
-offset_right = -69.89119
-offset_bottom = 255.46625
+offset_left = -312.1009
+offset_top = 146.20485
+offset_right = -73.623245
+offset_bottom = 262.93036
 theme_override_font_sizes/normal_font_size = 10
 theme_override_font_sizes/bold_font_size = 10
 bbcode_enabled = true
 text = "[b]W[/b]: Climb wall
 [b]A,D[/b]: Move
-[b]S[/b]: Crouch, slide, or scrape faster along a wall
-[b]LShift[/b]: Toggle sprint
+[b]S[/b]: Crouch, slide, or fall faster
+[b]LShift[/b]: Toggle sprint (even while crouching)
 [b]LAlt[/b]: Toggle walking
 [b]Space[/b]: Jump
 
-[s][b]Tab[/b]: Combat (not implemented yet)[/s]"
+[s][b]Tab[/b]: Combat (not implemented yet)[/s]
+
+PS: I haven't added Presliding and Postsliding animations yet, don't worry if they look glitchy"

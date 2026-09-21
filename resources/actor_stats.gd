@@ -40,9 +40,10 @@ class_name ActorStats extends Resource
 
 # Used when reversing the direction of the movement
 @export_subgroup("Deceleration")
-@export var turnskid_deceleration : float = 1200.0
+@export var turnskid_deceleration : float = 1000.0
 # Used when stopping
 @export var ground_friction : float = 800.0
+@export var air_friction : float = 500.0
 
 # Used when in combat
 @export_subgroup("Combat")
@@ -77,7 +78,7 @@ class_name ActorStats extends Resource
 @export_group("Buffer Timers")
 @export var jump_buffer_time : float = 0.15
 @export var sliding_buffer_time : float = 0.3
-@export var coyote_buffer_time : float = 0.1
+@export var coyote_buffer_time : float = 0.15
 @export var wall_turning_buffer_time : float = 0.3
 
 @export var sliding_boost_time : float = 1.5

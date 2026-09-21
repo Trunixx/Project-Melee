@@ -20,9 +20,9 @@ func enter(_previous_state_path: String, data := {}) -> void:
 	
 func exit() -> void:
 	actor.is_ledge_grabbing = false
-	
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	actor.view.face_from_sign_delayed(actor.get_input_x())
 	actor.apply_ledge_grab_move()
 	

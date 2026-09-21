@@ -7,8 +7,10 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(delta: float) -> void:
 	actor.view.face_from_sign_delayed(actor.get_input_x())
+	
+	actor.apply_wall_sliding_move(delta/2)
 	actor.do_move(delta, 0)
-	actor.apply_wall_sliding_move(delta)
+	actor.apply_wall_sliding_move(delta/2)
 	
 	if actor.is_on_floor():
 		finished.emit(StatePaths.GROUNDED)

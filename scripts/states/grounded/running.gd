@@ -2,12 +2,8 @@ class_name Running extends ActorState
 
 func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
-
-func handle_input(event: InputEvent) -> void:
-	pass
-	
-func update(_delta: float) -> void:
-	pass
 	
 func physics_update(delta: float) -> void:
-	actor.apply_ground_move(delta, actor.stats.running_multiplier)
+	actor.apply_ground_move(delta/2, actor.stats.running_multiplier)
+	actor.do_move(delta, actor.stats.gravity)
+	actor.apply_ground_move(delta/2, actor.stats.running_multiplier)

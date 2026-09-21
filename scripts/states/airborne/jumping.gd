@@ -7,19 +7,11 @@ func enter(previous_state_path: String, data := {}) -> void:
 		actor.velocity.x = abs(actor.previous_speed) * input_x
 	actor.velocity.y -= actor.stats.jump_force
 	actor.animation_player.play(state_name)
-		
-func exit() -> void:
-	pass
-	
-func handle_input(event: InputEvent) -> void:
-	pass
-	
-func update(_delta: float) -> void:
-	pass
 	
 func physics_update(delta: float) -> void:
-	actor.apply_air_move(delta)
+	actor.apply_jumping_move(delta/2)
 	actor.do_move(delta, actor.stats.gravity * actor.stats.gravity_jump_multiplier)
-	
-	if actor.velocity.y > actor.stats.jumping_speed_threshold:
+	actor.apply_jumping_move(delta/2)
+
+	if actor.velocity.y > actor.stats.jumping_speed_threshold or Input.is_action_just_released("jump"):
 		finished.emit(StatePaths.AIRBORNE_FALLING)

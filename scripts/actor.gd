@@ -35,6 +35,8 @@ var previous_speed : float
 var movement_mode : MovementMode = MovementMode.RUN
 var coyote_timed_out : bool = false
 
+var is_accelerating_descent : bool = false
+
 var ledge_grab_start_position : Vector2
 var ledge_grab_initial_offset : Vector2 
 var is_ledge_grabbing : bool = false
@@ -145,8 +147,14 @@ func apply_ground_move(delta : float, speed_mult : float = 1.0):
 	else:
 		apply_default_move(delta,speed_mult)
 		
-func apply_air_move(delta : float, speed_mult : float = 1.0):
+func apply_jumping_move(delta : float, speed_mult : float = 1.0):
 	var input_x = get_input_x()
+	velocity.x = move_toward(velocity.x, input_x * max(abs(previous_speed) * speed_mult,stats.move_force), stats.air_acceleration * delta)
+
+func apply_falling_move(delta : float, speed_mult : float = 1.0):
+	var input_x = get_input_x()
+	if velocity.y < 0:
+		velocity.y = move_toward(velocity.y, 0, 500 * delta)
 	velocity.x = move_toward(velocity.x, input_x * max(abs(previous_speed) * speed_mult,stats.move_force), stats.air_acceleration * delta)
 	
 func apply_sliding_move(delta : float):

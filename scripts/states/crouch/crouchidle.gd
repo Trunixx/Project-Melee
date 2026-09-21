@@ -3,11 +3,7 @@ class_name CrouchIdle extends ActorState
 func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play("crouch_idle")
 	
-func handle_input(event: InputEvent) -> void:
-	pass
-	
-func update(_delta: float) -> void:
-	pass
-	
 func physics_update(delta: float) -> void:
-	actor.apply_stop_move(delta)
+	actor.apply_stop_move(delta/2)
+	actor.do_move(delta, actor.stats.gravity)
+	actor.apply_stop_move(delta/2)

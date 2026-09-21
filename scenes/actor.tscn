@@ -1531,27 +1531,27 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_6iqic")
 
 [node name="EdgeDetector" type="RayCast2D" parent="View" unique_id=1082679158]
-position = Vector2(8, -3)
-target_position = Vector2(0, 5)
+position = Vector2(-8, -5)
+target_position = Vector2(0, 10)
 
 [node name="LowestWallDetector" type="RayCast2D" parent="View" unique_id=794033504]
-position = Vector2(5, -5)
+position = Vector2(3, -5)
 target_position = Vector2(4, 0)
 
 [node name="LowWallDetector" type="RayCast2D" parent="View" unique_id=837589990]
-position = Vector2(5, -14)
+position = Vector2(3, -14)
 target_position = Vector2(4, 0)
 
 [node name="MidWallDetector" type="RayCast2D" parent="View" unique_id=1130623568]
-position = Vector2(5, -24)
+position = Vector2(3, -24)
 target_position = Vector2(4, 0)
 
 [node name="HighWallDetector" type="RayCast2D" parent="View" unique_id=2104999038]
-position = Vector2(5, -34)
+position = Vector2(3, -34)
 target_position = Vector2(4, 0)
 
 [node name="HighestWallDetector" type="RayCast2D" parent="View" unique_id=743800907]
-position = Vector2(5, -37)
+position = Vector2(3, -37)
 target_position = Vector2(4, 0)
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=259651619]
@@ -1615,6 +1615,10 @@ metadata/_custom_type_script = "uid://b2y5knongy00n"
 script = ExtResource("14_slxpf")
 metadata/_custom_type_script = "uid://vmparhqp68k"
 
+[node name="Walljumping" type="Node" parent="StateMachine/Airborne" unique_id=641488279]
+script = ExtResource("28_7aga8")
+metadata/_custom_type_script = "uid://ooa2m0kkryjj"
+
 [node name="Falling" type="Node" parent="StateMachine/Airborne" unique_id=1774970719]
 script = ExtResource("7_yvg0l")
 metadata/_custom_type_script = "uid://cd4udnwwu7t1i"
@@ -1650,10 +1654,6 @@ metadata/_custom_type_script = "uid://cxwaqtr57l5xf"
 [node name="Climbing" type="Node" parent="StateMachine/Wall" unique_id=478325564]
 script = ExtResource("42_epcna")
 metadata/_custom_type_script = "uid://rbacbnnt8u6g"
-
-[node name="Walljumping" type="Node" parent="StateMachine/Wall" unique_id=641488279]
-script = ExtResource("28_7aga8")
-metadata/_custom_type_script = "uid://ooa2m0kkryjj"
 
 [node name="LedgeGrab" type="Node" parent="StateMachine/Wall" unique_id=783911540]
 script = ExtResource("42_y4wav")
