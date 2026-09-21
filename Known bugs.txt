@@ -1,4 +1,3 @@
 - Sometimes it goes into the Wall state without entering any leaf (not easy to reproduce)
 - When using the auto-mantling, if you collide into the wall while not pressing any key, then press the opposite key, it goes into the Wall state without entering any leaf and gets stuck
-- Ledge climbing stutters
-- You can jump way higher if you crouch and jump and do some weird shit (not easy to reproduce)
+- Ledge climbing stutters and sometimes it triggers two times (don't use keyframes to move laterally, use a function that uses the raycasts)
