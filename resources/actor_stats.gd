@@ -3,8 +3,8 @@ class_name ActorStats extends Resource
 # Used when calculating gravity
 @export_group("Gravity")
 @export var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
-@export var gravity_jump_multiplier : float = 0.8
-@export var gravity_long_jump_multiplier : float = 0.9
+@export var gravity_jump_multiplier : float = 0.85
+@export var gravity_long_jump_multiplier : float = 0.75
 
 # Used as a move impulse
 @export_group("Move")
@@ -27,6 +27,7 @@ class_name ActorStats extends Resource
 # Used on walls
 @export_subgroup("Wall")
 @export var wall_acceleration : float = 200.0
+@export var wall_slightly_forced_acceleration : float = 200.0
 @export var wall_forced_acceleration : float = 600.0
 @export var wall_strong_forced_acceleration : float = 800.0
 
@@ -57,7 +58,7 @@ class_name ActorStats extends Resource
 
 @export_subgroup("Thresholds")
 @export var jumping_speed_threshold : float = 100.0
-@export var longjumping_speed_threshold : float = 200.0
+@export var long_jumping_speed_threshold : float = 200.0
 
 # Used when sliding
 @export_group("Sliding")

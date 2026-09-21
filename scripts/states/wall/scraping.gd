@@ -10,6 +10,10 @@ func physics_update(delta: float) -> void:
 	actor.do_move(delta, 0)
 	actor.apply_wall_sliding_move(delta)
 	
+	if actor.is_on_floor():
+		finished.emit(StatePaths.GROUNDED)
+		return
+		
 	if not actor.is_colliding_with_wall():
 		finished.emit(StatePaths.AIRBORNE_FALLING)
 		return

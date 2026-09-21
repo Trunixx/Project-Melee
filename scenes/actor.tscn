@@ -949,6 +949,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position_offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.000001, -27)]
+}
 
 [sub_resource type="Animation" id="Animation_64t2a"]
 resource_name = "climbing"
@@ -1133,6 +1145,23 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_mk43o"]
 resource_name = "ledge_grab"
 length = 0.6
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"mid",
+"time": 0.2
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"low",
+"time": 0.36666667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"high",
+"time": 0.0
+}, {
+"color": Color(0.48178947, 0.48178947, 0.48178947, 1),
+"name": &"end",
+"time": 0.6
+}]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1164,10 +1193,10 @@ tracks/2/path = NodePath(".:position_offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.36666667, 0.46666667, 0.53333336, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.36666667, 0.43333334, 0.46666667, 0.53333336, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, -20), Vector2(0, -25), Vector2(0, -28), Vector2(6, -32), Vector2(10, -36)]
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, -20), Vector2(0, -25), Vector2(0, -27), Vector2(6, -28), Vector2(8, -32), Vector2(12, -36)]
 }
 
 [sub_resource type="Animation" id="Animation_auqfn"]
@@ -1445,6 +1474,7 @@ height = 32.0
 collision_layer = 2
 script = ExtResource("1_0qi0m")
 stats = ExtResource("2_6iqic")
+position_offset = Vector2(4.000001, -27)
 
 [node name="JumpBufferTimer" type="Timer" parent="." unique_id=651272927]
 wait_time = 0.25

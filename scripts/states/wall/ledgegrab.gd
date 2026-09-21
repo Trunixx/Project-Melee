@@ -1,11 +1,23 @@
 class_name LedgeGrab extends ActorState
 
-func enter(_previous_state_path: String, _data := {}) -> void:
-	actor.animation_player.play("ledge_grab")
+func enter(_previous_state_path: String, data := {}) -> void:
 	actor.is_ledge_grabbing = true
-	actor.position_offset = Vector2.ZERO
 	actor.ledge_grab_start_position = actor.position
+	actor.position_offset = Vector2.ZERO
+	# I tried using play_section_with_markers but it doesn't change the sprite 🫩
+	if data.get("position") == "high":
+		actor.animation_player.play("ledge_grab")
+		actor.animation_player.seek(0.0, true)
+		
+	elif data.get("position") == "mid":
+		actor.animation_player.play("ledge_grab")
+		actor.animation_player.seek(0.2, true)
 
+	elif data.get("position") == "low":
+		actor.animation_player.play("ledge_grab")
+		actor.animation_player.seek(0.3667, true)
+	actor.ledge_grab_initial_offset = actor.position_offset
+	
 func exit() -> void:
 	actor.is_ledge_grabbing = false
 	

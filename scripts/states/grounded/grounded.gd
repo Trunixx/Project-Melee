@@ -20,6 +20,11 @@ func physics_update(delta: float) -> void:
 		if actor.coyote_buffer_timer.is_stopped():
 			actor.start_coyote_time()
 
+	# FIXME: If I collide but don't push any direction, if I go in the opposite direction it goes into the Wall state without going in any leaf
+	if actor.movement_mode == actor.MovementMode.SPRINT and actor.is_any_ledge_detected() and actor.get_input_x() != 0: # and actor.get_input_x() != actor.mid_wall_detector.get_collision_normal().x:
+		finished.emit(StatePaths.WALL)
+		return
+		
 	# Jump
 	if Input.is_action_just_pressed("jump") or actor.is_jump_buffer_on():
 		if actor.movement_mode == actor.MovementMode.SPRINT:

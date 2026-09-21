@@ -14,3 +14,4 @@ func update(_delta: float) -> void:
 	
 func physics_update(delta: float) -> void:
 	actor.apply_air_move(delta)
+	actor.do_move(delta, actor.stats.gravity)

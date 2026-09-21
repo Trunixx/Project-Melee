@@ -36,6 +36,7 @@ var movement_mode : MovementMode = MovementMode.RUN
 var coyote_timed_out : bool = false
 
 var ledge_grab_start_position : Vector2
+var ledge_grab_initial_offset : Vector2 
 var is_ledge_grabbing : bool = false
 @onready var current_wall_stamina : float = stats.wall_stamina
 
@@ -98,10 +99,26 @@ func _on_coyote_buffer_timer_timeout() -> void:
 func is_colliding_with_wall() -> bool:
 	var is_colliding : bool = low_wall_detector.is_colliding() or mid_wall_detector.is_colliding() #or high_wall_detector.is_colliding()
 	return is_colliding
+	
+func is_highest_ledge_detected() -> bool:
+	var is_colliding : bool = highest_wall_detector.is_colliding()
+	return is_colliding
+	
+func is_high_ledge_detected() -> bool:
+	var is_colliding : bool = not highest_wall_detector.is_colliding() and high_wall_detector.is_colliding()
+	return is_colliding
+	
+func is_mid_ledge_detected() -> bool:
+	var is_colliding : bool = not highest_wall_detector.is_colliding() and not high_wall_detector.is_colliding() and mid_wall_detector.is_colliding()
+	return is_colliding
+	
+func is_low_ledge_detected() -> bool:
+	var is_colliding : bool = not highest_wall_detector.is_colliding() and not high_wall_detector.is_colliding() and not mid_wall_detector.is_colliding() and low_wall_detector.is_colliding()
+	return is_colliding
 
-func is_ledge_detected() -> bool:
-	var is_ledge_detected : bool = not highest_wall_detector.is_colliding() and high_wall_detector.is_colliding()
-	return is_ledge_detected
+func is_any_ledge_detected() -> bool:
+	var is_colliding : bool = is_high_ledge_detected() or is_mid_ledge_detected() or is_low_ledge_detected()
+	return is_colliding
 
 # These below are the functions called in the appropriate states
 func apply_gravity(gravity : float, delta : float):
@@ -150,8 +167,8 @@ func apply_sliding_move(delta : float):
 	if is_on_floor():
 		var downhill = Vector2.DOWN.slide(get_floor_normal()).normalized()
 		if downhill.y > 0.0:
-			velocity += downhill * stats.sliding_gravity * delta
-			velocity.x = min(velocity.x, stats.maximum_sliding_speed)
+			velocity += downhill * stats.sliding_gravity * delta 
+			velocity.x = min(abs(velocity.x), stats.maximum_sliding_speed) * view.scale.x
 			
 func apply_wall_sliding_move(delta : float):
 	if Input.is_action_pressed("sliding"):
@@ -162,14 +179,22 @@ func apply_wall_sliding_move(delta : float):
 	else:
 		if velocity.y > stats.wall_scraping_high_speed_threshold:
 			velocity.y = move_toward(velocity.y, stats.wall_speed, stats.wall_forced_acceleration * delta)
-		velocity.y = move_toward(velocity.y, stats.wall_speed, stats.wall_acceleration * delta)
+		else:
+			velocity.y = move_toward(velocity.y, stats.wall_speed, stats.wall_acceleration * delta)
+		if velocity.y < 0:
+			velocity.y = move_toward(velocity.y, stats.wall_speed, stats.wall_slightly_forced_acceleration * delta)
 	velocity.x = 0
 	
 func apply_ledge_grab_move():
-	position = ledge_grab_start_position + position_offset  * sign(view.scale)
+	## DEBUG
+	#position_offset.x = 0.0
+	#ledge_grab_initial_offset.x = 0.0
+	
+	
+	position = ledge_grab_start_position + (position_offset - ledge_grab_initial_offset)  * sign(view.scale)
 	velocity.x = 0.0
 	velocity.y = 0.0
-
+	
 func apply_climbing_move(delta: float):
 	velocity.y = move_toward(velocity.y, -stats.wall_climbing_speed, stats.wall_strong_forced_acceleration * delta)
 

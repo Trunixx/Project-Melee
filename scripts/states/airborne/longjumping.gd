@@ -6,7 +6,6 @@ func enter(previous_state_path: String, data := {}) -> void:
 	if sign(actor.previous_speed) == sign(input_x):
 		actor.velocity.x = abs(actor.previous_speed) * input_x
 	actor.velocity.y -= actor.stats.long_jump_force
-	# HACK: Animation name
 	actor.animation_player.play("long_jumping")
 		
 func exit() -> void:
@@ -20,6 +19,7 @@ func update(_delta: float) -> void:
 	
 func physics_update(delta: float) -> void:
 	actor.apply_air_move(delta)
+	actor.do_move(delta, actor.stats.gravity * actor.stats.gravity_long_jump_multiplier)
 	
-	if actor.velocity.y > actor.stats.longjumping_speed_threshold:
+	if actor.velocity.y > actor.stats.long_jumping_speed_threshold:
 		finished.emit(StatePaths.AIRBORNE_FALLING)
