@@ -40,10 +40,8 @@ Combat is still WIP, it's only possible to switch from the normal states, to the
 	Tab: Combat (not implemented yet)
 
 ## Known issues
-- Sometimes it goes into the Wall state without entering any leaf (not easy to reproduce)
-- When sprinting and auto-mantling, if you collide into the wall while not pressing any key, then press the opposite key, it goes into the Wall state without entering any leaf, getting stuck until you jump
 - Ledge climbing stutters and sometimes it triggers two times; this is caused by the position not changing adequately, but doing it right takes too much time and trial and error
-- Spamming Jump while wallclimbing sometimes makes you jump directly up
+- Presliding and Postsliding animations are missing, so it looks like it stutters before and after sliding
 
 ## Installation
 At this time, the only supported OS is Windows (sorry :c)

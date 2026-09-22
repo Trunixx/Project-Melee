@@ -3,10 +3,9 @@ class_name Walljumping extends ActorState
 # FIXME: Staying in this state makes you sometimes jump directly up
 
 func enter(previous_state_path: String, data := {}) -> void:
-	actor.velocity.x += actor.stats.jump_force * actor.view.scale.x * -1
-	actor.velocity.y = -actor.stats.jump_force - 100
+	actor.velocity.x = actor.stats.jump_force * actor.view.scale.x * -1
+	actor.velocity.y = -actor.stats.jump_force
 	actor.animation_player.play("jumping")
-	print("Done")
 	
 func physics_update(delta: float) -> void:	
 	actor.apply_jumping_move(delta/2)

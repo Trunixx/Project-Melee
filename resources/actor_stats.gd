@@ -76,7 +76,7 @@ class_name ActorStats extends Resource
 
 # Used as the buffer timers wait time
 @export_group("Buffer Timers")
-@export var jump_buffer_time : float = 0.15
+@export var jump_buffer_time : float = 10.15
 @export var sliding_buffer_time : float = 0.3
 @export var coyote_buffer_time : float = 0.15
 @export var wall_turning_buffer_time : float = 0.3
