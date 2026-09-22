@@ -19,7 +19,7 @@ const AIRBORNE := "Airborne"
 const AIRBORNE_FALLING := "Airborne/Falling"
 const AIRBORNE_JUMPING := "Airborne/Jumping"
 const AIRBORNE_LONGJUMPING := "Airborne/Longjumping"
-const WALL_WALLJUMPING := "Airborne/Walljumping" 
+const AIRBORNE_WALLJUMPING := "Airborne/Walljumping" 
 
 # Combat
 const COMBAT := "Combat"
