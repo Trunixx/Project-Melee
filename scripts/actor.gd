@@ -4,7 +4,7 @@ class_name Actor extends CharacterBody2D
 
 @onready var view: Node2D = $View
 @onready var animation_player: AnimationPlayer = $View/AnimationPlayer
-@onready var camera_zoomer: AnimationPlayer = $Camera/CameraZoomer
+@onready var camera: Camera2D = $Camera
 
 # Raycasts
 @onready var edge_detector: RayCast2D = $View/EdgeDetector
@@ -194,11 +194,6 @@ func apply_wall_sliding_move(delta : float):
 	velocity.x = 0
 	
 func apply_ledge_grab_move():
-	## DEBUG
-	#position_offset.x = 0.0
-	#ledge_grab_initial_offset.x = 0.0
-	
-	
 	position = ledge_grab_start_position + (position_offset - ledge_grab_initial_offset)  * sign(view.scale)
 	velocity.x = 0.0
 	velocity.y = 0.0

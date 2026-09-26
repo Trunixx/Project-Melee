@@ -2,7 +2,6 @@ class_name Grounded extends ActorState
 
 func enter(_previous_state_path: String, _data := {}) -> void:
 	actor.current_wall_stamina = actor.stats.wall_stamina
-	pass
 	
 func exit() -> void:
 	actor.previous_speed = actor.velocity.x 
@@ -47,7 +46,8 @@ func physics_update(delta: float) -> void:
 
 	# Turnskid
 	if sign(actor.get_input_x()) != sign(actor.velocity.x) \
-			and not is_equal_approx(abs(actor.velocity.x), 0.0):
+			and not is_equal_approx(abs(actor.velocity.x), 0.0) \
+			and actor.movement_mode != actor.MovementMode.WALK:
 		finished.emit(StatePaths.GROUNDED_TURNSKID)
 		return
 

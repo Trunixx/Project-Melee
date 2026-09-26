@@ -14,7 +14,6 @@ func physics_update(delta: float) -> void:
 	if not actor.edge_detector.is_colliding():
 		actor.position.x += actor.view.scale.x * 2
 		
-	if not sign(actor.get_input_x()) != sign(actor.velocity.x):
+	#if not sign(actor.get_input_x()) != sign(actor.velocity.x):
+	if abs(actor.velocity.x) < actor.stats.turnskid_min_speed:
 		finished.emit(StatePaths.GROUNDED)
-	
-	

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c356epj66ocs6" path="res://scripts/view.gd" id="2_2gv2x"]
 [ext_resource type="Resource" uid="uid://ch1iaukestj1r" path="res://resources/actor_stats.tres" id="2_6iqic"]
 [ext_resource type="Texture2D" uid="uid://ck67svdt1728j" path="res://assets/player/placeholder_textures.png" id="2_7i7yh"]
+[ext_resource type="Script" uid="uid://bvf4hg3yahyv" path="res://scripts/camera.gd" id="3_epcna"]
 [ext_resource type="Script" uid="uid://8pm5chborq6i" path="res://scripts/states/state_machine.gd" id="3_w6j74"]
 [ext_resource type="Script" uid="uid://b2y5knongy00n" path="res://scripts/states/airborne/jumping.gd" id="4_0jvkp"]
 [ext_resource type="Texture2D" uid="uid://dlnk5njlxdb0k" path="res://assets/player/Jump/player new jump 48x48.png" id="4_3psjf"]
@@ -63,7 +64,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_l7wqm"]
 resource_name = "zoom_in"
-length = 0.2
+length = 0.19999999999999998
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -71,15 +72,15 @@ tracks/0/path = NodePath(".:zoom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3, 3), Vector2(3.2, 3.2)]
+"values": [Vector2(3, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_6duwv"]
 resource_name = "zoom_out"
-length = 0.2
+length = 0.19999999999999998
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -87,17 +88,34 @@ tracks/0/path = NodePath(".:zoom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3.2, 3.2), Vector2(3, 3)]
+"values": [Vector2(3.025, 3.025)]
+}
+
+[sub_resource type="Animation" id="Animation_epcna"]
+resource_name = "sprinting"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.05, 3.05)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6duwv"]
 _data = {
 &"RESET": SubResource("Animation_d8nby"),
-&"zoom_in": SubResource("Animation_l7wqm"),
-&"zoom_out": SubResource("Animation_6duwv")
+&"normal": SubResource("Animation_l7wqm"),
+&"running": SubResource("Animation_6duwv"),
+&"sprinting": SubResource("Animation_epcna")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fokgv"]
@@ -1502,9 +1520,11 @@ position = Vector2(0, -24)
 zoom = Vector2(3, 3)
 process_callback = 0
 position_smoothing_enabled = true
+script = ExtResource("3_epcna")
 
 [node name="CameraZoomer" type="AnimationPlayer" parent="Camera" unique_id=1495291087]
 libraries/ = SubResource("AnimationLibrary_6duwv")
+blend_times = [&"normal", &"RESET", 0.2, &"normal", &"normal", 0.2, &"normal", &"running", 0.2, &"normal", &"sprinting", 0.2, &"running", &"RESET", 0.2, &"running", &"normal", 0.2, &"running", &"running", 0.2, &"running", &"sprinting", 0.2, &"sprinting", &"RESET", 0.2, &"sprinting", &"normal", 0.2, &"sprinting", &"running", 0.2, &"sprinting", &"sprinting", 0.2]
 
 [node name="View" type="Node2D" parent="." unique_id=537658040]
 script = ExtResource("2_2gv2x")

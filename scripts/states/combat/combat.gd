@@ -2,10 +2,6 @@ class_name Combat extends ActorState
 
 func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
-	actor.camera_zoomer.play("zoom_in")
-	
-func exit() -> void:
-	actor.camera_zoomer.play("zoom_out")
 	
 func physics_update(delta: float) -> void:
 	actor.apply_combat_move(delta/2, actor.stats.combat_multiplier)

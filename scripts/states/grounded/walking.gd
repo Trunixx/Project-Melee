@@ -2,6 +2,7 @@ class_name Walking extends ActorState
 
 func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
+	actor.camera.zoomer.play("normal")
 	
 func physics_update(delta: float) -> void:
 	actor.apply_ground_move(delta/2, actor.stats.walking_multiplier)

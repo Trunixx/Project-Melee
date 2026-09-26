@@ -40,7 +40,8 @@ class_name ActorStats extends Resource
 
 # Used when reversing the direction of the movement
 @export_subgroup("Deceleration")
-@export var turnskid_deceleration : float = 1000.0
+@export var turnskid_deceleration : float = 1500.0
+@export var turnskid_min_speed : float = move_force/2
 # Used when stopping
 @export var ground_friction : float = 800.0
 @export var air_friction : float = 500.0
@@ -72,7 +73,7 @@ class_name ActorStats extends Resource
 
 @export var crouching_speed_threshold : float = 120.0
 @export var sliding_falling_speed_threshold : float = 100.0
-@export var sliding_gravity : float = gravity/3
+@export var sliding_gravity : float = gravity/4
 
 # Used as the buffer timers wait time
 @export_group("Buffer Timers")
