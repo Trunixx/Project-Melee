@@ -9,9 +9,9 @@ func exit() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(delta: float) -> void:
 	actor.view.face_from_sign(actor.get_input_x())
-	# XD why is it syntactically correct???
-	# I should change it to a normal condition but it makes me giggle everytime so I ain't gonna do that
-	actor.apply_gravity(actor.stats.gravity * 0.60, delta) if actor.is_accelerating_descent else "don't worry bout it bro"
+	
+	if actor.is_accelerating_descent:
+		actor.apply_gravity(actor.stats.gravity * 0.60, delta)
 	
 	if actor.is_on_floor(): 
 		if actor.previous_y_speed > 500: # HACK: magic numba

@@ -46,6 +46,12 @@ gradient = SubResource("Gradient_sugp2")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
 size = Vector2(116.38678, 359.016)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya4ey"]
+size = Vector2(116.38678, 359.016)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eb6dy"]
+size = Vector2(116.38678, 887.8468)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
 size = Vector2(116.38678, 359.016)
 
@@ -214,6 +220,33 @@ shape = SubResource("RectangleShape2D_0wfyh")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D6" unique_id=1340275566]
 position = Vector2(-0.019752502, 0.029830933)
 scale = Vector2(1.8178508, 5.6107287)
+texture = SubResource("GradientTexture2D_fmr5o")
+
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="StaticBody2D" unique_id=1248243331]
+position = Vector2(-1992, -278)
+shape = SubResource("RectangleShape2D_ya4ey")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D21" unique_id=812199064]
+position = Vector2(-0.019752502, 0.029830933)
+scale = Vector2(1.8178508, 5.6107287)
+texture = SubResource("GradientTexture2D_fmr5o")
+
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="StaticBody2D" unique_id=498844160]
+position = Vector2(-1992, -750)
+shape = SubResource("RectangleShape2D_ya4ey")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D22" unique_id=475937112]
+position = Vector2(-0.019752502, 0.029830933)
+scale = Vector2(1.8178508, 5.6107287)
+texture = SubResource("GradientTexture2D_fmr5o")
+
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="StaticBody2D" unique_id=454570055]
+position = Vector2(-2168, -485.58453)
+shape = SubResource("RectangleShape2D_eb6dy")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D23" unique_id=560751988]
+position = Vector2(-0.019752502, 0.029830933)
+scale = Vector2(1.8178508, 13.868512)
 texture = SubResource("GradientTexture2D_fmr5o")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1493538959]
