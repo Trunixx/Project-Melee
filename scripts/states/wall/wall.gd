@@ -5,7 +5,7 @@ class_name Wall extends ActorState
 func enter(_previous_state_path: String, _data := {}) -> void:
 	# HACK: So if you're not running you don't walljump with a weird speed
 	# DESIGN: Consider changing how the air movement works
-	actor.previous_speed = actor.stats.maximum_air_speed
+	actor.previous_x_speed = actor.stats.maximum_air_speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(_delta: float) -> void:

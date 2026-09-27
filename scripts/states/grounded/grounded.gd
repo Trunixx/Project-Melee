@@ -4,12 +4,12 @@ func enter(_previous_state_path: String, _data := {}) -> void:
 	actor.current_wall_stamina = actor.stats.wall_stamina
 	
 func exit() -> void:
-	actor.previous_speed = actor.velocity.x 
+	actor.previous_x_speed = actor.velocity.x 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(delta: float) -> void:
 	actor.view.face_from_sign(actor.get_input_x())
-	
+		
 	# Falling and coyote is over
 	if not actor.is_on_floor():
 		if actor.coyote_timed_out:
@@ -17,7 +17,7 @@ func physics_update(delta: float) -> void:
 			return
 		if actor.coyote_buffer_timer.is_stopped():
 			actor.start_coyote_time()
-
+	
 	# FIXME: If I collide but don't push any direction, if I go in the opposite direction it goes into the Wall state without going in any leaf
 	if actor.movement_mode == actor.MovementMode.SPRINT and actor.is_any_ledge_detected() and actor.get_input_x() != 0: # and actor.get_input_x() != actor.mid_wall_detector.get_collision_normal().x:
 		finished.emit(StatePaths.WALL)
@@ -33,7 +33,7 @@ func physics_update(delta: float) -> void:
 
 	# Sliding
 	if Input.is_action_just_pressed("sliding") or not actor.sliding_buffer_timer.is_stopped():
-		if is_equal_approx(actor.get_input_x(), 0.0):
+		if is_zero_approx(actor.get_input_x()):
 			finished.emit(StatePaths.CROUCH)
 		else:
 			finished.emit(StatePaths.SLIDE_PRESLIDING)
@@ -46,13 +46,13 @@ func physics_update(delta: float) -> void:
 
 	# Turnskid
 	if sign(actor.get_input_x()) != sign(actor.velocity.x) \
-			and not is_equal_approx(abs(actor.velocity.x), 0.0) \
+			and not is_zero_approx(abs(actor.velocity.x)) \
 			and actor.movement_mode != actor.MovementMode.WALK:
 		finished.emit(StatePaths.GROUNDED_TURNSKID)
 		return
 
 	# Idle
-	if is_equal_approx(actor.get_input_x(), 0.0):
+	if is_zero_approx(actor.get_input_x()):
 		finished.emit(StatePaths.GROUNDED_IDLE)
 		return
 

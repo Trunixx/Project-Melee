@@ -1,6 +1,5 @@
 class_name Turnskid extends ActorState
 
-
 func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
 		

@@ -60,7 +60,7 @@ class_name ActorStats extends Resource
 
 @export_subgroup("Thresholds")
 @export var jumping_speed_threshold : float = 100.0
-@export var long_jumping_speed_threshold : float = 200.0
+@export var long_jumping_speed_threshold : float = 150.0
 
 # Used when sliding
 @export_group("Sliding")
@@ -83,3 +83,10 @@ class_name ActorStats extends Resource
 @export var wall_turning_buffer_time : float = 0.3
 
 @export var sliding_boost_time : float = 1.5
+
+# Zoom values
+@export_group("Camera Zoom")
+@export var normal_zoom : float = 3.0
+@export var sprinting_zoom : float = 2.85
+@export var normal_crouch_zoom : float = 3.25
+@export var sprinting_crouch_zoom : float = 3.1

@@ -13,8 +13,13 @@ func physics_update(delta: float) -> void:
 	# I should change it to a normal condition but it makes me giggle everytime so I ain't gonna do that
 	actor.apply_gravity(actor.stats.gravity * 0.60, delta) if actor.is_accelerating_descent else "don't worry bout it bro"
 	
-	if actor.is_on_floor():
-		finished.emit(StatePaths.GROUNDED)
+	if actor.is_on_floor(): 
+		if actor.previous_y_speed > 500: # HACK: magic numba
+			finished.emit(StatePaths.LANDING)
+		else:
+			finished.emit(StatePaths.GROUNDED)
+	else:
+		actor.previous_y_speed = actor.velocity.y
 		
 	if actor.is_colliding_with_wall() and actor.get_input_x() != 0: #and actor.get_input_x() != actor.mid_wall_detector.get_collision_normal().x:
 		finished.emit(StatePaths.WALL)

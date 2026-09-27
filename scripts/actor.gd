@@ -31,22 +31,24 @@ enum MovementMode {
 	SPRINT,
 	DOWN
 }
-var previous_speed : float
-var movement_mode : MovementMode = MovementMode.RUN
-var coyote_timed_out : bool = false
+var previous_x_speed: float
+var previous_y_speed: float
+var previous_zoom: float
+var movement_mode: MovementMode = MovementMode.RUN
+var coyote_timed_out: bool = false
 
-var is_accelerating_descent : bool = false
+var is_accelerating_descent: bool = false
 
-var ledge_grab_start_position : Vector2
-var ledge_grab_initial_offset : Vector2 
-var is_ledge_grabbing : bool = false
-@onready var current_wall_stamina : float = stats.wall_stamina
+var ledge_grab_start_position: Vector2
+var ledge_grab_initial_offset: Vector2 
+var is_ledge_grabbing: bool = false
+@onready var current_wall_stamina: float = stats.wall_stamina
 
 # Runtime combat state
 # DESIGN: Consider putting them in something more combat related and less generic
 # TODO: Consider removing this variable, you can get it from the state
-var is_in_combat : bool
-var is_threatened : bool
+var is_in_combat: bool
+var is_threatened: bool
 
 # Input state
 var direction_queue = []
@@ -73,6 +75,14 @@ func _unhandled_input(_event: InputEvent) -> void:
 		movement_mode = MovementMode.SPRINT if movement_mode != MovementMode.SPRINT else MovementMode.RUN
 	elif Input.is_action_just_pressed("walking"):
 		movement_mode = MovementMode.WALK if movement_mode != MovementMode.WALK else MovementMode.RUN
+	
+	if Input.is_action_pressed("sprinting (hold)"):
+		if movement_mode != MovementMode.SPRINT:
+			movement_mode = MovementMode.SPRINT
+	
+	if Input.is_action_just_released("sprinting (hold)"):
+		if movement_mode == MovementMode.SPRINT:
+			movement_mode = MovementMode.RUN
 		
 func get_input_x() -> float:
 	if direction_queue.is_empty():
@@ -149,13 +159,13 @@ func apply_ground_move(delta : float, speed_mult : float = 1.0):
 		
 func apply_jumping_move(delta : float, speed_mult : float = 1.0):
 	var input_x = get_input_x()
-	velocity.x = move_toward(velocity.x, input_x * max(abs(previous_speed) * speed_mult,stats.move_force), stats.air_acceleration * delta)
+	velocity.x = move_toward(velocity.x, input_x * max(abs(previous_x_speed) * speed_mult,stats.move_force), stats.air_acceleration * delta)
 
 func apply_falling_move(delta : float, speed_mult : float = 1.0):
 	var input_x = get_input_x()
 	if velocity.y < 0:
 		velocity.y = move_toward(velocity.y, 0, 500 * delta)
-	velocity.x = move_toward(velocity.x, input_x * max(abs(previous_speed) * speed_mult,stats.move_force), stats.air_acceleration * delta)
+	velocity.x = move_toward(velocity.x, input_x * max(abs(previous_x_speed) * speed_mult,stats.move_force), stats.air_acceleration * delta)
 	
 func apply_sliding_move(delta : float):
 	var input_x = get_input_x()

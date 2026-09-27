@@ -1,15 +1,18 @@
 class_name StatePaths
 
 # Grounded
-const GROUNDED = "Grounded"
+const GROUNDED := "Grounded"
 const GROUNDED_IDLE := "Grounded/Idle"
 const GROUNDED_WALKING := "Grounded/Walking"
 const GROUNDED_RUNNING := "Grounded/Running"
 const GROUNDED_SPRINTING := "Grounded/Sprinting"
 const GROUNDED_TURNSKID := "Grounded/Turnskid"
 
+# Landing
+const LANDING := "Landing"
+
 # Crouch
-const CROUCH = "Crouch"
+const CROUCH := "Crouch"
 const CROUCH_IDLE := "Crouch/CrouchIdle"
 const CROUCH_RUNNING := "Crouch/CrouchRunning"
 const CROUCH_SPRINTING := "Crouch/CrouchSprinting"

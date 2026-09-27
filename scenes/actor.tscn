@@ -44,79 +44,9 @@
 [ext_resource type="Script" uid="uid://dns8nk01atln2" path="res://scripts/states/wall/wall.gd" id="24_l7wqm"]
 [ext_resource type="Script" uid="uid://cxwaqtr57l5xf" path="res://scripts/states/wall/scraping.gd" id="25_6duwv"]
 [ext_resource type="Script" uid="uid://ooa2m0kkryjj" path="res://scripts/states/wall/walljumping.gd" id="28_7aga8"]
+[ext_resource type="Script" uid="uid://8sk3jiarjuqe" path="res://scripts/states/grounded/landing.gd" id="28_7itqm"]
 [ext_resource type="Script" uid="uid://rbacbnnt8u6g" path="res://scripts/states/wall/climbing.gd" id="42_epcna"]
 [ext_resource type="Script" uid="uid://ceseox33xx7v0" path="res://scripts/states/wall/ledgegrab.gd" id="42_y4wav"]
-
-[sub_resource type="Animation" id="Animation_d8nby"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3, 3)]
-}
-
-[sub_resource type="Animation" id="Animation_l7wqm"]
-resource_name = "zoom_in"
-length = 0.19999999999999998
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3, 3)]
-}
-
-[sub_resource type="Animation" id="Animation_6duwv"]
-resource_name = "zoom_out"
-length = 0.19999999999999998
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3.025, 3.025)]
-}
-
-[sub_resource type="Animation" id="Animation_epcna"]
-resource_name = "sprinting"
-length = 0.19999999999999998
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3.05, 3.05)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6duwv"]
-_data = {
-&"RESET": SubResource("Animation_d8nby"),
-&"normal": SubResource("Animation_l7wqm"),
-&"running": SubResource("Animation_6duwv"),
-&"sprinting": SubResource("Animation_epcna")
-}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fokgv"]
 atlas = ExtResource("4_mk43o")
@@ -1161,6 +1091,34 @@ tracks/1/keys = {
 "values": [0, 1, 2]
 }
 
+[sub_resource type="Animation" id="Animation_7itqm"]
+resource_name = "landing"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("View/AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"landing"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("View/AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.16666667, 0.23333333, 0.3, 0.36666667, 0.43333334, 0.5, 0.56666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
 [sub_resource type="Animation" id="Animation_mk43o"]
 resource_name = "ledge_grab"
 length = 0.6
@@ -1472,6 +1430,7 @@ _data = {
 &"falling": SubResource("Animation_6iqic"),
 &"idle": SubResource("Animation_2gv2x"),
 &"jumping": SubResource("Animation_7i7yh"),
+&"landing": SubResource("Animation_7itqm"),
 &"ledge_grab": SubResource("Animation_mk43o"),
 &"long_jumping": SubResource("Animation_auqfn"),
 &"postsliding": SubResource("Animation_uh28t"),
@@ -1517,14 +1476,10 @@ one_shot = true
 
 [node name="Camera" type="Camera2D" parent="." unique_id=2134078577]
 position = Vector2(0, -24)
-zoom = Vector2(3, 3)
+zoom = Vector2(3.05, 3.05)
 process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("3_epcna")
-
-[node name="CameraZoomer" type="AnimationPlayer" parent="Camera" unique_id=1495291087]
-libraries/ = SubResource("AnimationLibrary_6duwv")
-blend_times = [&"normal", &"RESET", 0.2, &"normal", &"normal", 0.2, &"normal", &"running", 0.2, &"normal", &"sprinting", 0.2, &"running", &"RESET", 0.2, &"running", &"normal", 0.2, &"running", &"running", 0.2, &"running", &"sprinting", 0.2, &"sprinting", &"RESET", 0.2, &"sprinting", &"normal", 0.2, &"sprinting", &"running", 0.2, &"sprinting", &"sprinting", 0.2]
 
 [node name="View" type="Node2D" parent="." unique_id=537658040]
 script = ExtResource("2_2gv2x")
@@ -1583,6 +1538,10 @@ shape = SubResource("CapsuleShape2D_okck6")
 script = ExtResource("3_w6j74")
 initial_state = NodePath("Grounded/Idle")
 metadata/_custom_type_script = "uid://8pm5chborq6i"
+
+[node name="Landing" type="Node" parent="StateMachine" unique_id=1346603067]
+script = ExtResource("28_7itqm")
+metadata/_custom_type_script = "uid://8sk3jiarjuqe"
 
 [node name="Grounded" type="Node" parent="StateMachine" unique_id=324241848]
 script = ExtResource("6_5y4kb")

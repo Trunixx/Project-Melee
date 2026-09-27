@@ -1,7 +1,7 @@
 class_name Crouch extends ActorState
 
 func exit() -> void:
-	actor.previous_speed = actor.velocity.x 
+	actor.previous_x_speed = actor.velocity.x 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(delta: float) -> void:
@@ -26,7 +26,7 @@ func physics_update(delta: float) -> void:
 		return
 		
 	# Idle
-	if is_equal_approx(actor.get_input_x(), 0.0):
+	if is_zero_approx(actor.get_input_x()):
 		finished.emit(StatePaths.CROUCH_IDLE)
 		return
 		

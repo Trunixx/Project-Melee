@@ -270,16 +270,17 @@ position = Vector2(-406.86023, 352.59204)
 
 [node name="InputMapLabel" type="RichTextLabel" parent="." unique_id=1516723042]
 offset_left = -312.1009
-offset_top = 146.20485
+offset_top = 132.5685
 offset_right = -73.623245
-offset_bottom = 262.93036
+offset_bottom = 262.9304
 theme_override_font_sizes/normal_font_size = 10
 theme_override_font_sizes/bold_font_size = 10
 bbcode_enabled = true
 text = "[b]W[/b]: Climb wall
 [b]A,D[/b]: Move
 [b]S[/b]: Crouch, slide, or fall faster
-[b]LShift[/b]: Toggle sprint (even while crouching)
+[b]Caps Lock[/b]: Toggle sprint (even while crouching)
+[b]LShift[/b]: Sprint (even while crouching)
 [b]LAlt[/b]: Toggle walking
 [b]Space[/b]: Jump
 
