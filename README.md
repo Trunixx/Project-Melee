@@ -7,7 +7,7 @@ At this time, it only features slightly-more-complex-than-average movement imple
 The placeholder assets of the main character used at first were [these free ones](https://benvictus.itch.io/test-dummy-platformer); now they have been replaced with [these paid ones](https://zegley.itch.io/2d-platformermetroidvania-asset-pack).
 
 ## Parkour
-The main character can walk, run, and sprint. While sprinting (**Shift**), auto-climbing of short obstacles is enabled.
+The main character can walk, run, and sprint. While sprinting (**LShift** or **Caps Lock**), auto-climbing of short obstacles is enabled.
 
 While colliding with a wall, you'll begin to slide unless you hold the **W** key, which gives you two seconds of climbing, or you can walljump at no stamina cost. If a ledge is detected, it gets climbed.
 
@@ -23,7 +23,7 @@ There have been coded various mechanics to help with making the movement feel mo
 - **directional queue**: you can override the direction without having to release the keys thanks to a queue
 
 ## Stealth
-If you try to slide without inputting a direction, or you lose too much speed while sliding, you'll crouch. Right now, there are two speeds (toggleable by sprinting via **Shift**). 
+If you try to slide without inputting a direction, or you lose too much speed while sliding, you'll crouch. Right now, there are two speeds (toggleable by sprinting via **LShift** or **Caps Lock**). 
 
 ## Combat
 Combat is still WIP, it's only possible to switch from the normal states, to the unanimated Combat state.
@@ -33,7 +33,8 @@ Combat is still WIP, it's only possible to switch from the normal states, to the
     W: Climb wall
 	A,D: Move
 	S: Crouch, slide, or fall faster
-	LShift: Toggle sprint (even while crouching)
+	Caps Lock: Toggle sprint (even while crouching)
+	LShift: Sprint (even while crouching)
 	LAlt: Toggle walking
 	Space: Jump
 
