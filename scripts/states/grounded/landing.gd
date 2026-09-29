@@ -15,6 +15,6 @@ func physics_update(delta: float) -> void:
 	#actor.apply_stop_move(delta/2)
 	actor.velocity = Vector2.ZERO
 	
-	if not is_zero_approx(actor.get_input_x()) or not actor.animation_player.is_playing():
+	if not is_zero_approx(actor.get_input_x()) and not actor.animation_player.is_playing():
 		finished.emit(StatePaths.GROUNDED)
 		return
