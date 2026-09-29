@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cq328d1cexggs"]
+
+[ext_resource type="Script" uid="uid://dc44glktkvq17" path="res://scenes/ui/main_menu.gd" id="1_sl1te"]
+[ext_resource type="Theme" uid="uid://w4vw6eirhsok" path="res://resources/main_menu_theme.tres" id="2_fe2o3"]
+
+[node name="MainMenu" type="Control" unique_id=806492270]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_sl1te")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1703749362]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.16526154
+anchor_right = 1.0
+anchor_bottom = 0.83473843
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="CenterContainer" unique_id=908984170]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+vertical = true
+
+[node name="Title" type="Label" parent="CenterContainer/BoxContainer" unique_id=37205223]
+layout_mode = 2
+theme = ExtResource("2_fe2o3")
+text = "Project Melee"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/BoxContainer" unique_id=756014001]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="NewGameButton" type="Button" parent="CenterContainer/BoxContainer/VBoxContainer" unique_id=730222233]
+layout_mode = 2
+theme = ExtResource("2_fe2o3")
+text = "Levels"
+
+[node name="ContinueButton" type="Button" parent="CenterContainer/BoxContainer/VBoxContainer" unique_id=700804301]
+layout_mode = 2
+theme = ExtResource("2_fe2o3")
+text = "Continue"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/BoxContainer/VBoxContainer" unique_id=857146524]
+layout_mode = 2
+theme = ExtResource("2_fe2o3")
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="CenterContainer/BoxContainer/VBoxContainer" unique_id=1851010143]
+layout_mode = 2
+theme = ExtResource("2_fe2o3")
+text = "Credits
+"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/BoxContainer/VBoxContainer" unique_id=1318284141]
+layout_mode = 2
+theme = ExtResource("2_fe2o3")
+text = "Quit"
+
+[connection signal="button_down" from="CenterContainer/BoxContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_button_down"]
+[connection signal="button_down" from="CenterContainer/BoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_button_down"]
+[connection signal="button_down" from="CenterContainer/BoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_button_down"]
+[connection signal="button_down" from="CenterContainer/BoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_button_down"]
+[connection signal="button_down" from="CenterContainer/BoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_button_down"]

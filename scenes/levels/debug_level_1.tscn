@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b2nd0rupfwexx"]
 
-[ext_resource type="PackedScene" uid="uid://daarr5p275ous" path="res://scenes/actor.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://daarr5p275ous" path="res://scenes/actor.tscn" id="1_nlvvo"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wfyh"]
 
@@ -298,7 +298,7 @@ position = Vector2(-0.019752502, 0.029830933)
 scale = Vector2(1.8178508, 5.6107287)
 texture = SubResource("GradientTexture2D_fmr5o")
 
-[node name="Actor" parent="." unique_id=1201751571 instance=ExtResource("1_o5qli")]
+[node name="Actor" parent="." unique_id=1201751571 instance=ExtResource("1_nlvvo")]
 position = Vector2(-406.86023, 352.59204)
 
 [node name="InputMapLabel" type="RichTextLabel" parent="." unique_id=1516723042]

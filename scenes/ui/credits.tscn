@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://3rqnfndasryu"]
+
+[node name="Credits" type="Control" unique_id=557025387]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1106205956]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer" unique_id=1047083983]
+layout_mode = 2
+text = "Godot Modular Character Controller by Panthera Digital
+Dummy 2D Placeholder Assets by Benvictus
+2D Pixel Art Character Template Asset Pack by Zegley
+AudioManager by Aarimous
+Sounds by Zapsplat
+Caudex font by Hjort Nidudsson
+CinzelDecorative font by Natanael Gama"
