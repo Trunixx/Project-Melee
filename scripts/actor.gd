@@ -83,7 +83,15 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("sprinting (hold)"):
 		if movement_mode == MovementMode.SPRINT:
 			movement_mode = MovementMode.RUN
-		
+				
+	if Input.is_action_pressed("sliding"):
+		sliding_buffer_timer.start()
+		is_accelerating_descent = true
+	
+	if Input.is_action_just_released("sliding"):
+		sliding_buffer_timer.stop()
+		is_accelerating_descent = false
+
 func get_input_x() -> float:
 	if direction_queue.is_empty():
 		return 0.0

@@ -26,11 +26,3 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump"):
 		actor.jump_buffer_timer.start()
-		
-	if Input.is_action_pressed("sliding"):
-		actor.sliding_buffer_timer.start()
-		actor.is_accelerating_descent = true
-	
-	if Input.is_action_just_released("sliding"):
-		actor.sliding_buffer_timer.stop()
-		actor.is_accelerating_descent = false
