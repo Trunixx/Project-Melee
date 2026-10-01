@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d3h24iw5yet6q"]
+
+[ext_resource type="Shader" uid="uid://cv2um6ghebhnj" path="res://assets/shaders/pause_manager.gdshader" id="1_hfj81"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i2y37"]
+shader = ExtResource("1_hfj81")
+shader_parameter/lod = 2.1570001024575
+
+[node name="Background" type="ColorRect" unique_id=330596183]
+material = SubResource("ShaderMaterial_i2y37")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

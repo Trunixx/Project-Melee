@@ -3,11 +3,19 @@
 [ext_resource type="Script" uid="uid://dc44glktkvq17" path="res://scenes/ui/main_menu.gd" id="1_sl1te"]
 [ext_resource type="Theme" uid="uid://w4vw6eirhsok" path="res://resources/main_menu_theme.tres" id="2_fe2o3"]
 
-[node name="MainMenu" type="CanvasLayer" unique_id=1490168189]
+[node name="MainMenu" type="Control" unique_id=806492270]
 process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_sl1te")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1703749362]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.16526154
 anchor_right = 1.0
@@ -62,6 +70,6 @@ text = "Quit"
 
 [connection signal="button_down" from="CenterContainer/BoxContainer/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_button_down"]
 [connection signal="button_down" from="CenterContainer/BoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_button_down"]
-[connection signal="button_down" from="CenterContainer/BoxContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_button_down"]
+[connection signal="button_down" from="CenterContainer/BoxContainer/VBoxContainer/SettingsButton" to="." method="_on_options_button_button_down"]
 [connection signal="button_down" from="CenterContainer/BoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_button_down"]
 [connection signal="button_down" from="CenterContainer/BoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_button_down"]

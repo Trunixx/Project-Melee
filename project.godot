@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 AudioManager="*uid://chugfoavo1exx"
-PauseManager="*uid://d1diaey2q81xx"
 GameSettings="*uid://bc7vtmoil3hh"
+UIManager="*uid://c1lfmh858opjc"
 
 [display]
 

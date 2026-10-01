@@ -6,38 +6,43 @@
 [ext_resource type="PackedScene" uid="uid://dqofqe6w3aykt" path="res://scenes/ui/settings_sub_folder/audio.tscn" id="3_4xk3x"]
 [ext_resource type="PackedScene" uid="uid://bi526weyydrtf" path="res://scenes/ui/settings_sub_folder/video.tscn" id="4_jw8st"]
 [ext_resource type="PackedScene" uid="uid://baakcvi7d1ulv" path="res://scenes/ui/settings_sub_folder/game.tscn" id="5_d4m38"]
+[ext_resource type="PackedScene" uid="uid://d3h24iw5yet6q" path="res://scenes/ui/blurred_background.tscn" id="7_4xk3x"]
 
-[node name="Settings" type="Control" unique_id=41587935]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1049.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Settings" type="CanvasLayer" unique_id=1947262650]
+process_mode = 3
+layer = 2
 script = ExtResource("1_ob3hf")
 
-[node name="TabContainer" type="TabContainer" parent="." unique_id=1365260995]
-layout_mode = 1
+[node name="Background" parent="." unique_id=330596183 instance=ExtResource("7_4xk3x")]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=193431313]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer" unique_id=1365260995]
+layout_mode = 2
 tab_alignment = 1
 current_tab = 4
 
-[node name="Controls" parent="TabContainer" unique_id=1537759681 instance=ExtResource("1_ncfhn")]
+[node name="Controls" parent="MarginContainer/TabContainer" unique_id=1537759681 instance=ExtResource("1_ncfhn")]
 visible = false
 layout_mode = 2
 
-[node name="Inputs" parent="TabContainer" unique_id=684659427 instance=ExtResource("2_ob3hf")]
+[node name="Inputs" parent="MarginContainer/TabContainer" unique_id=684659427 instance=ExtResource("2_ob3hf")]
 layout_mode = 2
 
-[node name="Audio" parent="TabContainer" unique_id=2068400696 instance=ExtResource("3_4xk3x")]
+[node name="Audio" parent="MarginContainer/TabContainer" unique_id=2068400696 instance=ExtResource("3_4xk3x")]
 layout_mode = 2
 
-[node name="Video" parent="TabContainer" unique_id=1950830935 instance=ExtResource("4_jw8st")]
+[node name="Video" parent="MarginContainer/TabContainer" unique_id=1950830935 instance=ExtResource("4_jw8st")]
 layout_mode = 2
 
-[node name="Game" parent="TabContainer" unique_id=1412000151 instance=ExtResource("5_d4m38")]
+[node name="Game" parent="MarginContainer/TabContainer" unique_id=1412000151 instance=ExtResource("5_d4m38")]
 layout_mode = 2

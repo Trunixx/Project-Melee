@@ -1,6 +1,6 @@
 extends MarginContainer
 
-@onready var v_box_container: VBoxContainer = $ScrollContainer/VBoxContainer
+@onready var v_box_container: VBoxContainer = $ScrollContainer/MarginContainer/VBoxContainer
 @onready var settings: ActorStats = GameSettings.actor_stats
 
 func _ready() -> void:

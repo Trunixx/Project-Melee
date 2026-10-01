@@ -90,4 +90,5 @@ class_name ActorStats extends Resource
 @export var sprinting_zoom : float = 2.85
 @export var normal_crouch_zoom : float = 3.25
 @export var sprinting_crouch_zoom : float = 3.1
+@export var landing_zoom : float = 2.85
 @export var screen_shake_falling_speed_modifier : float = 250

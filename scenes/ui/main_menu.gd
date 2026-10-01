@@ -1,27 +1,25 @@
-extends Control
-
-const DEBUG_LEVEL_1 = preload("uid://b2nd0rupfwexx")
-
-const SETTINGS = preload("uid://bjncayqwu40am")
-const CREDITS = preload("uid://3rqnfndasryu")
+extends CanvasLayer
 
 func _on_new_game_button_button_down() -> void:
 	AudioManager.create_audio(SoundEffect.SOUND_EFFECT_TYPE.UI_BUTTON_PRESS)
+	get_tree().change_scene_to_packed(ScenePaths.DEBUG_LEVEL_1)
+	# TODO: Change it to a scene selector scene
 
 func _on_continue_button_button_down() -> void:
 	AudioManager.create_audio(SoundEffect.SOUND_EFFECT_TYPE.UI_BUTTON_PRESS)
-	get_tree().change_scene_to_packed(DEBUG_LEVEL_1)
+	get_tree().change_scene_to_packed(ScenePaths.DEBUG_LEVEL_1)
+	# TODO: Change it to check save files
 
-func _on_options_button_button_down() -> void:
+func _on_settings_button_button_down() -> void:
 	AudioManager.create_audio(SoundEffect.SOUND_EFFECT_TYPE.UI_BUTTON_PRESS)
-	var menu := SETTINGS.instantiate()
-	add_child(menu)
+	UIManager.open_menu(ScenePaths.SETTINGS)
 	
 func _on_credits_button_button_down() -> void:
 	AudioManager.create_audio(SoundEffect.SOUND_EFFECT_TYPE.UI_BUTTON_PRESS)
-	get_tree().change_scene_to_packed(CREDITS)
+	await get_tree().create_timer(0.1).timeout
+	UIManager.open_menu(ScenePaths.CREDITS)
 
 func _on_quit_button_button_down() -> void:
 	AudioManager.create_audio(SoundEffect.SOUND_EFFECT_TYPE.UI_BUTTON_PRESS)
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.1).timeout
 	get_tree().quit()

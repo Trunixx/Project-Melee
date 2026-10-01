@@ -305,7 +305,7 @@ position = Vector2(-406.86023, 352.59204)
 offset_left = -312.1009
 offset_top = 132.5685
 offset_right = -73.623245
-offset_bottom = 262.9304
+offset_bottom = 258.79813
 theme_override_font_sizes/normal_font_size = 10
 theme_override_font_sizes/bold_font_size = 10
 bbcode_enabled = true
@@ -316,6 +316,7 @@ text = "[b]W[/b]: Climb wall
 [b]LShift[/b]: Sprint (even while crouching)
 [b]LAlt[/b]: Toggle walking
 [b]Space[/b]: Jump
+[b]T[/b]: Open debug menu
 
 [s][b]Tab[/b]: Combat (not implemented yet)[/s]
 
