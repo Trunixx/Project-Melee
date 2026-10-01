@@ -15,3 +15,8 @@ func physics_update(delta: float) -> void:
 		finished.emit(StatePaths.SLIDE_POSTSLIDING)
 	if abs(actor.velocity.x) < actor.stats.minimum_sliding_speed:
 		finished.emit(StatePaths.CROUCH)
+	
+	# FIXME: If I collide but don't push any direction, if I go in the opposite direction it goes into the Wall state without going in any leaf
+	if actor.is_any_ledge_detected() and actor.get_input_x() != 0: # and actor.get_input_x() != actor.mid_wall_detector.get_collision_normal().x:
+		finished.emit(StatePaths.WALL)
+		return

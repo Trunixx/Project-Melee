@@ -1,7 +1,11 @@
 class_name Crouch extends ActorState
 
+func enter(_previous_state_path: String, _data := {}) -> void:
+	actor.sliding_buffer_timer.stop()
+	
 func exit() -> void:
 	actor.previous_x_speed = actor.velocity.x 
+	actor.sliding_buffer_timer.stop()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func physics_update(delta: float) -> void:

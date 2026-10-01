@@ -5,3 +5,6 @@
 [resource]
 script = ExtResource("1_330vc")
 gravity = null
+turnskid_min_speed = null
+maximum_air_speed = null
+sliding_gravity = null

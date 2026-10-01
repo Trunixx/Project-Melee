@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bi526weyydrtf"]
+
+[node name="Video" type="MarginContainer" unique_id=1950830935]
+visible = false
+metadata/_tab_index = 3

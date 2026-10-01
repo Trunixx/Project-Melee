@@ -1,6 +1,6 @@
 class_name Actor extends CharacterBody2D
 
-@export var stats : Resource
+@export var stats : ActorStats
 
 @onready var view: Node2D = $View
 @onready var animation_player: AnimationPlayer = $View/AnimationPlayer
@@ -59,7 +59,10 @@ func _ready() -> void:
 	coyote_buffer_timer.wait_time = stats.coyote_buffer_time
 	wall_turning_buffer_timer.wait_time = stats.wall_turning_buffer_time
 	sliding_boost_timer.wait_time = stats.sliding_boost_time
+	
 	floor_snap_length = 4.0
+	
+	stats = GameSettings.actor_stats
 
 # The code in this function makes it so that you can override your current direction
 # even if you keep holding the key

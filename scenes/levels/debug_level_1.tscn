@@ -55,7 +55,7 @@ size = Vector2(116.38678, 887.8468)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
 size = Vector2(116.38678, 359.016)
 
-[node name="Main" type="Node2D" unique_id=1186384867]
+[node name="DebugLevel1" type="Node2D" unique_id=1186384867]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1788001955]
 position = Vector2(384, 783)

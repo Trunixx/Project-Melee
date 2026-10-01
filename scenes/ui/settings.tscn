@@ -1,9 +1,43 @@
-[gd_scene format=3 uid="uid://d1diaey2q81xx"]
+[gd_scene format=3 uid="uid://bjncayqwu40am"]
 
-[node name="Settings" type="Control" unique_id=1131425089]
+[ext_resource type="PackedScene" uid="uid://dpbts3ishuer2" path="res://scenes/ui/settings_sub_folder/controls.tscn" id="1_ncfhn"]
+[ext_resource type="Script" uid="uid://h22ka40gloko" path="res://scenes/ui/settings.gd" id="1_ob3hf"]
+[ext_resource type="PackedScene" uid="uid://box0is8q07l7j" path="res://scenes/ui/settings_sub_folder/inputs.tscn" id="2_ob3hf"]
+[ext_resource type="PackedScene" uid="uid://dqofqe6w3aykt" path="res://scenes/ui/settings_sub_folder/audio.tscn" id="3_4xk3x"]
+[ext_resource type="PackedScene" uid="uid://bi526weyydrtf" path="res://scenes/ui/settings_sub_folder/video.tscn" id="4_jw8st"]
+[ext_resource type="PackedScene" uid="uid://baakcvi7d1ulv" path="res://scenes/ui/settings_sub_folder/game.tscn" id="5_d4m38"]
+
+[node name="Settings" type="Control" unique_id=41587935]
 layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1049.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ob3hf")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1365260995]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+tab_alignment = 1
+current_tab = 4
+
+[node name="Controls" parent="TabContainer" unique_id=1537759681 instance=ExtResource("1_ncfhn")]
+visible = false
+layout_mode = 2
+
+[node name="Inputs" parent="TabContainer" unique_id=684659427 instance=ExtResource("2_ob3hf")]
+layout_mode = 2
+
+[node name="Audio" parent="TabContainer" unique_id=2068400696 instance=ExtResource("3_4xk3x")]
+layout_mode = 2
+
+[node name="Video" parent="TabContainer" unique_id=1950830935 instance=ExtResource("4_jw8st")]
+layout_mode = 2
+
+[node name="Game" parent="TabContainer" unique_id=1412000151 instance=ExtResource("5_d4m38")]
+layout_mode = 2

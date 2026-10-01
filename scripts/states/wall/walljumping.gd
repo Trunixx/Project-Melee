@@ -5,6 +5,7 @@ class_name Walljumping extends ActorState
 func enter(previous_state_path: String, data := {}) -> void:
 	actor.velocity.x = actor.stats.jump_force * actor.view.scale.x * -1
 	actor.velocity.y = -actor.stats.jump_force
+	actor.view.face_from_sign(actor.get_input_x())
 	actor.animation_player.play("jumping")
 	
 func physics_update(delta: float) -> void:	

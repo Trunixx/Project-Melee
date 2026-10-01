@@ -4,7 +4,7 @@ func enter(previous_state_path: String, data := {}) -> void:
 	actor.animation_player.play(state_name)
 	actor.previous_zoom = actor.camera.target_zoom
 	actor.camera.screen_zoom(2.85) 
-	actor.camera.screen_shake(actor.previous_y_speed/200, actor.animation_player.current_animation_length)
+	actor.camera.screen_shake(actor.previous_y_speed/actor.stats.screen_shake_falling_speed_modifier, actor.animation_player.current_animation_length/1.5)
 	
 func exit() -> void:
 	actor.camera.screen_zoom(actor.previous_zoom)

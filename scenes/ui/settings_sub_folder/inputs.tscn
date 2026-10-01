@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://box0is8q07l7j"]
+
+[node name="Inputs" type="MarginContainer" unique_id=684659427]
+visible = false
+metadata/_tab_index = 1

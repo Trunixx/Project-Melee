@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dqofqe6w3aykt"]
+
+[node name="Audio" type="MarginContainer" unique_id=2068400696]
+visible = false
+metadata/_tab_index = 2
