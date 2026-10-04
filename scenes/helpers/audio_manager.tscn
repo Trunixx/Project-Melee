@@ -6,12 +6,14 @@
 
 [sub_resource type="Resource" id="Resource_jsrhe"]
 script = ExtResource("2_e5cp0")
+bus = 2
 metadata/_custom_type_script = "uid://bsk2t4lp7krad"
 
 [sub_resource type="Resource" id="Resource_ch4g5"]
 script = ExtResource("2_e5cp0")
 type = 1
 sound_effect = ExtResource("3_uu6i4")
+bus = 2
 metadata/_custom_type_script = "uid://bsk2t4lp7krad"
 
 [node name="AudioManager" type="Node2D" unique_id=1597861247]

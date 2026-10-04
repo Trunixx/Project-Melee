@@ -35,7 +35,7 @@ func _assign_audio_features(sound_effect: SoundEffect, audio_stream_player: Node
 	if audio_stream_player is AudioStreamPlayer2D:
 		audio_stream_player.position = location
 	if audio_stream_player is AudioStreamPlayer2D or audio_stream_player is AudioStreamPlayer:
-		audio_stream_player.bus = sound_effect.bus
+		audio_stream_player.bus = sound_effect.get_bus_string()
 		audio_stream_player.stream = sound_effect.sound_effect
 		audio_stream_player.volume_db = sound_effect.volume
 		audio_stream_player.pitch_scale = sound_effect.pitch_scale
