@@ -35,7 +35,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 		if event.is_action_pressed("debug_menu"):
 			if UIManager.menu_stack.is_empty():
-				UIManager.open_menu(ScenePaths.SETTINGS)
+				var menu : Node = UIManager.open_menu(ScenePaths.SETTINGS)
+				menu.tab_container.current_tab = menu.tab_container.get_tab_idx_from_control(menu.tabs["game"])
 			else:
 				UIManager.close_current_menu()
 				
@@ -43,7 +44,7 @@ func _on_pause_hold() -> void:
 	pause_was_held = true
 	UIManager.close_all_menus()
 	
-func open_menu(menu : PackedScene) -> void:
+func open_menu(menu: PackedScene) -> Node:
 	if not menu_stack.is_empty():
 		menu_stack.back().hide()
 
@@ -52,6 +53,8 @@ func open_menu(menu : PackedScene) -> void:
 
 	menu_stack.push_back(instantiated_menu)
 	_update_pause_state()
+	
+	return instantiated_menu
 	
 func close_current_menu() -> void:
 	if menu_stack.is_empty():

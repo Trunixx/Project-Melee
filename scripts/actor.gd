@@ -79,11 +79,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 	elif Input.is_action_just_pressed("walking"):
 		movement_mode = MovementMode.WALK if movement_mode != MovementMode.WALK else MovementMode.RUN
 	
-	if Input.is_action_pressed("sprinting (hold)"):
+	if Input.is_action_pressed("hold_sprinting"):
 		if movement_mode != MovementMode.SPRINT:
 			movement_mode = MovementMode.SPRINT
 	
-	if Input.is_action_just_released("sprinting (hold)"):
+	if Input.is_action_just_released("hold_sprinting"):
 		if movement_mode == MovementMode.SPRINT:
 			movement_mode = MovementMode.RUN
 				
