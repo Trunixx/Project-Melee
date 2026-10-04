@@ -1,0 +1,6 @@
+OGG Vorbis: good quality, small files (Music)
+WAV: lossless, big files (SFX)
+MP3: A balance between the two
+
+Not available by default (there's an addon though)
+FLAC: Lossless and smaller than WAV
