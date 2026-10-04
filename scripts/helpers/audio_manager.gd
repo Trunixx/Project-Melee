@@ -35,11 +35,11 @@ func _assign_audio_features(sound_effect: SoundEffect, audio_stream_player: Node
 	if audio_stream_player is AudioStreamPlayer2D:
 		audio_stream_player.position = location
 	if audio_stream_player is AudioStreamPlayer2D or audio_stream_player is AudioStreamPlayer:
+		audio_stream_player.bus = sound_effect.bus
 		audio_stream_player.stream = sound_effect.sound_effect
 		audio_stream_player.volume_db = sound_effect.volume
 		audio_stream_player.pitch_scale = sound_effect.pitch_scale
 		audio_stream_player.pitch_scale += randf_range(-sound_effect.pitch_randomness, sound_effect.pitch_randomness)
-		
 		audio_stream_player.finished.connect(sound_effect.on_audio_finished)
 		audio_stream_player.finished.connect(audio_stream_player.queue_free)
 	else:
