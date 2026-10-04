@@ -28,17 +28,19 @@ enum BUS {
 
 var audio_count: int = 0 ## The instances of this [AudioStreamMP3] currently playing.
 
-## Takes [param amount] to change the [member audio_count]. 
-func change_audio_count(amount: int) -> void:
+## Adds [param amount] to change the [member audio_count]. 
+func increment_audio_count(amount: int = 1) -> void:
 	audio_count = max(0, audio_count + amount)
-
+func decrement_audio_count(amount: int = -1) -> void:
+	audio_count = max(0, audio_count - amount)
+	
 ## Checkes whether the audio limit is reached. Returns true if the [member audio_count] is less than the [member limit].
-func has_open_limit() -> bool:
+func has_not_reached_limit() -> bool:
 	return audio_count < limit
 
 ## Connected to the [member sound_effect]'s finished signal to decrement the [member audio_count].
 func on_audio_finished() -> void:
-	change_audio_count(-1)
+	decrement_audio_count()
 	
 func get_bus_string() -> String:
 	match bus:
