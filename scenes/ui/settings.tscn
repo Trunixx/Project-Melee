@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://box0is8q07l7j" path="res://scenes/ui/settings_sub_folder/controls.tscn" id="2_ob3hf"]
 [ext_resource type="PackedScene" uid="uid://dqofqe6w3aykt" path="res://scenes/ui/settings_sub_folder/audio.tscn" id="3_4xk3x"]
 [ext_resource type="PackedScene" uid="uid://bi526weyydrtf" path="res://scenes/ui/settings_sub_folder/video.tscn" id="4_jw8st"]
-[ext_resource type="PackedScene" uid="uid://baakcvi7d1ulv" path="res://scenes/ui/settings_sub_folder/game.tscn" id="5_d4m38"]
+[ext_resource type="PackedScene" uid="uid://baakcvi7d1ulv" path="res://scenes/ui/settings_sub_folder/debug.tscn" id="5_d4m38"]
 [ext_resource type="PackedScene" uid="uid://d3h24iw5yet6q" path="res://scenes/ui/blurred_background.tscn" id="7_4xk3x"]
 
 [node name="Settings" type="CanvasLayer" unique_id=1947262650]
@@ -42,7 +42,7 @@ metadata/_tab_index = 1
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Game" parent="MarginContainer/TabContainer" unique_id=1412000151 instance=ExtResource("5_d4m38")]
+[node name="Debug" parent="MarginContainer/TabContainer" unique_id=1412000151 instance=ExtResource("5_d4m38")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3

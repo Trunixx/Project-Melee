@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://baakcvi7d1ulv"]
 
-[ext_resource type="Script" uid="uid://d3k4tdfj1xewj" path="res://scenes/ui/settings_sub_folder/game.gd" id="1_1c75k"]
+[ext_resource type="Script" uid="uid://d3k4tdfj1xewj" path="res://scenes/ui/settings_sub_folder/debug.gd" id="1_1artk"]
 
-[node name="Game" type="MarginContainer" unique_id=1412000151]
+[node name="Debug" type="MarginContainer" unique_id=1412000151]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1c75k")
+script = ExtResource("1_1artk")
 metadata/_tab_index = 4
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=94757265]

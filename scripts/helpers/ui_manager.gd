@@ -36,7 +36,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("debug_menu"):
 			if UIManager.menu_stack.is_empty():
 				var menu : Node = UIManager.open_menu(ScenePaths.SETTINGS)
-				menu.tab_container.current_tab = menu.tab_container.get_tab_idx_from_control(menu.tabs["game"])
+				menu.tab_container.current_tab = menu.tab_container.get_tab_idx_from_control(menu.tabs["debug"])
 			else:
 				UIManager.close_current_menu()
 				
