@@ -1,6 +1,6 @@
 class_name Sliding extends ActorState
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	actor.animation_player.play(state_name)
 	if actor.sliding_boost_timer.is_stopped():
 		actor.velocity.x += actor.stats.sliding_speed_bonus * actor.get_input_x()

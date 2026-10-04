@@ -1,6 +1,6 @@
 class_name Combat extends ActorState
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	actor.animation_player.play(state_name)
 	
 func physics_update(delta: float) -> void:

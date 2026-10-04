@@ -1,8 +1,6 @@
 class_name Walljumping extends ActorState
 
-# FIXME: Staying in this state makes you sometimes jump directly up
-
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	actor.velocity.x = actor.stats.jump_force * actor.view.scale.x * -1
 	actor.velocity.y = -actor.stats.jump_force
 	actor.view.face_from_sign(actor.get_input_x())

@@ -1,6 +1,6 @@
 class_name Walking extends ActorState
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	actor.animation_player.play(state_name)
 	actor.camera.screen_zoom(actor.stats.normal_zoom)
 	

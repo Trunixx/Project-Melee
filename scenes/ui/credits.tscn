@@ -15,20 +15,59 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1106205956]
+[node name="CreditsRichTextLabel" type="RichTextLabel" parent="." unique_id=1091209432]
+process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+bbcode_enabled = true
+text = "[center]
+[color=#ffcc00][font_size=32]Credits[/font_size][/color]
+[color=#d18c47]Game[/color]  [color=#FFFFFF]Trunix[/color]
 
-[node name="Label" type="Label" parent="CenterContainer" unique_id=1047083983]
-process_mode = 3
-layout_mode = 2
-text = "Godot Modular Character Controller by Panthera Digital
-Dummy 2D Placeholder Assets by Benvictus
-2D Pixel Art Character Template Asset Pack by Zegley
-AudioManager by Aarimous
-Sounds by Zapsplat
-Caudex font by Hjort Nidudsson
-CinzelDecorative font by Natanael Gama"
+[font_size=24]Audio[/font_size]
+[color=#d18c47]Music[/color] [color=#FFFFFF]Not yet[/color]
+[color=#d18c47]Sounds[/color] [color=#FFFFFF]Zapsplat[/color]
+
+[font_size=24]Art[/font_size]
+[color=#FFFFFF]Not yet[/color]
+
+[font_size=24]Fonts[/font_size]
+[color=#d18c47]Caudex[/color] [color=#FFFFFF]by Hjort Nidudsson[/color]
+[color=#d18c47]CinzelDecorative[/color] [color=#FFFFFF]by Natanael Gama[/color]
+
+[font_size=24]Feedback[/font_size]
+[color=#d18c47]Playtesting and feedback[/color]
+[color=#FFFFFF]Mark (aka ivegotlvlup)[/color]
+[color=#FFFFFF]Claude[/color]
+[color=#FFFFFF]Fran[/color]
+[color=#FFFFFF]Alonio[/color]
+[color=#FFFFFF]Paqyi[/color]
+[color=#FFFFFF]Simona[/color]
+
+[font_size=24]Additional Thanks[/font_size]
+[color=#d14747]Panthera Digital[/color] for the [color=#d18c47]Godot Modular Character Controller[/color]
+I took the FSM template and edited it into an HSM
+
+[color=#d14747]Benvictus[/color] for [color=#d18c47]Dummy 2D Placeholder Assets[/color]
+I used these assets in the first prototype versions of the game
+
+[color=#d14747]Zegley[/color] for the [color=#d18c47]2D Pixel Art Character Template Asset Pack[/color]
+I used this asset pack in later prototype versions of the game
+
+[color=#d14747]Aarimous[/color] for the [color=#d18c47]AudioManager[/color]
+I had lots of fun making this autoload DRY, adding Object Pooling and implementing Audio Randomization
+
+[font_size=24]Special Thanks[/font_size]
+[color=#d14747]From Software[/color] for their amazing games that changed my life
+
+[color=#d14747]Miro Haverinen[/color] from [color=#d1478c]Happy Paintings [/color]for a series of games so good that left me in awe for months
+
+A [color=#d14747]cruel and sharp bunny[/color] for making me believe in game development and motivating me to pursue this passion of mine
+
+My [color=#d14747]friends[/color] that listened to my nonsense yapping about this project
+[/center]
+
+"

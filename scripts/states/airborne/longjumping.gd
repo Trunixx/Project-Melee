@@ -1,6 +1,6 @@
 class_name Longjumping extends ActorState
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	var input_x = actor.get_input_x()
 	# These two lines avoid giving momentum if changing direction between prejump and jump
 	if sign(actor.previous_x_speed) == sign(input_x):

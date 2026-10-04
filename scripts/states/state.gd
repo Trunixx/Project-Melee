@@ -3,6 +3,7 @@
 class_name State extends Node
 
 ## Emitted when the state finishes and wants to transition to another state.
+@warning_ignore("unused_signal")
 signal finished(next_state_path: String, data: Dictionary)
 
 ## Called by the state machine upon changing the active state. The `data` parameter

@@ -1,6 +1,6 @@
 class_name Presliding extends ActorState
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	actor.animation_player.play(state_name)
 	actor.sliding_buffer_timer.stop()
 	

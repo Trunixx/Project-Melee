@@ -8,7 +8,7 @@ func exit() -> void:
 	actor.sliding_buffer_timer.stop()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	actor.view.face_from_sign(actor.get_input_x())
 			
 	# Falling and coyote is over

@@ -41,25 +41,26 @@ func create_settings_menu() -> void:
 			row.add_child(input)
 			v_box_container.add_child(row)
 		
-func _create_header(name : String) -> void:
-	if name == "Resource":
+func _create_header(header_name : String) -> void:
+	if header_name == "Resource":
 		return
 	var row := HBoxContainer.new()
 	var label := Label.new()
 	
-	label.text = name.capitalize()
+	label.text = header_name.capitalize()
 	label.add_theme_font_size_override("font_size", label.get_theme_font_size("font_size")*2)
 	row.add_child(label)
 	
 	v_box_container.add_child(row)
 
-func _create_subheader(name : String) -> void:
-	if name == "Resource":
+func _create_subheader(header_name : String) -> void:
+	if header_name == "Resource":
 		return
 	var row := HBoxContainer.new()
 	var label := Label.new()
 	
-	label.text = name.capitalize()
+	label.text = header_name.capitalize()
+	@warning_ignore("narrowing_conversion")
 	label.add_theme_font_size_override("font_size", label.get_theme_font_size("font_size")*1.5)
 	row.add_child(label)
 	

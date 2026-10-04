@@ -1,8 +1,6 @@
 class_name Slide extends ActorState
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func physics_update(delta: float) -> void:
-
+func physics_update(_delta: float) -> void:
 	if not actor.is_on_floor() and abs(actor.velocity.x) < actor.stats.sliding_falling_speed_threshold:
 		# DESIGN: Transition state to animate the fall, or consider leaving it like this
 		finished.emit(StatePaths.SLIDE_POSTSLIDING)

@@ -49,6 +49,6 @@ func screen_shake(intensity: int, time: float):
 	active_shake_time = time
 	shake_time = 0.0
 	
-func screen_zoom(zoom: float = target_zoom, speed: float = zoom_speed):
-	target_zoom = zoom
+func screen_zoom(zoom_arg: float = target_zoom, speed: float = zoom_speed):
+	target_zoom = zoom_arg
 	zoom_speed = speed

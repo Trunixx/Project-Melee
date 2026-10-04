@@ -1,6 +1,6 @@
 class_name CrouchRunning extends ActorState
 
-func enter(previous_state_path: String, data := {}) -> void:
+func enter(_previous_state_path: String, _data := {}) -> void:
 	actor.animation_player.play("crouch_walking")
 	actor.camera.screen_zoom(actor.stats.normal_crouch_zoom)
 	

@@ -20,7 +20,7 @@ func _ready() -> void:
 	timer_label_prefix.text = tracked_timer.name
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	state_label_data.text = state_machine.get_string_state_hierarchy(state_machine.state)
 	velocity_label_data.text = "x: " + var_to_str(actor.velocity.x) + " y: " + var_to_str(actor.velocity.y)
 	value_label_data.text = var_to_str(actor.camera.target_zoom)

@@ -16,13 +16,13 @@ func create_audio(type: SoundEffect.SOUND_EFFECT_TYPE) -> void:
 	var new_audio : AudioStreamPlayer = _assign_audio_features("AudioStreamPlayer", type)
 	if new_audio:
 		new_audio.play()
-	
+
 # Creates a sound effect at a specific location
 func create_2d_audio_at_location(type: SoundEffect.SOUND_EFFECT_TYPE, location: Vector2) -> void:
 	var new_2d_audio : AudioStreamPlayer2D = _assign_audio_features("AudioStreamPlayer2D", type, location)
 	if new_2d_audio:
 		new_2d_audio.play()
-	
+
 # Helper function that actually creates the sound
 func _assign_audio_features(class_type: String, type: SoundEffect.SOUND_EFFECT_TYPE, location: Vector2 = Vector2.ZERO) -> Node:
 	if not sound_effect_dict.has(type):
