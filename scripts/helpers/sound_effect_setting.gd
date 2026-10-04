@@ -6,6 +6,7 @@ extends Resource
 enum SOUND_EFFECT_TYPE {
 	UI_HOVER,
 	UI_BUTTON_PRESS,
+	TEST_SOUND,
 }
 
 ## Stores the different buses
@@ -18,25 +19,42 @@ enum BUS {
 	SFX,
 }
 
-@export_range(0, 10) var limit: int = 5 ## Maximum number of this SoundEffect to play simultaneously before culled.
+@export_range(0, 10) var limit: int = 5 ## Maximum number of this SoundEffect to play simultaneously before culled. A limit of 0 means unlimited.
 @export var type: SOUND_EFFECT_TYPE ## The unique sound effect in the [enum SOUND_EFFECT_TYPE] to associate with this effect. Each SoundEffect resource should have it's own unique [enum SOUND_EFFECT_TYPE] setting.
-@export var sound_effect: AudioStream ## The [AudioStream] audio resource to play.
-@export var bus: BUS
+@export var sound_effects: Array[AudioStream] ## The [AudioStream] audio resource to play.
+@export var bus: BUS = BUS.SFX ## The bus to route the sound to (defaults to SFX).
 @export_range(-40, 20) var volume: float = 0 ## The volume of the [member sound_effect].
-@export_range(0.0, 4.0,.01) var pitch_scale: float = 1.0 ## The pitch scale of the [member sound_effect].
-@export_range(0.0, 1.0,.01) var pitch_randomness: float = 0.0 ## The pitch randomness setting of the [member sound_effect].
+@export_range(0.0, 12.0, 0.1) var pitch_randomness: float = 0.0 ## Maximum random pitch variation in semitones.
+@export_range(0.0, 12.0, 0.1) var volume_randomness: float = 0.0 ## Maximum volume variation in dB.
 
-var audio_count: int = 0 ## The instances of this [AudioStreamMP3] currently playing.
+var randomizer : AudioStreamRandomizer
 
-## Adds [param amount] to change the [member audio_count]. 
+var audio_count : int = 0 ## The number of instances of this [AudioStream] currently playing.
+
+func get_audio_stream() -> AudioStreamRandomizer:
+	if randomizer == null:
+		randomizer  = AudioStreamRandomizer.new()
+		
+		for sound in sound_effects:
+			randomizer.add_stream(-1, sound) # -1 means that it automatically appends at the end of the array
+		
+		randomizer.random_pitch_semitones = pitch_randomness
+		randomizer.random_volume_offset_db = volume_randomness
+		
+	return randomizer
+
+## Adds [param amount] to  [member audio_count]. 
 func increment_audio_count(amount: int = 1) -> void:
 	audio_count = max(0, audio_count + amount)
-func decrement_audio_count(amount: int = -1) -> void:
+## Subtracts [param amount] from [member audio_count]. 
+func decrement_audio_count(amount: int = 1) -> void:
 	audio_count = max(0, audio_count - amount)
 	
-## Checkes whether the audio limit is reached. Returns true if the [member audio_count] is less than the [member limit].
-func has_not_reached_limit() -> bool:
-	return audio_count < limit
+## Checks whether the audio limit is reached. Returns true if the [member audio_count] is more or equal than the [member limit].
+func has_reached_limit() -> bool:
+	if limit == 0:
+		return false
+	return audio_count >= limit
 
 ## Connected to the [member sound_effect]'s finished signal to decrement the [member audio_count].
 func on_audio_finished() -> void:
