@@ -21,7 +21,7 @@ class_name ActorStats extends Resource
 
 # Used when starting to move
 @export_subgroup("Acceleration")
-@export var ground_acceleration : float = 600.0
+@export var ground_acceleration : float = 800.0
 @export var air_acceleration : float = 600.0
 
 # Used on walls
@@ -40,10 +40,10 @@ class_name ActorStats extends Resource
 
 # Used when reversing the direction of the movement
 @export_subgroup("Deceleration")
-@export var turnskid_deceleration : float = 1500.0
+@export var turnskid_deceleration : float = 1600.0
 @export var turnskid_min_speed : float = move_force/2
 # Used when stopping
-@export var ground_friction : float = 800.0
+@export var ground_friction : float = 1600.0
 @export var air_friction : float = 500.0
 
 # Used when in combat

@@ -24,8 +24,8 @@ func physics_update(_delta: float) -> void:
 		finished.emit(StatePaths.AIRBORNE_JUMPING)
 		return
 		
-	# Sliding
-	if Input.is_action_just_pressed("sliding"):
+	# Getting up
+	if Input.is_action_just_pressed("up") or Input.is_action_just_pressed("sliding") or Input.is_action_just_pressed("crouch") :
 		finished.emit(StatePaths.GROUNDED_IDLE)
 		return
 		

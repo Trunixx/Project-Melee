@@ -37,7 +37,12 @@ func physics_update(_delta: float) -> void:
 		else:
 			finished.emit(StatePaths.SLIDE_PRESLIDING)
 		return
-
+	
+	# Crouching
+	if Input.is_action_just_pressed("crouch"):
+		finished.emit(StatePaths.CROUCH)
+		return
+		
 	# Combat
 	if Input.is_action_just_pressed("combat"):
 		finished.emit(StatePaths.COMBAT)
@@ -46,7 +51,8 @@ func physics_update(_delta: float) -> void:
 	# Turnskid
 	if sign(actor.get_input_x()) != sign(actor.velocity.x) \
 			and not is_zero_approx(abs(actor.velocity.x)) \
-			and actor.movement_mode != actor.MovementMode.WALK:
+			and actor.movement_mode != actor.MovementMode.WALK \
+			and sign(actor.get_input_x()) != 0:
 		finished.emit(StatePaths.GROUNDED_TURNSKID)
 		return
 
